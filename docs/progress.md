@@ -24,6 +24,7 @@
 - [x] 实现 Self-Consistency 策略（strategies/self_consistency.py）
 - [x] 实现 Step-Aware Verifier 策略（strategies/step_verifier.py + prompts/step_verifier.txt）
 - [x] 实现检索增强 COT / RAG+COT（strategies/rag_cot.py + retrieval/ + data/knowledge_base.json + prompts/rag_cot.txt）
+  - [x] 升级为 IRCoT 风格两跳检索：topic-aware seed query + query planning + 去重证据拼接
 - [x] 实现 Multi-Agent Debate 策略（strategies/multi_agent_debate.py）
 - [x] 实现评估指标与实验记录（eval/metrics.py + eval/analyze.py）
 - [x] harness.py 注册全部策略并支持策略参数：n_paths、n_agents、n_rounds、top_k

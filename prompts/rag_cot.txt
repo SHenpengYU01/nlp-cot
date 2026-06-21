@@ -1,13 +1,19 @@
-You are solving a math word problem. You have access to relevant mathematical knowledge below. Use it to help your reasoning, but still think step by step.
+You are solving a math word problem with retrieval-augmented reasoning.
+Use the evidence below as supporting mathematical knowledge, but still verify that it matches the question before applying it.
 
 Relevant knowledge:
 {context}
+
+Retrieval trace:
+{retrieval_trace}
 
 ---
 
 Question: {question}
 Options: {options}
 
-Think step by step, applying the relevant knowledge where appropriate. At the end of your response, you must state your final answer choice on a single line in exactly this format:
+Think step by step, applying the relevant knowledge where appropriate.
+If the retrieved evidence suggests a formula, name it explicitly before using it.
+At the end of your response, you must state your final answer choice on a single line in exactly this format:
 Answer: X
 where X is one of A, B, C, D, or E.

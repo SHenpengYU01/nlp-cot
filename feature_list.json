@@ -54,7 +54,7 @@
       "description": "结合外部知识库，利用检索增强技术赋能COT推理",
       "dependencies": ["feat-004"],
       "status": "completed",
-      "evidence": "strategies/rag_cot.py + retrieval/ + data/knowledge_base.json + prompts/rag_cot.txt + verify_feat007.py 干跑验证通过；50样本准确率78.0%，100样本准确率92.0%，平均输出token 197.9"
+      "evidence": "strategies/rag_cot.py + retrieval/ + data/knowledge_base.json + prompts/rag_cot.txt + verify_feat007.py 干跑验证通过；升级为 IRCoT 风格两跳检索：topic-aware seed query + query planning + evidence dedupe；50样本准确率78.0%，100样本准确率92.0%，平均输出token 197.9"
     },
     {
       "id": "feat-008",

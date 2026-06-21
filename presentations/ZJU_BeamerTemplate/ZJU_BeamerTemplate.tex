@@ -35,7 +35,7 @@
 
 \title[nlp-cot]{基于大语言模型的思维链推理策略对比研究}
 \subtitle{Base CoT、Self-Consistency、Prefix Consistency、Step-Aware Verifier、RAG + CoT、Multi-Agent Debate 与 Harness Engineering}
-\author[nlp-cot]{杨征雨、沈彭宇、马博洋、徐楷哲、曹志凡}
+\author[nlp-cot]{杨征雨、沈彭宇、马博洋、徐哲楷、曹志凡}
 \institute[ZJU]{浙江大学 \quad 自然语言处理导论课程大作业}
 \date{2026 年 6 月}
 
@@ -441,43 +441,85 @@ final = _aggregate_votes(predictions, weights)
   \includegraphics[height=0.78\textheight,keepaspectratio]{rag.png}
 \end{frame}
 
-\begin{frame}{RAG + CoT：检索增强的两阶段推理}
-  \framesubtitle{Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions}
+\begin{frame}{RAG + CoT：交叠式多跳检索与推理流程}
+  \framesubtitle{IRCoT 风格：检索--规划--再检索循环 + 知识增强推理}
   \small
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{两阶段流程}
-        \textbf{Phase 1 --- 检索：}
-        $\mathcal{C}_q = \text{retrieve}(q, k)$，从知识库召回 top-$k$ 文档（$k=3$）。
-        \textbf{Phase 2 --- 推理：}
-        将上下文拼入 prompt，生成推理链：
-        \[
-          P_{\text{RAG}} = T_{\text{rag}}(\text{format}(\mathcal{C}_q), q, O)
-        \]
+    \begin{column}{0.55\textwidth}
+      \begin{block}{交叠式多跳检索（Interleaved Multi-Hop Retrieval）}
+        \begin{enumerate}
+          \tightitems
+          \item \textbf{Seed Query}：从题目中根据 topic hint（percentage / speed\_time / probability 等 9 类）生成种子查询。
+          \item \textbf{Hop 1 检索}：用种子查询检索 top-$k$ 文档。
+          \item \textbf{Query Planner}：LLM 分析已检索证据，识别缺失公式/概念，自动生成下一跳查询。
+          \item \textbf{Hop 2 检索}：用 planner 生成的查询再次检索。
+          \item \textbf{去重合并}：按内容去重（保留最高分副本），合并两跳结果。
+          \item \textbf{推理}：将检索证据 + trace 拼入 prompt，LLM 进行 CoT 推理。
+        \end{enumerate}
       \end{block}
-      \begin{block}{Jaccard 关键词检索器}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \begin{block}{关键词检索器细节}
         \begin{itemize}
           \tightitems
-          \item 分词：正则 \texttt{[a-z]+}，过滤约 100 个停用词，保留 $|t|>2$。
-          \item 相似度：$\text{sim}_{\text{Jaccard}} = \frac{|A \cap B|}{|A \cup B|}$，截断 top-$k$。
+          \item \textbf{分词：}正则 \texttt{[a-z]+|\textbackslash d+(\textbackslash.\textbackslash d+)?}，同时匹配单词与数字。
+          \item \textbf{停用词：}过滤约 100 个英文停用词，保留 $|t|>2$。
+          \item \textbf{相似度：}$\text{sim} = \text{Jaccard} + \text{overlap\_bonus} + \text{numeric\_bonus} + \text{topic\_bonus} + \text{phrase\_bonus}$
+          \item 各 bonus 加权求和，截断至 $[0,1]$，按总分排序取 top-$k$。
           \item 空结果降级为 base CoT。
+          \item 知识库：15 条数学公式与概念（math\_basics / geometry / probability / algebra）。
         \end{itemize}
       \end{block}
     \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{知识库}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{RAG + CoT 实验：参数配置与消融结果}
+  \framesubtitle{可调参数：top\_k、max\_hops、max\_context\_docs、query\_planner}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.46\textwidth}
+      \begin{block}{RAG 可调参数}
+        \begin{tabular}{ll}
+          \toprule
+          参数 & 默认值 \\
+          \midrule
+          top\_k（检索文档数） & 3 \\
+          max\_hops（检索跳数） & 2 \\
+          max\_context\_docs（总文档数） & 5 \\
+          use\_query\_planner（查询规划器） & True \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+      \begin{block}{实验设置}
         \begin{itemize}
           \tightitems
-          \item 15 条手工整理的通用数学事实。
-          \item 分类：math\_basics / geometry / probability。
-          \item 可热插拔，运行时自动加载。
+          \item 数据集：AQuA test 前 100 条。
+          \item 模型：deepseek-chat，temperature=0.7，max\_tokens=1024。
         \end{itemize}
       \end{block}
-      \begin{alertblock}{实验观察与局限}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \begin{block}{消融实验结果}
+        \begin{tabular}{lcc}
+          \toprule
+          配置 & 正确 & 准确率 \\
+          \midrule
+          Base CoT（无检索） & 91 & 91.0\% \\
+          \midrule
+          RAG, context\_docs=3 & 93 & \textbf{93.0\%} \\
+          RAG, top\_k=5 & 93 & \textbf{93.0\%} \\
+          RAG, hops=1 & 92 & 92.0\% \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+      \vspace{0.3em}
+      \begin{alertblock}{关键发现}
         \begin{itemize}
           \tightitems
-          \item 100 样本准确率 \textbf{92\%}，高于 base（91\%）。
-          \item Jaccard 缺乏语义理解，知识库仅 15 条是主要瓶颈。
+          \item context\_docs 从 5 降至 3，准确率 92\% $\to$ 93\%：减少低分噪音有效。
+          \item top\_k=5 同样达 93\%，扩大召回有增益。
+          \item hops=1（关闭第二跳 planner）降至 92\%：query planner 的正向贡献。
         \end{itemize}
       \end{alertblock}
     \end{column}

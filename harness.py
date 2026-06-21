@@ -249,6 +249,9 @@ def main():
     parser.add_argument("--n_agents", type=int, default=3, help="Number of agents (for multi_agent_debate)")
     parser.add_argument("--n_rounds", type=int, default=2, help="Number of debate rounds (for multi_agent_debate)")
     parser.add_argument("--top_k", type=int, default=3, help="Number of retrieved docs (for rag_cot)")
+    parser.add_argument("--rag_hops", type=int, default=2, help="Number of retrieval hops (for rag_cot)")
+    parser.add_argument("--rag_context_docs", type=int, default=5, help="Max retrieved docs to place in the final context (for rag_cot)")
+    parser.add_argument("--rag_no_planner", action="store_true", help="Disable the query-planning hop for rag_cot")
     parser.add_argument("--n_shots", type=int, default=5, help="Number of few-shot examples (for few_shot_cot)")
     parser.add_argument("--local_verifier", action="store_true", help="Use local DeBERTa verifier instead of LLM verifier")
     parser.add_argument("--verifier_model_path", type=str, default="k1r1same/aqua-verifier", help="HuggingFace model name or local path to the verifier model")
@@ -276,6 +279,9 @@ def main():
         strategy_kwargs["n_rounds"] = args.n_rounds
     if args.strategy == "rag_cot":
         strategy_kwargs["top_k"] = args.top_k
+        strategy_kwargs["max_hops"] = args.rag_hops
+        strategy_kwargs["max_context_docs"] = args.rag_context_docs
+        strategy_kwargs["use_query_planner"] = not args.rag_no_planner
     if args.strategy == "few_shot_cot":
         strategy_kwargs["n_shots"] = args.n_shots
 

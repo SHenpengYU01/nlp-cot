@@ -21,11 +21,17 @@ class DummyModel(BaseModel):
     def __init__(self):
         super().__init__("dummy")
         self.prompts_received = []
+        self.call_count = 0
 
     def generate(self, prompt, temperature=0.7, max_tokens=1024, stop=None, n=1, **kwargs):
+        self.call_count += 1
         self.prompts_received.append(prompt)
+        if "planning the next retrieval hop" in prompt.lower():
+            return [
+                "Next query: discount formula final price"
+            ]
         # Return a response that echoes whether context was found
-        has_context = "Relevant knowledge" in prompt or "Discount formula" in prompt
+        has_context = "Relevant knowledge" in prompt or "Retrieval trace" in prompt or "Discount formula" in prompt
         if has_context:
             return [
                 "Using the retrieved knowledge about discounts:\n"
@@ -74,7 +80,12 @@ def main():
 
     meta = result["metadata"]
     print(f"\nRetrieved docs: {meta['num_docs']}")
+    print(f"Retrieval hops: {meta['num_hops']}")
     print(f"Prompt contains context: {'Relevant knowledge' in model.prompts_received[-1]}")
+    print(f"Prompt contains retrieval trace: {'Retrieval trace' in model.prompts_received[-1]}")
+    print(f"Model calls: {model.call_count}")
+    assert meta["num_hops"] >= 2, "Expected interleaved retrieval with at least 2 hops"
+    assert model.call_count >= 2, "Expected planner + final generation calls"
 
     print("\n" + "=" * 60)
     if result["prediction"].upper() == example["correct"].upper():

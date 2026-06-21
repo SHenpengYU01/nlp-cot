@@ -16,7 +16,7 @@ from openai import OpenAI
 from .base import BaseModel
 
 # Default API config
-DEFAULT_API_KEY = "sk-823c5a2781684d248d782baca2522811"
+DEFAULT_API_KEY = "sk-56da081510c3491f93b749edda4ac1e0"
 DEFAULT_BASE_URL = "https://api.deepseek.com/v1"
 
 
@@ -25,7 +25,7 @@ class OpenAIModel(BaseModel):
 
     def __init__(
         self,
-        model_name: str = "deepseek-v4-flash",
+        model_name: str = "deepseek-chat",
         api_key: Optional[str] = None,
         base_url: Optional[str] = None,
         **kwargs

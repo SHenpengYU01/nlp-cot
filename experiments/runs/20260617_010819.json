@@ -1,0 +1,702 @@
+{
+  "run_id": "20260617_010819",
+  "timestamp": "2026-06-17T01:12:41.861547",
+  "config": {
+    "strategy": "base_cot",
+    "task": "aqua",
+    "model": "deepseek-v4-flash",
+    "dataset_split": "test",
+    "n_samples": 50,
+    "temperature": 0.7,
+    "max_tokens": 1024
+  },
+  "strategy_info": {
+    "name": "base_cot",
+    "config": {},
+    "harness_subsystems": {
+      "instructions": true,
+      "tools": false,
+      "environment": true,
+      "state": false,
+      "feedback": false
+    }
+  },
+  "task_info": {
+    "name": "aqua",
+    "config": {},
+    "dataset": "AQuA",
+    "data_dir": "data/AQuA"
+  },
+  "model_info": {
+    "model_name": "deepseek-v4-flash",
+    "config": {},
+    "provider": "openai_compatible",
+    "base_url": "https://api.deepseek.com/v1"
+  },
+  "metrics": {
+    "accuracy": 0.8,
+    "correct": 40,
+    "total": 50,
+    "avg_reasoning_steps": 0.9,
+    "avg_input_tokens": 127.88,
+    "avg_output_tokens": 49.84,
+    "total_input_tokens": 6394,
+    "total_output_tokens": 2492,
+    "detailed": [
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 3,
+        "input_tokens": 174,
+        "output_tokens": 133
+      },
+      {
+        "prediction": "",
+        "correct": "E",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 156,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 102,
+        "output_tokens": 32
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 140,
+        "output_tokens": 93
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 102,
+        "output_tokens": 58
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 166,
+        "output_tokens": 97
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 109,
+        "output_tokens": 78
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 133,
+        "output_tokens": 56
+      },
+      {
+        "prediction": "",
+        "correct": "E",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 133,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 117,
+        "output_tokens": 50
+      },
+      {
+        "prediction": "",
+        "correct": "B",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 158,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 2,
+        "input_tokens": 132,
+        "output_tokens": 93
+      },
+      {
+        "prediction": "",
+        "correct": "C",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 120,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 81,
+        "output_tokens": 33
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 109,
+        "output_tokens": 46
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 100,
+        "output_tokens": 21
+      },
+      {
+        "prediction": "",
+        "correct": "A",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 148,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 153,
+        "output_tokens": 70
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 189,
+        "output_tokens": 33
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 96,
+        "output_tokens": 36
+      },
+      {
+        "prediction": "",
+        "correct": "C",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 122,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "",
+        "correct": "A",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 154,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 134,
+        "output_tokens": 61
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 134,
+        "output_tokens": 90
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 138,
+        "output_tokens": 70
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 110,
+        "output_tokens": 48
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 108,
+        "output_tokens": 57
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 3,
+        "input_tokens": 136,
+        "output_tokens": 157
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 122,
+        "output_tokens": 21
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 106,
+        "output_tokens": 42
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 132,
+        "output_tokens": 21
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 140,
+        "output_tokens": 52
+      },
+      {
+        "prediction": "",
+        "correct": "B",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 132,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 149,
+        "output_tokens": 61
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 124,
+        "output_tokens": 45
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 122,
+        "output_tokens": 22
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 125,
+        "output_tokens": 41
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 121,
+        "output_tokens": 16
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 126,
+        "output_tokens": 41
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 114,
+        "output_tokens": 128
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 121,
+        "output_tokens": 178
+      },
+      {
+        "prediction": "",
+        "correct": "A",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 160,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 90,
+        "output_tokens": 26
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 121,
+        "output_tokens": 33
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 136,
+        "output_tokens": 117
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 117,
+        "output_tokens": 28
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 138,
+        "output_tokens": 70
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 138,
+        "output_tokens": 77
+      },
+      {
+        "prediction": "",
+        "correct": "D",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 102,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 104,
+        "output_tokens": 61
+      }
+    ],
+    "elapsed_time": 261.94912600517273,
+    "throughput": 0.19087675825653508
+  },
+  "results": [
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The car's initial distance from the tower when the angle of elevation is 45° equals the tower's height \\(H\\). When the angle becomes 60°, the distance is \\(H/\\sqrt{3}\\). The distance covered in 10 minutes is \\(H - H/\\sqrt{3} = H(1 - 1/\\sqrt{3})\\), so the speed is this distance divided by 10. The remaining distance to the base is \\(H/\\sqrt{3}\\). The time needed to cover this distance at constant speed is:\n\n\\[\nt = \\frac{H/\\sqrt{3}}{H(1 - 1/\\sqrt{3})/10} = \\frac{10}{\\sqrt{3} - 1} = 5(\\sqrt{3} + 1).\n\\]\n\nThus, the car will reach the base after \\(5(\\sqrt{3} + 1)\\) more minutes.\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "E",
+      "output": ""
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The number 36 is divisible by both 9 and 12, while the other options are not. Therefore, it is the correct answer.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The greatest probability that neither Stock A nor Stock B increases occurs when the two events are as dependent as possible, specifically when Stock A's increase is entirely contained within Stock B's increase. This maximizes the overlap, minimizing the union probability. The minimum possible union probability is the maximum of the individual probabilities, which is 0.74. Therefore, the probability that neither occurs is 1 − 0.74 = 0.26.\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The selling price is Rs.360, which includes a 20% profit on the cost price. Let the cost price be C. Then, selling price = C + 0.2C = 1.2C = 360. Solving for C gives C = 360 / 1.2 = 300.\n\nAnswer: B"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The bag initially contains Q marbles, all white. After the first step, 20 marbles are painted black and returned, so there are exactly 20 black marbles in the bag. In the second step, 20 marbles are pulled out, and 1 is black. The condition states that the percentage of black marbles in this sample (1/20 = 5%) equals the percentage in the bag. Therefore, 20/Q = 0.05, giving Q = 400.\n\nAnswer: D"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The total number of distinct bike numbers formed by 2 letters followed by 2 digits, with the requirement that the two letters are distinct, is calculated as follows: there are 26 choices for the first letter, 25 for the second (since distinct), 10 choices for each digit, giving 26 × 25 × 10 × 10 = 65,000.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The total distance is 100 miles/hour × 10 hours = 1000 miles. The first quarter (250 miles) is covered at 100 mph, taking 2.5 hours. The remaining 750 miles at 75 mph takes 10 hours. Total time is 12.5 hours.\n\nAnswer: C"
+    },
+    {
+      "prediction": "",
+      "correct": "E",
+      "output": ""
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The salesperson earns a 10% commission on each $250 sale, which is $25 per sale. To reach at least $1000, the number of sales needed is $1000 ÷ $25 = 40. Therefore, the answer is 40.\n\nAnswer: D"
+    },
+    {
+      "prediction": "",
+      "correct": "B",
+      "output": ""
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The total number of staplers produced is 4,000, which corresponds to option A.\n\nLet \\( N \\) be the total number of staplers produced.  \n- 10% are defective, so non-defective = \\( 0.9N \\).  \n- 2% of non-defective are rejected by mistake: \\( 0.02 \\times 0.9N = 0.018N \\).  \n- This equals 72: \\( 0.018N = 72 \\) → \\( N = 72 / 0.018 = 4000 \\).\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "C",
+      "output": ""
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Adding +45 and -30 means combining a positive 45 and a negative 30. This is equivalent to 45 - 30, which equals 15.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The word \"PROBLEC\" consists of 7 distinct letters. The number of ways to rearrange them into 7-letter words without any repetition is the number of permutations of 7 distinct items, which is 7!.\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Since A and B are independent, the conditional probability P(A|B) equals P(A) = 0.2.\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "A",
+      "output": ""
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The total number of microwave ovens sold last year (12 months) is 42 × 12 = 504. The total sold in the first 10 months of this year is 20 × 10 = 200. Combined, the total over 22 months is 704, giving an average of 704 ÷ 22 = 32.\n\nAnswer: D"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The average score for the class excluding the highest and lowest scorers is \\(\\frac{zy - 2x}{z - 2}\\), which corresponds to option D.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The denominator simplifies to 13, leading to the equation \\(5 + ? \\times 19 - 15 - 7 = 78\\). Solving gives \\(? = 5\\).\n\nAnswer: C"
+    },
+    {
+      "prediction": "",
+      "correct": "C",
+      "output": ""
+    },
+    {
+      "prediction": "",
+      "correct": "A",
+      "output": ""
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "The tea concentration after each replacement is multiplied by (1 - fraction removed). Starting with 50% tea, after two 15% replacements and one 10% replacement, the final concentration is 50% × (0.85)^2 × 0.9 = 0.5 × 0.7225 × 0.9 = 0.325125, or 32.51%.\n\nAnswer: E"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The total number of students must be divisible by 16, 10, and 8 to ensure integer counts for each subject. The least common multiple (LCM) of these numbers is 80, so the total must be a multiple of 80. The smallest 4-digit multiple of 80 is 1040 (80 × 13), and the largest is 9920 (80 × 124). The difference is 9920 − 1040 = 8880.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Bill's normal speed is 15 mph. On a windy day, his speed is reduced by 4 mph, so his windy day speed is 11 mph. Time is 21 minutes, which is 21/60 = 0.35 hours. Distance = speed × time = 11 × 0.35 = 3.85 miles. This matches option D.\n\nAnswer: D"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The retailer's gross profit is 40% of the cost, which equals $20. So the cost is $20 ÷ 0.40 = $50. The selling price is cost plus profit, or $50 + $20 = $70.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The amount to be paid after 4 years is the principal plus simple interest. Simple interest is calculated as (Principal × Rate × Time)/100 = (500 × 6 × 4)/100 = 120. Thus, total amount = 500 + 120 = 620.\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The condition for a pair (x, y) to satisfy the routine is that y must be less than or equal to the square root of x, where x is between 0 and 100 inclusive. Evaluating each option:\n\n- A: (99, 10): sqrt(99) ≈ 9.95, and 10 > 9.95, so it fails.\n- B: (85, 9): sqrt(85) ≈ 9.22, and 9 ≤ 9.22, so it satisfies.\n- C: (50, 7): sqrt(50) ≈ 7.07, and 7 ≤ 7.07, so it satisfies.\n- D: (1, 1): sqrt(1) = 1, and 1 ≤ 1, so it satisfies.\n- E: (1, 0): sqrt(1) = 1, and 0 ≤ 1, so it satisfies.\n\nThus, only option A does not satisfy the routine.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The distance traveled by the jeep is 144 km, which corresponds to option B.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The age difference is constant. When I was 2, my brother was 1 (half my age), so he is 1 year younger. Now that I am 60, he is 59.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The selling price is 28% more than the wholesale cost, corresponding to option B.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The map scale indicates that 1/4 inch corresponds to 10 miles, so 1 inch corresponds to 40 miles. The road measures 20 inches on the map, so the actual distance is 20 × 40 = 800 miles.\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "B",
+      "output": ""
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The total number of ways to travel from M to Q is the product of the number of bus choices for each segment: 3 (M to N) × 4 (N to O) × 1 (O to P) × 3 (P to Q) = 36.\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The diameter of the sphere is equal to the space diagonal of the rectangular solid, which is √(3² + 4² + 15²) = √(9 + 16 + 225) = √250 ≈ 15.8113.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The net displacement is 3 km east, so the distance from home is 3 km.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The difference in profit between a 5% discount and a 7% discount is 2% of the marked price, which equals Rs. 15. Therefore, the marked price is Rs. 750.\n\nAnswer: D"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The correct number is 1584, which corresponds to option A.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The monthly salary is $500 plus 5% of sales. Setting this equal to $1500 gives the equation 500 + 0.05x = 1500. Solving for x yields x = 20000.\n\nAnswer: D"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The average speed is calculated by dividing the total distance by the total time. Since the square has equal side lengths, each side distance is the same, say \\(L\\). Total distance is \\(4L\\). The times for each side are \\(L/200\\), \\(L/400\\), \\(L/600\\), and \\(L/800\\) hours, respectively. Sum of times is \\(L\\left(\\frac{1}{200} + \\frac{1}{400} + \\frac{1}{600} + \\frac{1}{800}\\right)\\). Computing the sum of reciprocals: \\(\\frac{1}{200} + \\frac{1}{400} + \\frac{1}{600} + \\frac{1}{800} = \\frac{12+6+4+3}{2400} = \\frac{25}{2400} = \\frac{1}{96}\\). Thus total time = \\(L/96\\), and average speed = \\(4L / (L/96) = 4 \\times 96 = 384\\) km/hr.\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Jack buys 18 sharpeners, white and brown, for a total of Rs. 100. Let the number of white sharpeners be \\(w\\) and brown be \\(b\\), so \\(w + b = 18\\). Let the price of a brown sharpener be \\(p\\) rupees, then the price of a white sharpener is \\(p + 1\\) rupees. The total cost is \\(w(p+1) + b p = 100\\). Substituting \\(b = 18 - w\\), we get \\(w(p+1) + (18 - w)p = 18p + w = 100\\). Thus, \\(w = 100 - 18p\\). Since \\(w\\) must be between 0 and 18, \\(p\\) must satisfy \\(0 \\le 100 - 18p \\le 18\\). Solving gives \\(p = 5\\) as the only integer solution. Then \\(w = 100 - 90 = 10\\) and \\(b = 8\\). This matches option A.\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "A",
+      "output": ""
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The reduction amount is 120 - 96 = 24. The reduction percent is (24/120) × 100% = 20%.\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The 5-digit number N satisfies the equation 10N + 1 = 3(100000 + N). Solving gives N = 299999 / 7 = 42857.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The problem states that 24% of all students are members of both the chess club and the swim team. Additionally, 20% of swim team members are not in the chess club, meaning that 80% of swim team members are in the chess club. Therefore, the 24% of all students who are in both groups represents 80% of the swim team. Let \\( S \\) be the percentage of all students on the swim team. Then \\( 0.8S = 24\\% \\), so \\( S = 30\\% \\).\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The population after two years is calculated using compound growth: 78,000 × (1.05)^2 = 78,000 × 1.1025 = 85,995.\n\nAnswer: B"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "The two cars are moving toward each other, so their relative speed is the sum of their speeds: 12 mph + 13 mph = 25 mph. The distance between them is 50 miles. The time to meet is distance divided by relative speed: 50 miles / 25 mph = 2 hours.\n\nAnswer: E"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The servant's monthly income consists of a fixed salary of 1500 rupees plus a commission of 15% on sales. To achieve a total income of 6000 rupees, the commission must be 6000 - 1500 = 4500 rupees. Let the sale amount be x, then 0.15x = 4500, so x = 4500 / 0.15 = 30000 rupees.\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "D",
+      "output": ""
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The price is reduced by 30%, so it becomes 70% of the original. To return to the original price (100%), the increase needed is 30% of the reduced price relative to the reduced price itself, which is (30/70) × 100% = 42.857...%, approximately 42.86%.\n\nAnswer: B"
+    }
+  ]
+}

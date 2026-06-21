@@ -1,0 +1,1352 @@
+{
+  "run_id": "20260617_201948",
+  "timestamp": "2026-06-17T20:23:59.074362",
+  "config": {
+    "strategy": "base_cot",
+    "task": "aqua",
+    "model": "deepseek-chat",
+    "dataset_split": "test",
+    "n_samples": 100,
+    "temperature": 0.7,
+    "max_tokens": 1024
+  },
+  "strategy_info": {
+    "name": "base_cot",
+    "config": {},
+    "harness_subsystems": {
+      "instructions": true,
+      "tools": false,
+      "environment": true,
+      "state": false,
+      "feedback": false
+    }
+  },
+  "task_info": {
+    "name": "aqua",
+    "config": {},
+    "dataset": "AQuA",
+    "data_dir": "data/AQuA"
+  },
+  "model_info": {
+    "model_name": "deepseek-chat",
+    "config": {},
+    "provider": "openai_compatible",
+    "base_url": "https://api.deepseek.com/v1"
+  },
+  "metrics": {
+    "accuracy": 0.93,
+    "correct": 93,
+    "total": 100,
+    "avg_reasoning_steps": 6.02,
+    "avg_input_tokens": 129.96,
+    "avg_output_tokens": 184.03,
+    "total_input_tokens": 12996,
+    "total_output_tokens": 18403,
+    "detailed": [
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 8,
+        "input_tokens": 174,
+        "output_tokens": 233
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 8,
+        "input_tokens": 156,
+        "output_tokens": 132
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 102,
+        "output_tokens": 177
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 9,
+        "input_tokens": 140,
+        "output_tokens": 168
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 102,
+        "output_tokens": 85
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 8,
+        "input_tokens": 166,
+        "output_tokens": 246
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 109,
+        "output_tokens": 168
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 133,
+        "output_tokens": 113
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 133,
+        "output_tokens": 168
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 3,
+        "input_tokens": 117,
+        "output_tokens": 77
+      },
+      {
+        "prediction": "C",
+        "correct": "B",
+        "is_correct": false,
+        "reasoning_steps": 8,
+        "input_tokens": 158,
+        "output_tokens": 174
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 132,
+        "output_tokens": 124
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 120,
+        "output_tokens": 128
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 81,
+        "output_tokens": 96
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 2,
+        "input_tokens": 109,
+        "output_tokens": 74
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 100,
+        "output_tokens": 41
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 10,
+        "input_tokens": 148,
+        "output_tokens": 448
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 153,
+        "output_tokens": 101
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 189,
+        "output_tokens": 157
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 11,
+        "input_tokens": 96,
+        "output_tokens": 158
+      },
+      {
+        "prediction": "D",
+        "correct": "C",
+        "is_correct": false,
+        "reasoning_steps": 17,
+        "input_tokens": 122,
+        "output_tokens": 709
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 10,
+        "input_tokens": 154,
+        "output_tokens": 401
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 134,
+        "output_tokens": 309
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 8,
+        "input_tokens": 134,
+        "output_tokens": 222
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 138,
+        "output_tokens": 94
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 110,
+        "output_tokens": 84
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 2,
+        "input_tokens": 108,
+        "output_tokens": 104
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 8,
+        "input_tokens": 136,
+        "output_tokens": 146
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 122,
+        "output_tokens": 80
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 106,
+        "output_tokens": 96
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 132,
+        "output_tokens": 80
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 140,
+        "output_tokens": 56
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 19,
+        "input_tokens": 132,
+        "output_tokens": 820
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 149,
+        "output_tokens": 90
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 124,
+        "output_tokens": 130
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 122,
+        "output_tokens": 89
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 125,
+        "output_tokens": 125
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 10,
+        "input_tokens": 121,
+        "output_tokens": 162
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 9,
+        "input_tokens": 126,
+        "output_tokens": 85
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 114,
+        "output_tokens": 264
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 121,
+        "output_tokens": 270
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 160,
+        "output_tokens": 188
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 3,
+        "input_tokens": 90,
+        "output_tokens": 49
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 121,
+        "output_tokens": 154
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 136,
+        "output_tokens": 204
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 117,
+        "output_tokens": 93
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 138,
+        "output_tokens": 54
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 3,
+        "input_tokens": 138,
+        "output_tokens": 105
+      },
+      {
+        "prediction": "C",
+        "correct": "D",
+        "is_correct": false,
+        "reasoning_steps": 7,
+        "input_tokens": 102,
+        "output_tokens": 166
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 104,
+        "output_tokens": 88
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 114,
+        "output_tokens": 132
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 109,
+        "output_tokens": 102
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 112,
+        "output_tokens": 156
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 104,
+        "output_tokens": 102
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 7,
+        "input_tokens": 149,
+        "output_tokens": 293
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 3,
+        "input_tokens": 122,
+        "output_tokens": 98
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 7,
+        "input_tokens": 129,
+        "output_tokens": 278
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 3,
+        "input_tokens": 126,
+        "output_tokens": 106
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 2,
+        "input_tokens": 140,
+        "output_tokens": 81
+      },
+      {
+        "prediction": "E",
+        "correct": "C",
+        "is_correct": false,
+        "reasoning_steps": 14,
+        "input_tokens": 114,
+        "output_tokens": 729
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 136,
+        "output_tokens": 157
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 7,
+        "input_tokens": 130,
+        "output_tokens": 214
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 7,
+        "input_tokens": 118,
+        "output_tokens": 92
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 124,
+        "output_tokens": 157
+      },
+      {
+        "prediction": "B",
+        "correct": "D",
+        "is_correct": false,
+        "reasoning_steps": 8,
+        "input_tokens": 182,
+        "output_tokens": 212
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 118,
+        "output_tokens": 146
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 161,
+        "output_tokens": 108
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 11,
+        "input_tokens": 130,
+        "output_tokens": 389
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 7,
+        "input_tokens": 133,
+        "output_tokens": 266
+      },
+      {
+        "prediction": "B",
+        "correct": "C",
+        "is_correct": false,
+        "reasoning_steps": 2,
+        "input_tokens": 126,
+        "output_tokens": 741
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 2,
+        "input_tokens": 133,
+        "output_tokens": 66
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 8,
+        "input_tokens": 152,
+        "output_tokens": 246
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 2,
+        "input_tokens": 98,
+        "output_tokens": 66
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 113,
+        "output_tokens": 84
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 7,
+        "input_tokens": 130,
+        "output_tokens": 158
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 118,
+        "output_tokens": 196
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 9,
+        "input_tokens": 192,
+        "output_tokens": 121
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 8,
+        "input_tokens": 168,
+        "output_tokens": 268
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 138,
+        "output_tokens": 136
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 11,
+        "input_tokens": 153,
+        "output_tokens": 200
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 8,
+        "input_tokens": 148,
+        "output_tokens": 268
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 128,
+        "output_tokens": 74
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 8,
+        "input_tokens": 117,
+        "output_tokens": 612
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 12,
+        "input_tokens": 146,
+        "output_tokens": 209
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 106,
+        "output_tokens": 89
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 14,
+        "input_tokens": 121,
+        "output_tokens": 446
+      },
+      {
+        "prediction": "A",
+        "correct": "E",
+        "is_correct": false,
+        "reasoning_steps": 8,
+        "input_tokens": 126,
+        "output_tokens": 234
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 7,
+        "input_tokens": 106,
+        "output_tokens": 134
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 134,
+        "output_tokens": 108
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 121,
+        "output_tokens": 114
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 126,
+        "output_tokens": 134
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 6,
+        "input_tokens": 158,
+        "output_tokens": 201
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 165,
+        "output_tokens": 140
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 2,
+        "input_tokens": 114,
+        "output_tokens": 109
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 145,
+        "output_tokens": 172
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 15,
+        "input_tokens": 140,
+        "output_tokens": 229
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 2,
+        "input_tokens": 114,
+        "output_tokens": 84
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 5,
+        "input_tokens": 137,
+        "output_tokens": 154
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 141,
+        "output_tokens": 90
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 137,
+        "output_tokens": 117
+      }
+    ],
+    "elapsed_time": 250.04622101783752,
+    "throughput": 0.3999260600417805
+  },
+  "results": [
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let the height of the tower be \\( h \\).  \nLet the initial distance from the car to the base be \\( d_1 \\) when the angle is 45°, and \\( d_2 \\) when the angle is 60°.\n\nFrom trigonometry:\n- At 45°: \\(\\tan 45° = 1 = \\frac{h}{d_1} \\Rightarrow d_1 = h\\).\n- At 60°: \\(\\tan 60° = \\sqrt{3} = \\frac{h}{d_2} \\Rightarrow d_2 = \\frac{h}{\\sqrt{3}}\\).\n\nThe distance covered in 10 minutes is:\n\\[\nd_1 - d_2 = h - \\frac{h}{\\sqrt{3}} = h\\left(1 - \\frac{1}{\\sqrt{3}}\\right).\n\\]\n\nSpeed of the car is uniform:\n\\[\nv = \\frac{h\\left(1 - \\frac{1}{\\sqrt{3}}\\right)}{10}.\n\\]\n\nRemaining distance to the tower is \\( d_2 = \\frac{h}{\\sqrt{3}} \\).  \nTime needed to cover it:\n\\[\nt = \\frac{d_2}{v} = \\frac{\\frac{h}{\\sqrt{3}}}{\\frac{h}{10}\\left(1 - \\frac{1}{\\sqrt{3}}\\right)}\n= \\frac{10}{\\sqrt{3}\\left(1 - \\frac{1}{\\sqrt{3}}\\right)}.\n\\]\n\nSimplify inside:\n\\[\n\\sqrt{3}\\left(1 - \\frac{1}{\\sqrt{3}}\\right) = \\sqrt{3} - 1.\n\\]\nThus:\n\\[\nt = \\frac{10}{\\sqrt{3} - 1}.\n\\]\n\nRationalize:\n\\[\nt = \\frac{10(\\sqrt{3} + 1)}{(\\sqrt{3} - 1)(\\sqrt{3} + 1)} = \\frac{10(\\sqrt{3} + 1)}{3 - 1} = 5(\\sqrt{3} + 1).\n\\]\n\nSo the answer is:\n\nAnswer: A"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "Let the original price be \\( P \\).\n\nA 22% discount means the customer pays \\( 0.78P \\).  \nThen they use a $20-off coupon, so the amount paid is:\n\n\\[\n0.78P - 20\n\\]\n\nWe are told this amount is $1.90 more than half the original price:\n\n\\[\n0.78P - 20 = \\frac{P}{2} + 1.90\n\\]\n\nSolve for \\( P \\):\n\n\\[\n0.78P - 20 = 0.5P + 1.90\n\\]\n\\[\n0.78P - 0.5P = 1.90 + 20\n\\]\n\\[\n0.28P = 21.90\n\\]\n\\[\nP = \\frac{21.90}{0.28} = 78.20\n\\]\n\nThus the original price is $78.20.\n\nAnswer: E"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We need to find which option is a multiple of X, given that it is divisible by both 9 and 12.\n\nFirst, find the least common multiple (LCM) of 9 and 12:\n- Prime factors of 9: 3²\n- Prime factors of 12: 2² × 3\n- LCM = 2² × 3² = 4 × 9 = 36\n\nSo any number divisible by both 9 and 12 must be a multiple of 36.\n\nNow check the options:\n- A) 36 → 36 is a multiple of 36.\n- B) 15 → not a multiple of 36.\n- C) 17 → not a multiple of 36.\n- D) 5 → not a multiple of 36.\n- E) 7 → not a multiple of 36.\n\nThus, the only value that fits is 36.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "We are given:\n\n- P(A increases) = 0.56  \n- P(B increases) = 0.74  \n\nWe want the **greatest possible** probability that **neither** stock increases.\n\nThe event \"neither increases\" is the complement of \"at least one increases.\"  \nSo:\n\nP(neither) = 1 - P(A or B)\n\nWe want the largest possible P(neither), so we want the smallest possible P(A or B).  \nThe smallest P(A or B) occurs when the overlap (both increase) is as large as possible.\n\nThe maximum possible overlap is the smaller of the two probabilities: min(0.56, 0.74) = 0.56.  \nSo:\n\nSmallest P(A or B) = P(A) + P(B) - max possible P(both)  \n= 0.56 + 0.74 - 0.56 = 0.74\n\nThus:\n\nGreatest P(neither) = 1 - 0.74 = 0.26\n\nThat corresponds to option B.\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "We know the selling price (SP) is Rs. 360, and the profit is 20% of the cost price (CP).  \n\nLet the cost price be CP.  \nA profit of 20% means SP = CP + 0.2 × CP = 1.2 × CP.  \n\nSo:  \n1.2 × CP = 360  \nCP = 360 / 1.2  \nCP = 300  \n\nThus, the cost price is Rs. 300.  \n\nAnswer: B"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Let’s go step by step.\n\n**Step 1: Understanding the first step**  \nInitially, the bag has only white marbles.  \n20 white marbles are taken out, painted black, and put back.  \nNow the bag has some black marbles (20) and the rest white.\n\nLet the total number of marbles be \\( Q \\).  \nSo black marbles = 20, white marbles = \\( Q - 20 \\).\n\n**Step 2: Second pull**  \nThen, 20 marbles are pulled out.  \nOut of these 20, 1 is black. That means 19 are white.\n\n**Step 3: The percentage condition**  \nThe problem says: \"If the percentage of black marbles pulled out the second time represents their percentage in the bag.\"  \nThat means the fraction of black marbles in the second pull equals the fraction of black marbles in the bag at that time.\n\nFraction of black in the second pull:  \n\\[\n\\frac{1}{20}\n\\]  \nFraction of black in the bag:  \n\\[\n\\frac{20}{Q}\n\\]  \nSet them equal:  \n\\[\n\\frac{1}{20} = \\frac{20}{Q}\n\\]\n\n**Step 4: Solve for \\( Q \\)**  \nCross-multiply:  \n\\[\nQ = 20 \\times 20 = 400\n\\]\n\nSo total marbles = 400.\n\n**Answer: D**"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "We need to form bike numbers: 2 letters followed by 2 numbers.  \nThe problem says: \"How many letters need to be distinct?\"  \nThis likely means the two letters must be distinct from each other.\n\n**Step 1: Count letter combinations**  \nThere are 26 letters in the English alphabet.  \nIf the two letters must be distinct:  \n- First letter: 26 choices  \n- Second letter: 25 choices  \nSo letter combinations = \\( 26 \\times 25 = 650 \\).\n\n**Step 2: Count number combinations**  \nDigits: 0–9, total 10 digits.  \nFor 2 digits, they can repeat unless stated otherwise.  \nSo number combinations = \\( 10 \\times 10 = 100 \\).\n\n**Step 3: Total distinct bike numbers**  \nTotal = \\( 650 \\times 100 = 65000 \\).\n\nThat matches option D.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "First, find the total distance.  \nSpeed = 100 miles/hour, time = 10 hours.  \nDistance = 100 × 10 = 1000 miles.\n\nQuarter of the distance = 1000 ÷ 4 = 250 miles.  \nTime to cover the first 250 miles at 100 mph = 250 ÷ 100 = 2.5 hours.\n\nRemaining distance = 1000 – 250 = 750 miles.  \nNew speed = 75 mph.  \nTime for remaining = 750 ÷ 75 = 10 hours.\n\nTotal journey time = 2.5 + 10 = 12.5 hours.\n\nAnswer: C"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "We are told there are 200 students.  \nAt least 45% attended prom → at least 90 students.  \nAt least 35% took part in debating → at least 70 students.\n\nWe want the maximum number who attended **neither**.  \nThat means we want to minimize the number who attended at least one of the two events.\n\nIf we try to make the overlap as large as possible, then the union (those who attended at least one) is as small as possible.\n\nMinimum union size = max(90, 70) = 90.  \nThat would happen if all 70 debaters are among the 90 prom attendees.  \nThen only 90 attended at least one event.\n\nTherefore, students who attended neither = 200 - 90 = 110.\n\nThat is the maximum possible.\n\nAnswer: E"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "First, calculate the commission per sale.  \nA 10% commission on a $250 sale is:  \n0.10 × 250 = $25 per sale.\n\nNow, to earn at least $1000 in commission, divide the target by the commission per sale:  \n1000 ÷ 25 = 40 sales.\n\nSince the question asks for \"at least\" $1000, 40 sales exactly gives $1000.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "B",
+      "output": "We are told:\n\n- Monthly production: 420 units  \n- Production cost per unit: $110  \n- Yearly profit target: at least $626,400  \n\nFirst, find the yearly production:  \n420 units/month × 12 months = 5,040 units per year.\n\nTotal yearly production cost:  \n5,040 × $110 = $554,400.\n\nLet the selling price per unit be \\( p \\).  \nYearly revenue = 5,040 × \\( p \\).  \nYearly profit = revenue − cost = \\( 5,040p - 554,400 \\).\n\nWe need this to be at least $626,400:  \n\\[\n5,040p - 554,400 \\geq 626,400\n\\]  \n\\[\n5,040p \\geq 1,180,800\n\\]  \n\\[\np \\geq \\frac{1,180,800}{5,040}\n\\]  \n\nDivide:  \n\\( 1,180,800 ÷ 5,040 = 234.2857... \\)\n\nSo \\( p \\) must be at least about $234.29.  \nThe smallest option above that is $240.\n\nTherefore, the answer is:\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let’s define the total number of staplers produced as \\( T \\).\n\n- 10% were defective, so 90% were non-defective.  \n  Number of non-defective staplers = \\( 0.9T \\).\n\n- 2% of the non-defective staplers were mistakenly rejected.  \n  Number mistakenly rejected = \\( 0.02 \\times 0.9T = 0.018T \\).\n\nWe’re told that 72 non-defective staplers were rejected by mistake:  \n\\[\n0.018T = 72\n\\]\n\nNow solve:  \n\\[\nT = \\frac{72}{0.018} = \\frac{72}{18/1000} = 72 \\times \\frac{1000}{18} = 4 \\times 1000 = 4000\n\\]\n\nThus the total number of staplers produced was 4,000.\n\nAnswer: A"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "We need to find the time when the total number of yo-yos from both machines equals 10.  \n\nMachine A produces 1 yo-yo every 6 minutes, so its rate is \\( \\frac{1}{6} \\) yo-yos per minute.  \nMachine B produces 1 yo-yo every 9 minutes, so its rate is \\( \\frac{1}{9} \\) yo-yos per minute.  \n\nCombined rate:  \n\\[\n\\frac{1}{6} + \\frac{1}{9} = \\frac{3}{18} + \\frac{2}{18} = \\frac{5}{18}\n\\]\nyo-yos per minute.  \n\nTo produce 10 yo-yos:  \n\\[\n\\text{Time} = \\frac{10}{\\frac{5}{18}} = 10 \\times \\frac{18}{5} = \\frac{180}{5} = 36 \\text{ minutes}\n\\]\n\nSo the answer is 36 minutes.\n\nAnswer: C"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "We need to add +45 and -30.  \nAdding a positive and a negative is the same as subtracting the smaller absolute value from the larger absolute value and keeping the sign of the larger.\n\nAbsolute values: |+45| = 45, |-30| = 30.  \nDifference: 45 − 30 = 15.  \nSince the larger number is positive, the result is positive.\n\nSo +45 + (-30) = +15.\n\nThe correct option is D) 15.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The word \"PROBLEC\" has 7 distinct letters, with no repeats.  \nWe are asked how many ways we can rearrange all 7 letters to form 7-letter words.  \nSince all letters are different, the number of arrangements is simply the number of permutations of 7 distinct items, which is \\(7!\\).\n\nTherefore, the correct choice is C.\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Since A and B are independent, the probability of A given B is simply the probability of A.  \nThat is, \\( P(A \\mid B) = P(A) = 0.2 \\).\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We are told the elevator is moving downward.  \nLet:\n\n- \\( v \\) = speed of the elevator in steps per minute (downward).\n- \\( N \\) = total number of steps from top to bottom.\n\n---\n\n**Case 1:**  \nYou walk 20 steps downward and then stop (so you just ride the rest).  \nTotal time to bottom = 10 minutes.  \n\nWhile walking, you cover 20 steps in some time \\( t_1 \\) at your walking speed, but we don’t know walking speed directly. However, we can think in terms of net motion.\n\nIf you walk 20 steps down, in addition to the elevator moving, the remaining distance is covered only by the elevator.\n\nLet’s say your walking speed is \\( w \\) steps/min downward.\n\nTime spent walking: \\( \\frac{20}{w} \\) minutes.  \nDistance covered by elevator during that time: \\( v \\cdot \\frac{20}{w} \\) steps.  \nRemaining distance: \\( N - \\left(20 + v \\cdot \\frac{20}{w}\\right) \\).  \nThis remaining distance is covered by elevator alone in remaining time:  \n\\[\n10 - \\frac{20}{w}\n\\]  \nSo:  \n\\[\nN - 20 - \\frac{20v}{w} = v\\left(10 - \\frac{20}{w}\\right)\n\\]  \nSimplify:  \n\\[\nN - 20 - \\frac{20v}{w} = 10v - \\frac{20v}{w}\n\\]  \nCancel \\(-\\frac{20v}{w}\\) from both sides:  \n\\[\nN - 20 = 10v\n\\]  \nThus:  \n\\[\nN = 10v + 20 \\quad (1)\n\\]\n\n---\n\n**Case 2:**  \nYou walk 10 steps and stop. Total time = 20 minutes.\n\nTime walking: \\( \\frac{10}{w} \\).  \nDistance covered by elevator while walking: \\( v \\cdot \\frac{10}{w} \\).  \nRemaining distance: \\( N - \\left(10 + \\frac{10v}{w}\\right) \\).  \nRemaining time: \\( 20 - \\frac{10}{w} \\).  \nSo:  \n\\[\nN - 10 - \\frac{10v}{w} = v\\left(20 - \\frac{10}{w}\\right)\n\\]  \nSimplify:  \n\\[\nN - 10 - \\frac{10v}{w} = 20v - \\frac{10v}{w}\n\\]  \nCancel \\(-\\frac{10v}{w}\\):  \n\\[\nN - 10 = 20v\n\\]  \nThus:  \n\\[\nN = 20v + 10 \\quad (2)\n\\]\n\n---\n\n**Solve:**  \nFrom (1) and (2):  \n\\[\n10v + 20 = 20v + 10\n\\]  \n\\[\n10 = 10v\n\\]  \n\\[\nv = 1 \\text{ step/min}\n\\]\n\n---\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "We need the total number of microwaves sold over the 22 months.\n\nLast year (12 months), average = 42 per month.  \nTotal for last year = 12 × 42 = 504.\n\nFirst 10 months of this year, average = 20 per month.  \nTotal for these 10 months = 10 × 20 = 200.\n\nTotal over the 22 months = 504 + 200 = 704.\n\nAverage over 22 months = 704 ÷ 22 = 32.\n\nAnswer: D"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "We are told:\n\n- Average of highest and lowest scores = \\( x \\).  \n  So, if highest = \\( H \\) and lowest = \\( L \\), then  \n  \\[\n  \\frac{H+L}{2} = x \\implies H+L = 2x\n  \\]\n\n- Average of all \\( z \\) students = \\( y \\).  \n  So total sum of all scores = \\( zy \\).\n\nWe want the average of the class excluding the highest and lowest scorers, i.e., the average of the remaining \\( z - 2 \\) students.\n\nSum of remaining scores = total sum - (H + L) = \\( zy - 2x \\).\n\nAverage of remaining =  \n\\[\n\\frac{zy - 2x}{z - 2}\n\\]\n\nThis matches option D.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "We are solving:\n\n\\[\n\\frac{5 + ? \\times 19 - 15 - 7}{13 \\times 13 - 156} = 6\n\\]\n\nFirst, simplify the denominator:  \n\\(13 \\times 13 = 169\\)  \n\\(169 - 156 = 13\\)  \n\nSo the equation becomes:\n\n\\[\n\\frac{5 + ? \\times 19 - 15 - 7}{13} = 6\n\\]\n\nMultiply both sides by 13:\n\n\\[\n5 + ? \\times 19 - 15 - 7 = 78\n\\]\n\nNow simplify the left side constants:  \n\\(5 - 15 - 7 = -17\\)  \n\nSo:\n\n\\[\n-17 + 19 \\times ? = 78\n\\]\n\nAdd 17 to both sides:\n\n\\[\n19 \\times ? = 95\n\\]\n\nDivide by 19:\n\n\\[\n? = 5\n\\]\n\nThus the answer is **C**.\n\nAnswer: C"
+    },
+    {
+      "prediction": "D",
+      "correct": "C",
+      "output": "Let’s break it down.\n\nThe grocer makes a **25% profit on the selling price**.  \nSelling price per bag = $100.  \nProfit per bag = 25% of $100 = $25.\n\nTotal profit = $3,000.  \nNumber of bags = Total profit ÷ Profit per bag  \n= $3,000 ÷ $25 = 120.\n\nWait — that’s 120, which isn’t among the options. That suggests the problem might mean 25% profit **on cost**, not on selling price. Let’s check:  \n\nIf profit is 25% of **cost**, then selling price = cost + 0.25 × cost = 1.25 × cost.  \nGiven selling price = $100:  \nCost = $100 / 1.25 = $80.  \nProfit per bag = $100 – $80 = $20.  \nTotal bags = $3,000 ÷ $20 = 150 — also not an option.  \n\nBut the problem says: “25% profit on the selling price”, which we already computed gives 120 bags. Since 120 isn’t an option, let's double-check:  \n\nProfit on selling price = 25% of $100 = $25 per bag.  \n$3,000 ÷ $25 = 120.  \nMaybe the profit is 25% **of cost** and the $3,000 profit is from selling *all* bags? Already checked — that’s 150.  \n\nGiven the answer choices, the only one that fits if we misinterpret “25% profit on selling price” as “25% **markup on cost**” but applied differently — let’s test:  \n\nIf profit = 25% of selling price, then cost = 75% of selling price = $75. Profit per bag = $25.  \n$3,000 ÷ $25 = 120 — still 120.  \n\nNone of the options match 120. So maybe “makes a 25% profit on the selling price” means profit is 25% of *cost*?  \nWe saw that gives $20 profit per bag → $3,000 ÷ $20 = 150 — not an option either.  \n\nAlternatively, if “profit on selling price” means the profit margin is 25% of selling price,  \nthen selling price = $100, profit = $25, cost = $75.  \n$3,000 ÷ $25 = 120 — still.  \n\nSince 120 isn’t there, perhaps the total profit given is $3,000, but they meant total revenue?  \nRevenue = number of bags × $100.  \nIf profit = 0.25 × revenue, then profit = 0.25 × (n × 100) = 25n.  \nSet 25n = 3,000 → n = 120, same.  \n\nMaybe they meant profit per bag = 25% of cost, and total profit $3,000 is *overall*?  \nCost per bag = $80, profit = $20 per bag → n = 150.  \n\nNone matches. The only plausible match if we take “profit on selling price” literally and the $3,000 is total profit is 120 — but that’s not listed.  \n\nWait — could it be that the $100 selling price includes a 25% profit *on selling price* and the $3,000 is the *total profit from all bags*, but the answer choices are smaller? Possibly the $3,000 is the *total revenue*?  \nIf total revenue = $3,000, then bags = 3,000 ÷ 100 = 30.  \nThat matches option D.  \n\nGiven typical test trickiness, they likely meant “total profit = $3,000” but the calculation leading to 30 only works if profit per bag is $100 (impossible) or if we confuse revenue with profit.  \n\nSo the most logical match from the options is **30** if $3,000 is actually revenue.  \n\n**Answer: D**"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let’s define:\n\n- Alex’s rate = \\( \\frac{1}{7} \\) toy per hour  \n- Jacob’s rate = \\( \\frac{1}{9} \\) toy per hour  \n\nLet the number of hours each works be \\( h \\) (since they worked almost the same number of hours).  \nThen:\n\n- Alex makes \\( \\frac{h}{7} \\) toys  \n- Jacob makes \\( \\frac{h}{9} \\) toys  \n\nTotal toys:  \n\\[\n\\frac{h}{7} + \\frac{h}{9} = 35\n\\]\n\nFind common denominator 63:  \n\\[\n\\frac{9h}{63} + \\frac{7h}{63} = \\frac{16h}{63} = 35\n\\]  \n\\[\n16h = 35 \\times 63 = 2205\n\\]  \n\\[\nh = \\frac{2205}{16} = 137.8125\n\\]\n\nThis means hours are not perfectly equal; \"almost similar\" suggests we adjust slightly so that total toys equal 35 exactly with integer numbers.\n\nLet’s try letting Alex work \\( h \\) hours, Jacob work \\( h + t \\) or \\( h - t \\) with small difference.\n\nAlternatively, solve using integer approach:  \nLet Alex make \\( A \\) toys, Jacob make \\( J \\) toys.  \nTotal: \\( A + J = 35 \\)  \nTime for Alex: \\( 7A \\), Jacob: \\( 9J \\). These times are almost equal:  \n\\[\n7A \\approx 9J\n\\]  \nSo \\( 7A \\approx 9(35 - A) \\)  \n\\[\n7A \\approx 315 - 9A\n\\]  \n\\[\n16A \\approx 315\n\\]  \n\\[\nA \\approx 19.6875\n\\]  \nClosest integers: try \\( A = 20 \\), then \\( J = 15 \\):  \nTimes: Alex = \\( 7 \\times 20 = 140 \\), Jacob = \\( 9 \\times 15 = 135 \\) — difference is 5 hours.  \n\nTry \\( A = 19 \\), \\( J = 16 \\):  \nTimes: Alex = \\( 7 \\times 19 = 133 \\), Jacob = \\( 9 \\times 16 = 144 \\) — difference is 11 hours, larger.  \n\nThus, “almost similar” fits best with \\( J = 15 \\).\n\nAnswer: A"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "Let’s break it down step by step.\n\nWe start with 100% of a solution that is 50% milk tea (so 50% tea concentrate, 50% milk).  \nWe are doing three dilution steps — replacing some of the mixture with pure milk each time.\n\n---\n\n**Step 1:** Replace 15% of the solution with milk.  \n- Starting: 100% solution, tea = 50%.\n- Remove 15% of the mixture: that 15% contains 15% × 50% tea = 7.5% tea removed.\n- So remaining tea = 50% − 7.5% = 42.5% tea in the remaining 85% of the original volume.\n- Then add 15% pure milk (0% tea).  \nNew total volume back to 100%, tea amount = 42.5% of the volume.  \nSo concentration = 42.5%.\n\n---\n\n**Step 2:** Replace 15% again with milk.  \n- Current tea = 42.5%.\n- Remove 15% of mixture: tea removed = 15% × 42.5% = 6.375%.\n- Remaining tea = 42.5% − 6.375% = 36.125% in 85% volume.\n- Add 15% pure milk → total volume 100%, tea = 36.125%.  \nConcentration = 36.125%.\n\n---\n\n**Step 3:** Replace 10% of the resultant with milk.  \n- Current tea = 36.125%.\n- Remove 10% of mixture: tea removed = 10% × 36.125% = 3.6125%.\n- Remaining tea = 36.125% − 3.6125% = 32.5125% in 90% volume.\n- Add 10% pure milk → total volume 100%, tea = 32.5125%.\n\n---\n\nFinal concentration ≈ 32.51%.\n\n**Answer: E**"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We are told that the number of students is a 4-digit number and that:\n\n- \\(\\frac{1}{16}\\) study math → so total students must be divisible by 16  \n- \\(\\frac{1}{10}\\) study bio → so total students must be divisible by 10  \n- \\(\\frac{1}{8}\\) study English → so total students must be divisible by 8  \n\nSince the total must be divisible by all three, it must be divisible by the LCM of 16, 10, and 8.\n\n- LCM(16, 10, 8):  \n  - 16 = \\(2^4\\)  \n  - 10 = \\(2 \\times 5\\)  \n  - 8 = \\(2^3\\)  \n  LCM = \\(2^4 \\times 5 = 16 \\times 5 = 80\\)\n\nSo total students must be a multiple of 80.\n\nThe smallest 4-digit number is 1000.  \n- 1000 ÷ 80 = 12.5 → next whole multiple: \\(80 \\times 13 = 1040\\)  \n\nThe largest 4-digit number is 9999.  \n- 9999 ÷ 80 = 124.9875 → largest whole multiple: \\(80 \\times 124 = 9920\\)  \n\nNow, difference between maximum and minimum:  \n\\(9920 - 1040 = 8880\\)\n\n**Answer: A**"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "First, find Bill’s speed on a windy day.  \nNormal speed: 15 mph  \nReduction: 4 mph  \nWindy day speed: 15 - 4 = 11 mph  \n\nNow convert 21 minutes to hours since speed is in miles per hour:  \n21 minutes = 21/60 hours = 0.35 hours  \n\nDistance = speed × time  \nDistance = 11 mph × 0.35 hours = 3.85 miles  \n\nRounded to the nearest hundredth, that is 3.85 miles.\n\nAnswer: D"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Let the cost be \\( C \\).  \nThe retailer sold it for 40% above cost, so selling price = \\( C + 0.4C = 1.4C \\).  \nThe gross profit is given as $20.00, which is 40% of cost:  \n\\[\n0.4C = 20\n\\]  \n\\[\nC = \\frac{20}{0.4} = 50\n\\]  \nThen selling price = \\( 1.4 \\times 50 = 70 \\).  \n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "We are given:  \nPrincipal (P) = Rs. 500  \nRate (R) = 6% per annum  \nTime (T) = 4 years  \nSimple Interest (SI) = (P × R × T) / 100  \n\nStep 1: Calculate Simple Interest  \nSI = (500 × 6 × 4) / 100 = (12000) / 100 = Rs. 120  \n\nStep 2: Total amount to be paid = Principal + Interest  \nAmount = 500 + 120 = Rs. 620  \n\nSo the correct option is C.  \n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We are told the first number x is between 0 and 100 inclusive.  \nThe second number y must be less than or equal to the square root of x, i.e., \\( y \\leq \\sqrt{x} \\).\n\nLet's check each option:\n\n- **A) (99,10)**  \n  \\(\\sqrt{99} \\approx 9.95\\), and 10 is not ≤ 9.95 → fails.\n\n- **B) (85,9)**  \n  \\(\\sqrt{85} \\approx 9.22\\), 9 ≤ 9.22 → ok.\n\n- **C) (50,7)**  \n  \\(\\sqrt{50} \\approx 7.07\\), 7 ≤ 7.07 → ok.\n\n- **D) (1,1)**  \n  \\(\\sqrt{1} = 1\\), 1 ≤ 1 → ok.\n\n- **E) (1,0)**  \n  \\(\\sqrt{1} = 1\\), 0 ≤ 1 → ok.\n\nThe only one that does not satisfy the condition is A.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "Let the distance be \\( d \\) km.  \nForward speed = \\( \\frac{d}{6} \\) km/h.  \nReturn speed = \\( \\frac{d}{4} \\) km/h.  \n\nThe return speed is 12 km/h more:  \n\\[\n\\frac{d}{4} = \\frac{d}{6} + 12\n\\]\n\nMultiply through by 12:  \n\\[\n3d = 2d + 144\n\\]  \n\\[\nd = 144\n\\]\n\nSo the distance is 144 km.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let’s work through it step by step.\n\nWhen I was 2 years old, my brother was half my age.  \nHalf of 2 is 1, so my brother was 1 year old at that time.\n\nThat means my brother is 1 year younger than me.\n\nNow I am 60 years old.  \nSince my brother is 1 year younger, he is 60 − 1 = 59 years old.\n\nThe correct answer is:\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "Let the wholesale cost be \\( W \\).  \n\nOriginal retail price = \\( W + 0.6W = 1.6W \\).  \n\nSold for 20% less than original retail price:  \nSold price = \\( 1.6W \\times (1 - 0.20) = 1.6W \\times 0.8 = 1.28W \\).  \n\nThe sold price is \\( 1.28W \\), which is 28% more than \\( W \\).  \n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We know that on the map, \\(\\frac{1}{4}\\) inch = 10 miles.  \nThat means 1 inch = \\(10 \\times 4 = 40\\) miles.  \nThe distance on the map is 20 inches, so actual distance = \\(20 \\times 40 = 800\\) miles.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "Let the length of the sheet be \\(L\\) and the breadth be \\(B\\).\n\nWhen folded along one set of sides (say along the length), the sheet is halved into two equal halves.  \nIf folded along the length (i.e., folding so that the longer side is halved), each half has dimensions:  \nLength = \\(L/2\\), Breadth = \\(B\\) (unchanged).  \n\nPerimeter of one half:  \n\\[\n2\\left( \\frac{L}{2} + B \\right) = L + 2B\n\\]  \nWe are told this equals 48 cm:  \n\\[\nL + 2B = 48 \\quad \\text{(1)}\n\\]\n\nWhen folded along the other set of sides (i.e., along the breadth), each half has dimensions:  \nLength = \\(L\\), Breadth = \\(B/2\\).  \n\nPerimeter of one half:  \n\\[\n2\\left( L + \\frac{B}{2} \\right) = 2L + B\n\\]  \nThis equals 66 cm:  \n\\[\n2L + B = 66 \\quad \\text{(2)}\n\\]\n\nNow solve:  \nFrom (1): \\(L = 48 - 2B\\)  \nSubstitute into (2):  \n\\[\n2(48 - 2B) + B = 66\n\\]  \n\\[\n96 - 4B + B = 66\n\\]  \n\\[\n96 - 3B = 66\n\\]  \n\\[\n3B = 30 \\quad\\Rightarrow\\quad B = 10\n\\]  \nThen \\(L = 48 - 2(10) = 28\\).\n\nArea = \\(L \\times B = 28 \\times 10 = 280\\) cm².\n\nWait, 280 isn’t among the options—this suggests I misinterpreted “folded into two equal halves” as meaning a single half’s perimeter.\n\nRe-check: \"When folded into two equal halves a rectangular sheet had a perimeter of 48cm for each part folded along one set of sides\" could mean: after folding, the *resulting shape* (which is a double layer) has perimeter 48. That is, the folded shape’s perimeter is given.\n\nIf you fold along the length, the shape is now \\(L/2\\) by \\(B\\), but it’s double-layered—perimeter of the folded piece is still the same as the rectangle of that size:  \nPerimeter = \\(2(L/2 + B) = L + 2B = 48\\). Same equation.\n\nSimilarly other fold: \\(2L + B = 66\\).  \nSo same equations, giving \\(L=28, B=10\\), area 280. Since 280 isn’t an option, perhaps it’s the total perimeter of *both* halves?  \n\nIf \"each part\" means each of the two pieces after cutting (not folding), then perimeter of each piece when cut along length: each piece is \\(L/2 \\times B\\), perimeter = \\(L + 2B\\). For both pieces together that sum is 48? That would give \\(L+2B = 24\\). That seems too small.\n\nAlternatively, if the given 48 cm is the perimeter of the *folded shape* (which is half the area, double thickness), same equations hold.\n\nThe only way to get an option:  \nMaybe the phrase means: When folded, the *resulting rectangle* (single layer, not double) has perimeter 48. That yields same equations.\n\nGiven the mismatch, let’s instead solve if 48 and 66 refer to the perimeters of the *whole folded paper* in each case—still same.\n\nSince 280 not in options, perhaps I reversed:  \nIf fold along breadth first:  \n\\(2(L + B/2) = 2L + B = 48\\)  \n\\(2(L/2 + B) = L + 2B = 66\\)  \nThen:  \n\\(2L + B = 48\\)  \n\\(L + 2B = 66\\)  \nMultiply second by 2: \\(2L + 4B = 132\\)  \nSubtract first: \\(3B = 84 \\Rightarrow B = 28\\), then \\(L = 66 - 56 = 10\\).  \nArea = \\(28 \\times 10 = 280\\) again.\n\nSo area is 280. That is not listed.  \nBut 280 × something? If they meant perimeter in cm but area in some factor? No.\n\nCheck options: 1584, 1120, 792, 1320, 1200.  \n280 × 4 = 1120. That’s option B.\n\nCould it be that the given perimeters are for *both halves together*?  \nIf both halves together have total perimeter 48 when cut along length: each half perimeter = \\(L+2B\\), so two halves total"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "Let's go step by step.\n\nWe travel from M to Q via N, O, and P.  \n- M to N: 3 choices  \n- N to O: 4 choices  \n- O to P: 1 choice  \n- P to Q: 3 choices  \n\nBy the multiplication principle, the total number of ways is:\n\n\\[\n3 \\times 4 \\times 1 \\times 3 = 36\n\\]\n\nSo the answer is 36.\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The diameter of the sphere is equal to the space diagonal of the rectangular solid, since the vertices lie on the sphere.\n\nThe space diagonal \\(d\\) of a rectangular prism with sides \\(a\\), \\(b\\), and \\(c\\) is given by:\n\\[\nd = \\sqrt{a^2 + b^2 + c^2}\n\\]\n\nHere, \\(a = 3\\), \\(b = 4\\), \\(c = 15\\).\n\nCompute:\n\\[\nd = \\sqrt{3^2 + 4^2 + 15^2} = \\sqrt{9 + 16 + 225} = \\sqrt{250}\n\\]\n\nSimplify:\n\\[\n\\sqrt{250} = \\sqrt{25 \\times 10} = 5\\sqrt{10} \\approx 5 \\times 3.16227766 = 15.8113883\n\\]\n\nThis matches option B.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let's track A's movements step by step.\n\n1. Start at home (0, 0).  \n   - South 3 km → position (0, -3).  \n2. East 5 km → position (5, -3).  \n3. North 3 km → position (5, 0).  \n4. West 2 km → position (3, 0).\n\nNow, the final position is (3, 0), which is 3 km east of home.\n\nDistance from home = 3 km.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Let the marked price be \\( M \\) and the cost price be \\( C \\).\n\nWhen discount is 5%, selling price = \\( 0.95M \\).  \nProfit = \\( 0.95M - C \\).\n\nWhen discount is 7%, selling price = \\( 0.93M \\).  \nProfit = \\( 0.93M - C \\).\n\nThe difference in profit is Rs. 15 less in the second case:\n\n\\[\n(0.95M - C) - (0.93M - C) = 15\n\\]\n\\[\n0.02M = 15\n\\]\n\\[\nM = \\frac{15}{0.02} = 750\n\\]\n\nSo the marked price is Rs. 750.\n\nAnswer: D"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let the number be \\( x \\).\n\nThe correct value is \\( \\frac{7}{8}x \\).  \nThe student found \\( \\frac{7}{18}x \\).  \n\nThe difference between them is given:\n\n\\[\n\\frac{7}{8}x - \\frac{7}{18}x = 770\n\\]\n\nFactor out \\( 7x \\):\n\n\\[\n7x \\left( \\frac{1}{8} - \\frac{1}{18} \\right) = 770\n\\]\n\nFind a common denominator for \\( \\frac{1}{8} \\) and \\( \\frac{1}{18} \\), which is 72:\n\n\\[\n\\frac{1}{8} = \\frac{9}{72}, \\quad \\frac{1}{18} = \\frac{4}{72}\n\\]\n\\[\n\\frac{1}{8} - \\frac{1}{18} = \\frac{9 - 4}{72} = \\frac{5}{72}\n\\]\n\nSo:\n\n\\[\n7x \\cdot \\frac{5}{72} = 770\n\\]\n\\[\n\\frac{35x}{72} = 770\n\\]\n\\[\n35x = 770 \\times 72\n\\]\n\\[\n35x = 55440\n\\]\n\\[\nx = \\frac{55440}{35} = 1584\n\\]\n\nThus the number is 1584.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "We know the monthly salary formula:\n\n\\[\nS = 500 + 0.05 \\times (\\text{monthly sales})\n\\]\n\nWe want \\(S = 1500\\).  \nSubstitute:\n\n\\[\n1500 = 500 + 0.05 \\times (\\text{sales})\n\\]\n\nSubtract 500 from both sides:\n\n\\[\n1000 = 0.05 \\times (\\text{sales})\n\\]\n\nDivide both sides by 0.05:\n\n\\[\n\\text{sales} = \\frac{1000}{0.05} = 20,000\n\\]\n\nThus, the monthly sales must be $20,000.\n\nAnswer: D"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We are given that the plane flies along the four sides of a square, each side at a different speed.  \nLet the side length of the square be \\( s \\) km.\n\n**Step 1: Time for each side**  \n- Side 1: speed = 200 km/h → time = \\( \\frac{s}{200} \\)  \n- Side 2: speed = 400 km/h → time = \\( \\frac{s}{400} \\)  \n- Side 3: speed = 600 km/h → time = \\( \\frac{s}{600} \\)  \n- Side 4: speed = 800 km/h → time = \\( \\frac{s}{800} \\)\n\n**Step 2: Total distance**  \nTotal distance = \\( s + s + s + s = 4s \\) km.\n\n**Step 3: Total time**  \nTotal time =  \n\\[\n\\frac{s}{200} + \\frac{s}{400} + \\frac{s}{600} + \\frac{s}{800}\n\\]  \nFind a common denominator. LCM of 200, 400, 600, 800 is 2400.  \n\\[\n\\frac{s}{200} = \\frac{12s}{2400}, \\quad\n\\frac{s}{400} = \\frac{6s}{2400}, \\quad\n\\frac{s}{600} = \\frac{4s}{2400}, \\quad\n\\frac{s}{800} = \\frac{3s}{2400}\n\\]  \nSum = \\( \\frac{12s + 6s + 4s + 3s}{2400} = \\frac{25s}{2400} = \\frac{s}{96} \\) hours.\n\n**Step 4: Average speed**  \nAverage speed = total distance / total time =  \n\\[\n\\frac{4s}{s/96} = 4s \\times \\frac{96}{s} = 384 \\text{ km/h}\n\\]\n\n**Final answer:**  \nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let the number of brown sharpeners be \\( b \\) and white sharpeners be \\( w \\).  \nWe know:  \n\\[\nw + b = 18\n\\]  \nLet the price of a brown sharpener be \\( x \\) rupees. Then the price of a white sharpener is \\( x + 1 \\) rupees.  \nTotal cost:  \n\\[\nb \\cdot x + w \\cdot (x + 1) = 100\n\\]  \nSubstitute \\( w = 18 - b \\):  \n\\[\nb x + (18 - b)(x + 1) = 100\n\\]  \nExpand:  \n\\[\nb x + 18x + 18 - b x - b = 100\n\\]  \nThe \\( b x \\) cancels:  \n\\[\n18x + 18 - b = 100\n\\]  \n\\[\n18x - b = 82\n\\]  \n\\[\nb = 18x - 82\n\\]  \n\nSince \\( b \\) must be a positive integer and \\( 0 < b < 18 \\), we try integer \\( x \\):  \n\nIf \\( x = 5 \\): \\( b = 90 - 82 = 8 \\), then \\( w = 10 \\).  \nCheck cost: \\( 8 \\times 5 + 10 \\times 6 = 40 + 60 = 100 \\). Works.\n\nThus white = 10, brown = 8.\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let hose A's rate be \\( R_A \\) and hose B's rate be \\( R_B \\).  \nSince hose A fills the pool in 8 hours,  \n\\[\nR_A = \\frac{1}{8} \\text{ pool per hour}.\n\\]\n\nHose A runs alone for 2 hours, filling:  \n\\[\n2 \\times \\frac{1}{8} = \\frac{2}{8} = \\frac{1}{4} \\text{ of the pool}.\n\\]\n\nRemaining pool to fill:  \n\\[\n1 - \\frac{1}{4} = \\frac{3}{4}.\n\\]\n\nTogether, A and B fill the remaining \\(\\frac{3}{4}\\) in 3 hours. Their combined rate is:  \n\\[\nR_A + R_B = \\frac{3/4}{3} = \\frac{1}{4} \\text{ pool per hour}.\n\\]\n\nWe know \\( R_A = \\frac{1}{8} \\), so:  \n\\[\n\\frac{1}{8} + R_B = \\frac{1}{4}.\n\\]  \n\\[\nR_B = \\frac{1}{4} - \\frac{1}{8} = \\frac{2}{8} - \\frac{1}{8} = \\frac{1}{8}.\n\\]\n\nSo hose B also fills at \\(\\frac{1}{8}\\) pool per hour, meaning it would take 8 hours alone.\n\nAnswer: A"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "First, find the amount of reduction:  \n120 - 96 = 24.\n\nNext, find what percent 24 is of the original amount (120):  \n(24 ÷ 120) × 100 = 20%.\n\nTherefore, the reduction percent is 20%.\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We are told there is a 5-digit number.  \nLet the number be \\( x \\).  \n\nIf we put a 1 after it, the new number is \\( 10x + 1 \\).  \nIf we put a 1 before it, the new number is \\( 100000 + x \\).  \n\nThe condition says:  \n\\[\n10x + 1 = 3(100000 + x)\n\\]  \n\nNow solve:  \n\\[\n10x + 1 = 300000 + 3x\n\\]  \n\\[\n10x - 3x = 300000 - 1\n\\]  \n\\[\n7x = 299999\n\\]  \n\\[\nx = \\frac{299999}{7} = 42857\n\\]  \n\nChecking:  \nWith 1 after: 428571  \nWith 1 before: 142857  \nIndeed, \\( 428571 = 3 \\times 142857 \\), correct.  \n\nThe answer is A) 42857.  \n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "Let’s denote:\n\n- \\( S \\) = set of all students who are members of the swim team  \n- \\( C \\) = set of all students who are members of the chess club  \n\nWe are told:  \n- 24% of all students are in both \\( C \\) and \\( S \\).  \n- 20% of swim team members are **not** in the chess club.\n\nThat means:  \nIf \\( x \\) is the percentage of all students who are in the swim team, then:  \n- Members of swim team who are also in chess = \\( 0.24 \\) (as a fraction of all students).  \n- This also equals \\( 0.80x \\), because 80% of the swim team are in the chess club (since 20% are not).\n\nSo we have:  \n\\[\n0.80x = 0.24\n\\]  \n\\[\nx = \\frac{0.24}{0.80} = 0.30\n\\]\n\nThus, 30% of all students are members of the swim team.\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "We start with the current population: 78,000.  \nThe population increases by 5% each year.  \n\n**Year 1:**  \nIncrease = 5% of 78,000 = 0.05 × 78,000 = 3,900  \nPopulation after 1 year = 78,000 + 3,900 = 81,900  \n\n**Year 2:**  \nIncrease = 5% of 81,900 = 0.05 × 81,900 = 4,095  \nPopulation after 2 years = 81,900 + 4,095 = 85,995  \n\nThus, the population after 2 years is 85,995.\n\nAnswer: B"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "They are driving toward each other, so their speeds add together.  \nTotal speed = 12 + 13 = 25 mph.  \nThe distance between them is 50 miles.  \nTime = distance / speed = 50 / 25 = 2 hours.  \n\nAnswer: E"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The servant’s fixed monthly salary is 1500.  \nHe wants a total monthly income of 6000.  \nSo the extra amount he needs from commission is:  \n6000 - 1500 = 4500.\n\nThe commission is 15% of the monthly sale.  \nLet the monthly sale be S rupees.  \nThen 15% of S = 4500.  \nSo (15/100) * S = 4500  \nMultiply both sides by 100: 15S = 450000  \nDivide by 15: S = 30000.\n\nThus, the sale needed is 30000 rupees.\n\nAnswer: A"
+    },
+    {
+      "prediction": "C",
+      "correct": "D",
+      "output": "We are told the man borrows Rs. 360 and repays in 12 monthly installments of Rs. 31.50 each.\n\nFirst, total amount paid:  \n12 × 31.50 = Rs. 378\n\nSo total interest paid = 378 – 360 = Rs. 18.\n\nThis is simple interest over 12 months (1 year).  \nIf we treat it as a loan repaid in installments, the average principal over the year is not the full Rs. 360 because he pays it off gradually.  \n\nFor installment loans, a common approximation:  \nAverage principal = (360 + 0) / 2 = Rs. 180.\n\nInterest paid = Principal × rate × time  \n18 = 180 × r × 1  \nr = 18 / 180 = 0.10 = 10%\n\nSo the interest rate is 10%.\n\nAnswer: C"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "Let the original price be 100.\n\nAfter a 30% reduction, the new price is:  \n100 - 30 = 70.\n\nWe want this reduced price to be increased to the original 100.  \nIncrease needed = 100 - 70 = 30.\n\nPercentage increase = (Increase / Reduced price) × 100  \n= (30 / 70) × 100  \n= 3000 / 70  \n= 42.857...%\n\nThat is approximately 42.86%.\n\nAnswer: B"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "Let's break it down.\n\nWe have Rs. 700, which is equal to 70,000 paise (since 1 rupee = 100 paise).\n\nSuppose there are \\( n \\) coins of each type:  \n- 25 paise coins: value = \\( 25n \\) paise  \n- 50 paise coins: value = \\( 50n \\) paise  \n- 1 rupee coins: value = \\( 100n \\) paise  \n\nTotal value in paise:\n\\[\n25n + 50n + 100n = 175n\n\\]\nThis must equal 70,000 paise:\n\\[\n175n = 70000\n\\]\n\\[\nn = \\frac{70000}{175} = 400\n\\]\n\nSo there are 400 of each coin.\n\nAnswer: C"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "Let the man's monthly income be \\( x \\) rupees.\n\nHe spends Rs. 3500 and saves \\( 12\\frac{1}{2}\\% \\) of his income.  \n\\( 12\\frac{1}{2}\\% = \\frac{25}{2}\\% = \\frac{25}{200} = \\frac{1}{8} \\).\n\nSo his savings = \\( \\frac{1}{8}x \\).\n\nHis expenditure = income - savings:  \n\\[\nx - \\frac{1}{8}x = 3500\n\\]  \n\\[\n\\frac{7}{8}x = 3500\n\\]  \n\\[\nx = 3500 \\times \\frac{8}{7} = 500 \\times 8 = 4000\n\\]\n\nHis monthly income is Rs. 4000.\n\nAnswer: C"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "Let's break it down step by step.\n\n1. **Toys per box**:  \nFive dozen toys per box means \\( 5 \\times 12 = 60 \\) toys in one box.\n\n2. **Toys per tempo**:  \n98 boxes are kept in a tempo, so toys per tempo = \\( 98 \\times 60 \\).  \n\\( 98 \\times 60 = 5880 \\) toys per tempo.\n\n3. **Number of tempos needed for 29,400 toys**:  \nWe divide total toys by toys per tempo:  \n\\( \\frac{29400}{5880} \\).\n\n4. **Simplify the division**:  \n\\( 29400 \\div 5880 \\).  \nDivide numerator and denominator by 60:  \n\\( \\frac{29400 \\div 60}{5880 \\div 60} = \\frac{490}{98} \\).  \nThen \\( 490 \\div 98 = 5 \\).\n\nSo, **5 tempos** are needed.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We need to find the number of ways to choose 2 oranges from 10.  \nThis is a combination problem because the order in which the oranges are chosen does not matter.\n\nThe formula for combinations is:  \n\\[\n\\binom{n}{r} = \\frac{n!}{r!(n-r)!}\n\\]\n\nHere, \\( n = 10 \\) and \\( r = 2 \\):  \n\\[\n\\binom{10}{2} = \\frac{10!}{2!(10-2)!} = \\frac{10 \\times 9}{2 \\times 1} = \\frac{90}{2} = 45\n\\]\n\nSo the number of ways is 45.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Let’s break this down step by step.\n\n**Step 1: Find each painter’s rate.**  \n- Mr. Brown paints 1 house in 6 days → rate = \\(\\frac{1}{6}\\) house per day.  \n- Mr. Black paints 1 house in 8 days → rate = \\(\\frac{1}{8}\\) house per day.  \n- Mr. Blue paints 1 house in 12 days → rate = \\(\\frac{1}{12}\\) house per day.\n\n**Step 2: Work done in the first 8 days by Mr. Brown.**  \nWork = rate × time = \\(\\frac{1}{6} \\times 8 = \\frac{8}{6} = \\frac{4}{3}\\) houses.  \nBut there are only 3 houses to paint, so this seems like Mr. Brown is painting more than one house? Yes—he paints for 8 days, so he completes \\(\\frac{4}{3}\\) houses (1 full house and 1/3 of another).\n\n**Step 3: Work done by Mr. Black over the next 6 days.**  \nWork = \\(\\frac{1}{8} \\times 6 = \\frac{6}{8} = \\frac{3}{4}\\) of a house.\n\n**Step 4: Total work done so far.**  \nTotal = \\(\\frac{4}{3} + \\frac{3}{4}\\).  \nCommon denominator 12:  \n\\(\\frac{16}{12} + \\frac{9}{12} = \\frac{25}{12}\\) houses.\n\n**Step 5: Work remaining for Mr. Blue.**  \nTotal contract = 3 houses = \\(\\frac{36}{12}\\).  \nRemaining = \\(\\frac{36}{12} - \\frac{25}{12} = \\frac{11}{12}\\) of a house.\n\n**Step 6: Time needed for Mr. Blue.**  \nTime = work / rate = \\(\\frac{11}{12} \\div \\frac{1}{12} = \\frac{11}{12} \\times 12 = 11\\) days.\n\nFinal answer:  \nAnswer: D"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We need to find when both trains will leave the station at the same time again.  \nTrain A leaves every 16 minutes, Train B every 17 minutes.  \nThis is a least common multiple (LCM) problem.\n\nSince 16 and 17 are consecutive numbers, they are coprime (no common factors).  \nThe LCM of two coprime numbers is their product:  \n16 × 17 = 272 minutes.\n\nThus, after 272 minutes, both will leave together again.\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We have a hollow cube of outer side 5 cm, thickness 1 cm.  \nThis means the hollow part inside is a cube of side \\(5 - 2 \\times 1 = 3\\) cm.\n\n**Step 1: Total number of 1 cm cubes in the hollow cube**  \nTotal cubes in a solid 5 cm cube = \\(5^3 = 125\\).  \nThe hollow inner cube of side 3 cm contains \\(3^3 = 27\\) cubes.  \nSo, number of cubes in the hollow structure = \\(125 - 27 = 98\\) cubes.\n\n**Step 2: Understanding painting**  \nOnly the outer surface of the big 5 cm cube is painted.  \nThe inner surfaces (facing the hollow part) are not painted.\n\n**Step 3: Count total faces of all small cubes**  \nEach small cube has 6 faces.  \nTotal faces = \\(98 \\times 6 = 588\\).\n\n**Step 4: Count painted faces**  \nOnly the outer surface of the big cube is painted.  \nOuter surface area of big cube = \\(6 \\times (5 \\times 5) = 150\\) square cm.  \nSince each face of a small cube is 1 cm², exactly 150 faces are painted.\n\n**Step 5: Unpainted faces**  \nUnpainted faces = Total faces – Painted faces  \n= \\(588 - 150 = 438\\).\n\nThus, the answer is **438**, which corresponds to option A.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Let’s break it down.\n\n- Let total chocolates = 100 (for easy percentage calculations).  \n- 10% are cocoa flavored → 10 cocoa, so the rest = 90 vanilla.  \n- 90% of the rest (the vanilla ones) are squashed.  \n  \"Rest\" here means the vanilla ones, which are 90 chocolates.  \n  90% of 90 = 81 vanilla chocolates are squashed.  \n- That leaves vanilla and not squashed = 90 – 81 = 9 chocolates.  \n\n9 out of 100 total is 9%.\n\nAnswer: D"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The frog makes a net progress of 1 meter per day (3 up, 2 down), but on the final day, it will jump out without slipping back.\n\nAfter 27 days, the frog has climbed 27 meters (net).  \nOn day 28, it jumps 3 meters from 27 to 30 meters, reaching the top and escaping.  \nSo it takes 28 days.\n\nAnswer: D"
+    },
+    {
+      "prediction": "E",
+      "correct": "C",
+      "output": "We have 5 consecutive two-digit odd numbers.  \nLet them be:  \n\\( n, n+2, n+4, n+6, n+8 \\)  \nwhere \\( n \\) is odd and two-digit.\n\nTheir sum:  \n\\( S = n + (n+2) + (n+4) + (n+6) + (n+8) = 5n + 20 \\)\n\nWe are told:  \n\\(\\frac{S}{10}\\) is a perfect square.\n\nSo:  \n\\(\\frac{5n+20}{10} = \\frac{5(n+4)}{10} = \\frac{n+4}{2}\\) is a perfect square.\n\nLet:  \n\\(\\frac{n+4}{2} = k^2\\)  \nSo \\(n+4 = 2k^2\\)  \nSince \\(n\\) is odd: \\(n+4\\) is odd+even = odd? Wait: odd + even = odd, so \\(n+4\\) is odd. But \\(2k^2\\) is even.  \nLet's check:  \nIf \\(n\\) is odd, \\(n+4\\) is odd. But \\(2k^2\\) is always even. There's a problem — this means \\(\\frac{n+4}{2}\\) cannot be integer if \\(n\\) is odd? Wait, \\(n+4\\) odd divided by 2 is not an integer, so maybe my reasoning is wrong.\n\nActually: \\(n\\) odd → \\(n+4\\) odd → \\((n+4)/2\\) is not integer. But the problem says sum divided by 10 is a perfect square (integer), so \\(5n+20\\) must be divisible by 10.\n\n\\(5n+20 = 5(n+4)\\)  \nFor this to be divisible by 10, \\(n+4\\) must be even.  \nIf \\(n\\) is odd, \\(n+4\\) is odd+even = odd? No: odd + 4 (even) = odd. So \\(n+4\\) odd → \\(5(n+4)\\) ends with 5, not divisible by 10.  \nThat means \\(n\\) cannot be odd? But problem says \"two digit odd numbers\" — contradiction?  \nLet’s re-read: \"5 consecutive two digit odd numbers\" — each is odd. Then sum of 5 odd numbers = odd * 5 = odd. Dividing odd by 10 cannot give integer. So that is impossible.\n\nThus maybe \"odd numbers\" means numbers that are odd, but \"two digit\" just means 10–99. Still sum odd → not divisible by 10. So something is off.\n\nMaybe they mean \"two-digit numbers\" (not necessarily odd) and \"odd\" is a red herring? But options are all odd except 44.  \nCheck option E)44 — it’s even. Could be the set contains both odd and even? But \"odd numbers\" in problem is explicit.\n\nLet’s check if the numbers could be \"two-digit numbers\" (any) and \"odd\" is misread:  \nSum divisible by 10 and /10 is perfect square.\n\nTry:  \nLet numbers: \\(x-4, x-2, x, x+2, x+4\\) (consecutive odd numbers if x odd, but if x even then consecutive even? Actually consecutive odd difference is 2).  \nIf they are consecutive odd: sum = 5x, x is middle odd. Then sum/10 = x/2. For x/2 to be integer and perfect square, x must be even — contradiction. So indeed impossible.\n\nThus likely the intended meaning is \"5 consecutive two-digit numbers\" (not necessarily odd) — but the answer choices except 44 are odd; maybe one of them is the middle number?  \nLet's test:  \nIf numbers are consecutive, sum = 5m where m is middle number.  \nSum/10 = m/2 = perfect square → m = 2k².  \nm is two-digit → 2k² between 10 and 99 → k² between 5 and 49.5 → k=3,4,5,6,7.  \nm = 18, 32, 50, 72, 98.  \nConsecutive numbers centered at m:  \nm=18 → 16,17,18,19,20. Contains 20? Not in options.  \nm=32 → 30,31,32,33,34 → no match with given options.  \nm=50 → 48,49,50,51,52 → no match.  \nm=72 → 70,71,72,73,74 → no match.  \nm=98 → 96,97,98,99,100 → 100 not two-digit, so invalid.  \n\nSo none match options if numbers are any consecutive integers.\n\nMaybe \"odd numbers"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "Let the total number of students be \\( x \\).\n\n- Football: \\( 8\\% \\) of \\( x = 0.08x \\)  \n- Cricket: \\( \\frac{4}{5} \\) of \\( x = 0.8x \\)  \n- Basketball: \\( 10\\% \\) of \\( x = 0.1x \\)  \n\nThese percentages add up to:  \n\\[\n0.08x + 0.8x + 0.1x = 0.98x\n\\]  \nThis means 98% of students are interested in at least one of these games.\n\nThe remaining students, who are not interested in any game, are:  \n\\[\nx - 0.98x = 0.02x\n\\]  \n\nWe are told this number is 20:  \n\\[\n0.02x = 20\n\\]  \n\\[\nx = \\frac{20}{0.02} = 1000\n\\]\n\nThus, the total number of students is 1000.\n\nAnswer: E"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "We are told:  \n\"Q is as much younger than R as he is older than T.\"\n\nLet the difference between Q and T be \\(d\\).  \nSo,  \nQ = T + d  \nand  \nR = Q + d = T + 2d.\n\nWe also know:  \nSum of ages of R and T is 50.  \nThat is:  \nR + T = 50  \nSubstitute R:  \n(T + 2d) + T = 50  \n2T + 2d = 50  \nDivide by 2:  \nT + d = 25.\n\nBut T + d = Q.  \nSo Q = 25.\n\nNow the difference between R and Q is:  \nR – Q = (T + 2d) – (T + d) = d.\n\nWe know T + d = 25, but we don't know T or d individually — only that d is positive and T > 0.  \nThus the difference \\(d\\) is not fixed; it could vary.\n\nSo the difference between R and Q cannot be determined uniquely.\n\nAnswer: D"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "We have $8.50 total.  \nThe first quarter-mile costs $3.50, so after that we have:\n\n$8.50 - $3.50 = $5.00\n\nEach additional quarter-mile costs $0.10.  \nWith $5.00, the number of additional quarter-miles is:\n\n$5.00 / $0.10 = 50 quarter-miles\n\nSo total quarter-miles traveled = 1 (first) + 50 = 51 quarter-miles.\n\nSince 1 mile = 4 quarter-miles, the distance in miles is:\n\n51 / 4 = 12.75 miles\n\nAnswer: B"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "Let the number of matches before the finals be \\( n \\).  \nHis total runs before finals = \\( 51n \\).  \nAfter scoring 78 in the final, total runs = \\( 51n + 78 \\).  \nTotal matches now = \\( n + 1 \\).  \nNew average = 54, so:\n\n\\[\n\\frac{51n + 78}{n + 1} = 54\n\\]\n\nMultiply both sides:\n\n\\[\n51n + 78 = 54(n + 1)\n\\]\n\\[\n51n + 78 = 54n + 54\n\\]\n\\[\n78 - 54 = 54n - 51n\n\\]\n\\[\n24 = 3n\n\\]\n\\[\nn = 8\n\\]\n\nSo before finals, 8 matches. Including the final, total matches = \\( 8 + 1 = 9 \\).\n\n**Answer: C**"
+    },
+    {
+      "prediction": "B",
+      "correct": "D",
+      "output": "We need to represent 10 different book types using codes that are either single letters or unordered pairs of different letters.\n\nLet the number of letters be \\( n \\).\n\n- The number of single-letter codes possible is \\( n \\).\n- The number of unordered pairs of two different letters is \\( \\binom{n}{2} = \\frac{n(n-1)}{2} \\).\n\nTotal possible unique codes:\n\\[\nn + \\frac{n(n-1)}{2} = \\frac{2n + n(n-1)}{2} = \\frac{n(n+1)}{2}\n\\]\n\nWe need this to be at least 10:\n\\[\n\\frac{n(n+1)}{2} \\geq 10\n\\]\n\\[\nn(n+1) \\geq 20\n\\]\n\nTest small \\( n \\):\n- \\( n=3 \\): \\( 3 \\times 4 = 12 \\) → 12 ≥ 20? No.\n- \\( n=4 \\): \\( 4 \\times 5 = 20 \\) → 20 ≥ 20. Yes.\n\nSo with 4 letters, we get exactly 10 distinct codes (4 singles + 6 pairs = 10), enough for all 10 types.\n\nThus the smallest number of letters is 4.\n\nAnswer: B"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "Let the breadth be \\( b \\) meters.  \nThen the length is \\( 4b + 1 \\) meters.  \n\nArea is given as 150 sq m:  \n\\[\nb(4b + 1) = 150\n\\]  \n\\[\n4b^2 + b - 150 = 0\n\\]  \n\nSolve the quadratic:  \n\\[\nb = \\frac{-1 \\pm \\sqrt{1 + 2400}}{8} = \\frac{-1 \\pm \\sqrt{2401}}{8}\n\\]  \nSince \\( \\sqrt{2401} = 49 \\):  \n\\[\nb = \\frac{-1 + 49}{8} = \\frac{48}{8} = 6\n\\]  \n(The negative root is discarded.)  \n\nSo breadth = 6 m, length = \\( 4(6) + 1 = 25 \\) m.  \n\nPerimeter = \\( 2(25 + 6) = 2 \\times 31 = 62 \\) m.  \n\nAnswer: C"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "We need to get at least 100% of the minimum daily requirement for both vitamin E and vitamin A from this food alone.  \n\nEach gram gives:  \n- 9% of vitamin E  \n- 8% of vitamin A  \n\nTo meet the requirement for vitamin E:  \nWe need \\( \\frac{100}{9} \\approx 11.11 \\) grams.  \n\nTo meet the requirement for vitamin A:  \nWe need \\( \\frac{100}{8} = 12.5 \\) grams.  \n\nSince we must meet **both** requirements, we take the larger number: 12.5 grams.  \n\nAnswer: C"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "First, convert the time: 3 hours = 3 × 60 = 180 minutes, plus 20 minutes = 200 minutes.  \n200 minutes = 200/60 = 10/3 hours.\n\nA helper can make 2 large cakes per hour, so in 10/3 hours:  \nLarge cakes per helper = 2 × (10/3) = 20/3 ≈ 6.67 large cakes.\n\nFor small cakes: 35 per hour, so in 10/3 hours:  \nSmall cakes per helper = 35 × (10/3) = 350/3 ≈ 116.67 small cakes.\n\nWe need 20 large cakes and 700 small cakes.\n\nLet \\( x \\) be the number of helpers.\n\nTotal large cakes = \\( x \\times \\frac{20}{3} \\geq 20 \\) → \\( x \\geq 3 \\).  \nTotal small cakes = \\( x \\times \\frac{350}{3} \\geq 700 \\) → \\( x \\geq \\frac{700 \\times 3}{350} = 6 \\).\n\nSince helpers can split time between both tasks, we find the minimum \\( x \\) such that both constraints can be met simultaneously.  \nLet \\( a \\) = fraction of time each helper spends on large cakes, and \\( 1-a \\) on small cakes.\n\nLarge cakes: \\( 2a \\times \\frac{10}{3} \\times x = \\frac{20a x}{3} \\geq 20 \\) → \\( a x \\geq 3 \\).  \nSmall cakes: \\( 35(1-a) \\times \\frac{10}{3} \\times x = \\frac{350(1-a)x}{3} \\geq 700 \\) → \\( (1-a)x \\geq 6 \\).\n\nAdd the inequalities:  \n\\( a x + (1-a)x = x \\geq 3 + 6 = 9 \\).  \n\nSo at least 9 helpers are needed. Since 9 is not an option, check 10:  \nWith 10 helpers, \\( a x \\geq 3 \\) → \\( a \\geq 0.3 \\), and \\( (1-a)x \\geq 6 \\) → \\( 1-a \\geq 0.6 \\) → \\( a \\leq 0.4 \\).  \nPossible, so 10 works.\n\nThus answer is 10.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We have points R, S, T, U on a line.  \nGiven:  \nRS = 5  \nRT = 17  \nST = 22  \nU is the midpoint of ST.\n\nFirst, note that RS + ST = 5 + 22 = 27.  \nBut RT is given as 17, which is less than 27. This means the points are not in order R–S–T.  \nLikely the order is S–R–T or R–T–S, but we need to check.\n\nIf order were R–S–T:  \nRS = 5, ST = 22, then RT = RS + ST = 27, but given RT = 17 → contradiction.\n\nIf order were S–R–T:  \nSR = 5, RT = 17, then ST = SR + RT = 5 + 17 = 22, which matches ST = 22.  \nSo order is S–R–T.\n\nSo on the line: S---R---T, with SR = 5, RT = 17, so ST = 22.\n\nNow U is the midpoint of ST.  \nST = 22, so midpoint U is 11 from S and 11 from T.\n\nWe want RU.  \nWe know SR = 5, and U is 11 from S. So from S to R is 5, from R to U is 11 - 5 = 6.  \nThus RU = 6.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "C",
+      "output": "Let’s define variables so we can compare.\n\nLet:  \n- P = amount of falafel in one pita bread  \n- R = amount in one roll  \n- B = amount in one baguette  \n\nWe are given:  \n1. Six pita breads = two rolls →  \n   6P = 2R → divide both sides by 2:  \n   3P = R  \n\n2. Three rolls = five baguettes →  \n   3R = 5B  \n\nSubstitute R = 3P into the second equation:  \n   3(3P) = 5B  \n   9P = 5B  \n\nWe want: Two baguettes = how many pita breads?  \nThat is: 2B = ? P  \n\nFrom 9P = 5B, divide both sides by 5:  \n   B = (9/5)P  \n\nSo 2B = 2 × (9/5)P = (18/5)P  \n\nThus, two baguettes contain the same amount as 18/5 pita breads.  \nBut 18/5 = 3.6, which is not among the options directly. Let’s check:  \nOption E is 25/3 ≈ 8.33, D is 2, C is 3, B is 1.5, A is 0.48.  \n18/5 = 3.6 isn’t there.\n\nWait—maybe I misread the question. Let’s double-check:  \nThe question asks: \"Two baguettes contain the same amount of falafel as how many pita breads?\"  \n\nWe found 2B = (18/5)P. That is 3.6 pita breads. None of the options match.  \nPerhaps I misinterpreted the relation? Let’s try again carefully.\n\nGiven:  \n6 pita = 2 rolls → 1 roll = 3 pita.  \n3 rolls = 5 baguettes → 3 rolls = 9 pita = 5 baguettes → So 1 baguette = 9/5 pita.  \nThen 2 baguettes = 18/5 pita = 3.6. No match.\n\nBut maybe the problem means \"six pita breads contain the same amount of falafel as do two rolls\" meaning total falafel in six pitas equals total in two rolls. That’s what we used.\n\nLet’s check if there’s a different interpretation: Possibly \"contain the same amount\" means per bread? That would be the same equation.\n\nGiven the options, 18/5 doesn’t appear. But note 18/5 = 3.6, and option C is 3, option D is 2. Maybe I swapped something. Let’s solve again systematically.\n\n6P = 2R → R = 3P  \n3R = 5B → 3(3P) = 5B → 9P = 5B → B = (9/5)P  \nThen 2B = (18/5)P.  \n\nIf the question were \"Two baguettes contain the same amount as how many rolls?\" that would be 2B = 2*(9/5)P = (18/5)P, and rolls: R=3P, so (18/5)P / (3P) = 6/5 rolls, not in options either.\n\nWait—maybe it asks: Two baguettes = how many pita?  \n18/5 = 3.6. If we check option E: 25/3 ≈ 8.33; no.\n\nCould I have the ratios reversed? Let’s try:  \nMaybe \"six pita breads contain the same amount of falafel as do two rolls\" means *per bread* they are equal? That would be 6P = 2R → same.\n\nEverything consistent. Since 18/5 is not listed, perhaps they want the answer in fraction form: 18/5 simplifies to? It doesn't match A (12/25).  \n\nCheck: 18/5 = 3.6. Could be 18/5 = 36/10. No.\n\nMaybe I should express in terms of baguettes to pita differently:  \nFrom 9P = 5B → P = (5/9)B  \nThen 2B = 2B, in pita: 2B = 2B × (P / B?) Actually 2B = 2B * (5/9)P per B = (10/9)P? No, that’s wrong.\n\nLet's do: P = (5/9)B, so 1 B = (9/5)P. Then 2B = (18/5)P. Yes.\n\nGiven the options, I suspect the intended answer might be 18"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "Let the original price be 100.  \nAfter a 20% discount, the sale price is 80.  \nTo get back to the original price of 100 from 80, the increase needed is 20.  \n\nPercentage increase = (increase / sale price) × 100 = (20 / 80) × 100 = 25%.  \n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let the train fare for one person be \\( t \\) rupees.  \nThen the bus fare for one person is \\( \\frac{4}{3}t \\) rupees.\n\nWe have:  \n6 persons by bus → fare = \\( 6 \\times \\frac{4}{3}t = 8t \\)  \n8 persons by train → fare = \\( 8 \\times t = 8t \\)\n\nTotal fare = \\( 8t + 8t = 16t \\)\n\nGiven total fare = Rs. 1512  \nSo,  \n\\( 16t = 1512 \\)  \n\\( t = \\frac{1512}{16} = 94.5 \\)\n\nThis is not among the options, so let’s double-check the wording:  \n\"The bus fare for two persons ... is four-thirds the train fare between the same places for one person.\"  \n\nThat means:  \nBus fare for 2 persons = \\( \\frac{4}{3} \\times (\\text{train fare for 1 person}) \\)  \nThus bus fare for 1 person = \\( \\frac{2}{3} \\times t \\)  \n\nNow recalculate:  \n6 persons by bus → \\( 6 \\times \\frac{2}{3}t = 4t \\)  \n8 persons by train → \\( 8t \\)  \nTotal = \\( 4t + 8t = 12t \\)  \n\n\\( 12t = 1512 \\)  \n\\( t = 126 \\)\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The perimeter of a rectangle is calculated using the formula:  \nPerimeter = 2 × (length + width).  \n\nHere, length = 8 cm and width = 3 cm.  \nFirst, add length and width: 8 + 3 = 11 cm.  \nThen multiply by 2: 2 × 11 = 22 cm.  \n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "We have six distinct books: English, Hindi, Mathematics, History, Geography, and Science.\n\nThe number of ways to arrange \\( n \\) distinct items in a row is \\( n! \\) (n factorial).\n\nHere, \\( n = 6 \\), so:\n\n\\[\n6! = 6 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1 = 720\n\\]\n\nThus, there are 720 ways.\n\nAnswer: B"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "We have x pickets, each 1/2 inch wide.  \nBetween each pair of pickets, there is a 6-inch gap.\n\nIf there are x pickets, there are (x - 1) gaps.  \n\nTotal width in inches:  \nWidth from pickets = x * (1/2) = x/2 inches  \nWidth from gaps = (x - 1) * 6 = 6x - 6 inches  \n\nTotal length in inches = x/2 + 6x - 6 = (x/2 + 12x/2) - 6 = (13x/2) - 6 inches  \n\nConvert to feet (divide by 12):  \nLength in feet = [(13x/2) - 6] / 12 = (13x/2)/12 - 6/12 = 13x/24 - 1/2  \n\nWrite with common denominator 24:  \n13x/24 - 12/24 = (13x - 12)/24  \n\nThat matches option E.\n\nAnswer: E"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "Let the speed of the ship be \\( v \\) miles per hour.  \nThen the speed of the plane is \\( 10v \\) miles per hour.  \n\nWhen the plane starts, the ship has already traveled 180 miles.  \nLet \\( t \\) be the time (in hours) after the plane starts until they meet.  \n\nIn time \\( t \\):  \n- Distance traveled by the ship = \\( v \\cdot t \\)  \n- Distance traveled by the plane = \\( 10v \\cdot t \\)  \n\nAt the meeting point from the starting point:  \nShip's total distance = \\( 180 + vt \\)  \nPlane's distance from start = \\( 10v t \\)  \n\nThese are equal:  \n\\[\n180 + vt = 10v t\n\\]  \n\\[\n180 = 9v t\n\\]  \n\\[\nv t = 20\n\\]  \n\nThus distance from starting point = \\( 180 + 20 = 200 \\) miles.  \n\nAnswer: C"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "We're told 300 deer were tagged in 2001.\n\nIn 2002, 500 deer were caught, and 20 of them had tags.\n\nSo, the proportion of tagged deer in the sample is:\n\n\\[\n\\frac{20}{500} = 0.04 = 4\\%\n\\]\n\nIf this sample is representative, then 4% of the total deer population in the forest are tagged. Since 300 deer were tagged in total, that means:\n\n\\[\n0.04 \\times \\text{Total population} = 300\n\\]\n\nSolving for total population:\n\n\\[\n\\text{Total population} = \\frac{300}{0.04} = 7500\n\\]\n\nThus, the answer is **E) 7500**.\n\nAnswer: E"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "We have two train lines:\n\n- Main line: starts at 5:00 AM, runs every 10 minutes → times: 5:00, 5:10, 5:20, …\n- Harbor line: starts at 5:02 AM, runs every 10 minutes → times: 5:02, 5:12, 5:22, …\n\nThe man arrives at a random time uniformly between 5:00 and 5:10 (or more generally between two main line trains, because the pattern repeats every 10 minutes).  \nWe can focus on one 10-minute cycle, say from 5:00 to 5:10.\n\nLet’s list events in that interval:  \n- Main line at 5:00  \n- Harbor line at 5:02  \n- Next main line at 5:10  \n\nIf the man arrives between 5:00 and 5:02, the first train is the harbor line at 5:02? Wait, careful:  \n- From 5:00 to 5:02, the next train is harbor at 5:02 (main already left at 5:00).  \n- From 5:02 to 5:10, the next train is main at 5:10? Actually, after 5:02 the next main is at 5:10, and the next harbor is at 5:12, so main is first.  \n\nSo:  \n- Arrival time 5:00–5:02 → catches harbor (2 minutes)  \n- Arrival time 5:02–5:10 → catches main (8 minutes)  \n\nProbability of catching main = 8/10 = 0.8.\n\nThus answer is **B**.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let's go step by step.\n\n1. The average weight of 10 vehicles is 12.2 tons.  \n   Total weight of these 10 vehicles = \\( 10 \\times 12.2 = 122 \\) tons.\n\n2. After adding a new truck, the average increases by 2.6 tons.  \n   New average = \\( 12.2 + 2.6 = 14.8 \\) tons.\n\n3. Now there are 11 vehicles.  \n   Total weight of 11 vehicles = \\( 11 \\times 14.8 = 162.8 \\) tons.\n\n4. The weight of the new truck = new total − old total  \n   = \\( 162.8 - 122 = 40.8 \\) tons.\n\nSo the answer is A.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Let’s define the current population as \\( P \\).\n\nOne year ago, the population was some value, say \\( P_{-1} \\).  \nTwo years from now, the population is projected to increase by 10% each year:\n\n- Next year: \\( P \\times 1.10 \\)  \n- Two years from now: \\( P \\times 1.10 \\times 1.10 = P \\times 1.21 \\)\n\nAccording to the problem, the population two years from now is exactly double the population of one year ago:\n\n\\[\nP \\times 1.21 = 2 \\times P_{-1}\n\\]\n\nWe can solve for \\( P_{-1} \\):\n\n\\[\nP_{-1} = \\frac{P \\times 1.21}{2} = P \\times 0.605\n\\]\n\nThat means one year ago, the population was \\( 0.605P \\).  \n\nThe percent increase over the last year (from one year ago to now) is:\n\n\\[\n\\frac{P - 0.605P}{0.605P} \\times 100\\% = \\frac{0.395}{0.605} \\times 100\\% \\approx 65.3\\%\n\\]\n\nThis is closest to 65%.\n\nAnswer: D"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "Let Arjun have \\( A \\) dollars and Sajal have \\( S \\) dollars.\n\n**First condition:**  \nIf Arjun gives $30 to Sajal, then:\n- Arjun has \\( A - 30 \\)\n- Sajal has \\( S + 30 \\)\n\nThis equals twice what Arjun has left:\n\\[\nS + 30 = 2(A - 30)\n\\]\n\\[\nS + 30 = 2A - 60\n\\]\n\\[\nS = 2A - 90 \\quad (1)\n\\]\n\n**Second condition:**  \nIf Sajal gives $10 to Arjun, then:\n- Arjun has \\( A + 10 \\)\n- Sajal has \\( S - 10 \\)\n\nArjun will have thrice as much as Sajal:\n\\[\nA + 10 = 3(S - 10)\n\\]\n\\[\nA + 10 = 3S - 30\n\\]\n\\[\nA = 3S - 40 \\quad (2)\n\\]\n\nSubstitute (1) into (2):\n\\[\nA = 3(2A - 90) - 40\n\\]\n\\[\nA = 6A - 270 - 40\n\\]\n\\[\nA = 6A - 310\n\\]\n\\[\n-5A = -310\n\\]\n\\[\nA = 62\n\\]\n\nThen from (1):\n\\[\nS = 2(62) - 90 = 124 - 90 = 34\n\\]\n\nSo Arjun has $62, Sajal has $34.  \nThis matches option **B**.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We know the yard is rectangular, so area = width × length.\n\nGiven:\n- Width = 100 feet\n- Area = 3,000 square feet\n\nLet the length be \\( L \\).\n\nThen:\n\\[\n100 \\times L = 3000\n\\]\n\\[\nL = 3000 \\div 100 = 30\n\\]\n\nSo the length is 30 feet.\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We know that for two positive integers \\(a\\) and \\(b\\),  \n\\[\n\\text{GCF}(a, b) \\times \\text{LCM}(a, b) = a \\times b\n\\]  \nHere,  \n\\[\n\\text{GCF} = 11, \\quad \\text{LCM} = 7700, \\quad a = 350\n\\]  \nSo:  \n\\[\n11 \\times 7700 = 350 \\times b\n\\]  \n\\[\n84700 = 350b\n\\]  \n\\[\nb = \\frac{84700}{350} = 242\n\\]  \n\nCheck:  \n- GCF of 350 and 242:  \n  \\(350 = 2 \\times 5^2 \\times 7\\),  \n  \\(242 = 2 \\times 11^2\\).  \n  The common factor is only 2? Wait — that would give GCF = 2, but we need 11. So something's off unless we consider the GCF condition correctly:  \nActually, the product rule gives \\(b = 242\\), but now check GCF(350, 242):  \n- 350 factors: \\(2 \\times 5^2 \\times 7\\)  \n- 242 factors: \\(2 \\times 11^2\\)  \nCommon factors: only 2. So GCF is 2, not 11. That means 242 cannot be correct under the given GCF = 11. But product rule is always true, so there is an inconsistency unless the numbers are not in simplest terms relative to the GCF.  \n\nWait — we must account for the fact that the numbers are multiples of the GCF.  \nLet the numbers be \\(11x\\) and \\(11y\\) where \\(x, y\\) are coprime.  \nThen \\(\\text{LCM} = 11xy = 7700\\) → \\(xy = 700\\).  \nOne integer is 350 = \\(11x\\) → \\(x = \\frac{350}{11}\\), not integer. That means 350 is not a multiple of 11? But GCF is 11, so both numbers must be multiples of 11.  \nCheck: 350 ÷ 11 = 31.818... Not integer.  \n\nSo there’s a mistake: 350 must be divisible by 11 if GCF = 11, but it’s not. That means this problem assumes one integer is 350 but GCF is 11 — impossible unless the GCF is actually a divisor of 350. 11 does not divide 350, so the problem must mean that the given integer is not necessarily the one with the GCF property?  \n\nActually, re-read: \"The greatest common factor of two positive integers is 11. ... If one of the integers is 350\" — This means 350 must be a multiple of 11, but 350/11 is not integer. So perhaps the problem misstates, or we need to reconsider.\n\nGiven the product rule:  \n\\( a \\times b = 11 \\times 7700 = 84700 \\)  \n\\( b = 84700 / 350 = 242 \\) as before.  \n\nNow check if GCF(350,242) can be 11? 350/11 ≈ 31.8, so no. But the answer choices contain 242, and it fits the product rule. The only way this works is if the GCF given is actually the GCF of the other two numbers after removing a common factor?  \n\nGiven the time, the only number from the options that satisfies \\(350 \\times \\text{other} = 84700\\) is 242, so:\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let the side length of the original square be \\( s \\) feet.\n\nAfter trimming 4 feet from one edge, the rectangle has dimensions:  \n- Length: \\( s \\) feet  \n- Width: \\( s - 4 \\) feet\n\nCutting this rectangle diagonally in half gives two triangles, each with area half the rectangle's area.  \nArea of one triangle = \\( \\frac{1}{2} \\times s \\times (s - 4) \\).\n\nWe are told each triangle area is 70 square feet:\n\n\\[\n\\frac{1}{2} s (s - 4) = 70\n\\]\n\nMultiply both sides by 2:\n\n\\[\ns(s - 4) = 140\n\\]\n\n\\[\ns^2 - 4s - 140 = 0\n\\]\n\nSolve the quadratic:\n\n\\[\ns = \\frac{4 \\pm \\sqrt{16 + 560}}{2} = \\frac{4 \\pm \\sqrt{576}}{2} = \\frac{4 \\pm 24}{2}\n\\]\n\nPositive solution:  \n\\[\ns = \\frac{4 + 24}{2} = \\frac{28}{2} = 14\n\\]\n\nOriginal square perimeter = \\( 4s = 4 \\times 14 = 56 \\) feet.\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The original length is 30 cm.  \nThe ratio 5 : 3 means the original length corresponds to 5 parts, and the new length corresponds to 3 parts.  \n\nFirst, find the value of one part:  \n30 cm ÷ 5 = 6 cm per part.  \n\nNow, the new length is 3 parts:  \n3 × 6 cm = 18 cm.  \n\nSo the length after reduction is 18 cm.  \n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We have M = abc, which is a three-digit number, so a (hundreds digit) is from 1 to 9, b from 0 to 9, c from 0 to 9.  \nN = cba means digits reversed.\n\nM > N ⇒ a > c.\n\nWe are given:  \nM - N + 396c = 990.\n\nFirst, express M and N numerically:  \nM = 100a + 10b + c  \nN = 100c + 10b + a  \n\nSo M - N = (100a + 10b + c) - (100c + 10b + a)  \n= 99a - 99c  \n= 99(a - c).\n\nNow substitute into the given equation:  \n99(a - c) + 396c = 990.\n\nFactor 99:  \n99(a - c) + 396c = 99(a - c) + 99*4c = 99(a - c + 4c) = 99(a + 3c).\n\nSo equation becomes:  \n99(a + 3c) = 990  \n⇒ a + 3c = 10.\n\nSince a and c are digits (a from 1 to 9, c from 0 to 9), and a > c:  \na + 3c = 10.\n\nPossible integer pairs (a, c):  \n- If c = 0 → a = 10 (invalid, a ≤ 9)  \n- c = 1 → a = 7 (valid, 7 > 1)  \n- c = 2 → a = 4 (valid, 4 > 2)  \n- c = 3 → a = 1 (but 1 > 3 is false, invalid)  \n- c ≥ 4 gives a negative or too small.\n\nSo valid (a, c): (7,1) and (4,2).\n\nNow b can be any digit from 0 to 9, since b doesn't appear in the equation.\n\nFor (a, c) = (7,1): M = 7 b 1, possible values: 710, 711, …, 719 → 10 numbers.  \nFor (a, c) = (4,2): M = 4 b 2, possible: 420, 421, …, 429 → 10 numbers.\n\nTotal M values = 20.\n\nNow the question: how many of these M are more than 300?  \nAll start with 7 or 4, so all are greater than 300. Thus all 20.\n\nAnswer: A)20\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "E",
+      "output": "We are told:\n\n- More than 501 students.\n- Exactly 20% took physics.\n- Exactly 28% took math.\n\n\"Exactly\" here means that these percentages must correspond to whole numbers of students.  \nSo the total number of students must be such that:\n\n- 20% = 20/100 = 1/5 → total must be a multiple of 5.\n- 28% = 28/100 = 7/25 → total must be a multiple of 25.\n\nSince 5 and 25 have LCM = 25, the total must be a multiple of 25.\n\nNow, the total must also be **more than 501**.  \nMultiples of 25 greater than 501:  \n525, 550, 575, 600, …\n\nWe check the smallest:  \n525 → 20% of 525 = 105 (integer), 28% of 525 = 147 (integer). Works.  \nBut we must also check \"more than 501\" — 525 > 501, so it qualifies.\n\nHowever, 525 is not in the options.  \nThe next smallest option from the list that is a multiple of 25 and > 501 is 550.\n\nThus the least possible number among the options is 550.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "Let's break it down step by step.\n\n**Step 1:** Raj is 17 years old now.  \nSo, 5 years back, Raj was:  \n17 − 5 = 12 years old.\n\n**Step 2:** At that time, Raj was one-third as old as Rahim.  \nThat means:  \nRaj's age 5 years back = (1/3) × (Rahim's age 5 years back)\n\nSo:  \n12 = (1/3) × (Rahim's age 5 years back)\n\n**Step 3:** Multiply both sides by 3:  \nRahim's age 5 years back = 12 × 3 = 36 years.\n\n**Step 4:** Now, Rahim's current age = 36 + 5 = 41 years.\n\n**Final Answer:**  \nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The cow is tethered in the middle of a field with a 14-foot rope, so the area the cow can graze is a circle with radius 14 feet.\n\nArea of circle = π × r²  \n= π × 14²  \n= π × 196  \n≈ 3.1416 × 196  \n≈ 615.75 square feet.\n\nThe cow grazes 10 sq. ft. per day.  \nTime required = total area / grazing rate  \n= 615.75 / 10  \n≈ 61.575 days.\n\nThat is approximately 61 days.\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "First, find the cost price (CP).  \nThe selling price (SP) with a 10% profit is Rs 27.50.  \nProfit percent is calculated on CP:  \nSP = CP + 10% of CP = 1.10 × CP  \nSo,  \nCP = 27.50 / 1.10 = Rs 25.00  \n\nNow, if it is sold for Rs 25.75:  \nNew SP = Rs 25.75  \nCP = Rs 25.00  \nProfit = 25.75 – 25.00 = Rs 0.75  \n\nProfit percent = (0.75 / 25.00) × 100 = 3%  \n\nThis is a profit of 3%.  \n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "We have three children: Susan, Tim, and Zen.  \nThey must sit on three identical chairs in a straight line, with the condition that Susan is on the left of Tim.\n\nFirst, count the total number of ways to arrange three distinct children in a line.  \nThat’s 3! = 6 total arrangements.\n\nIn half of these arrangements, Susan will be to the left of Tim, and in the other half, Tim will be to the left of Susan.  \nSo the number of arrangements where Susan is left of Tim is 6 ÷ 2 = 3.\n\nThus, the answer is 3.\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "We are told the bill is partly fixed and partly varies with the number of calls.  \nLet the fixed part be \\( F \\) and the variable part per call be \\( V \\).\n\nFrom the given:\n- For 540 calls: \\( F + 540V = 1800 \\)  \n- For 620 calls: \\( F + 620V = 2040 \\)\n\nSubtract the first equation from the second:\n\\[\n(F + 620V) - (F + 540V) = 2040 - 1800\n\\]\n\\[\n80V = 240\n\\]\n\\[\nV = 3\n\\]\n\nNow substitute \\( V = 3 \\) into the first equation:\n\\[\nF + 540(3) = 1800\n\\]\n\\[\nF + 1620 = 1800\n\\]\n\\[\nF = 180\n\\]\n\nNow for 500 calls:\n\\[\n\\text{Bill} = F + 500V = 180 + 500(3) = 180 + 1500 = 1680\n\\]\n\nSo the bill for that month is Rs. 1680.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "First, find the time it takes for each ball to complete one full rotation.  \n\nBall A: 2 rotations in 26 minutes → 1 rotation in \\( \\frac{26}{2} = 13 \\) minutes.  \nBall B: 5 rotations in 35 minutes → 1 rotation in \\( \\frac{35}{5} = 7 \\) minutes.  \n\nThey start together and need to meet again at the starting point. This is a least common multiple (LCM) problem for their lap times.  \n\nFind LCM of 13 and 7.  \nSince 13 and 7 are both prime, LCM = \\( 13 \\times 7 = 91 \\) minutes.  \n\n91 minutes = 1 hour and 31 minutes.  \n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "We are told there are 45 books total, 30 hardcover, and 20 fiction.\n\nThe maximum number of books that can be both hardcover and fiction is limited by the smaller of the two groups.  \nIf all fiction books were hardcover, that would give 20 books that are both.  \nBut we also have only 30 hardcover books, so 20 fiction books being hardcover is fine because 20 ≤ 30.  \nThere is no other constraint preventing that, so the maximum is 20.\n\nAnswer: D"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let the number of newspapers ordered on a weekday (Monday–Saturday) be \\( x \\).  \nThen on Sunday, the hotel orders twice that, so \\( 2x \\).  \n\nThere are 6 weekdays (Monday through Saturday), so total weekday papers = \\( 6x \\).  \nSunday papers = \\( 2x \\).  \n\nCost per weekday paper = $1, so total weekday cost = \\( 6x \\cdot 1 = 6x \\).  \nCost per Sunday paper = $4, so total Sunday cost = \\( 2x \\cdot 4 = 8x \\).  \n\nTotal weekly cost:  \n\\[\n6x + 8x = 14x\n\\]  \nWe are told this equals $210:  \n\\[\n14x = 210\n\\]  \n\\[\nx = 15\n\\]  \n\nSince \\( x \\) is the number of papers on a weekday, Monday (a weekday) gets 15 papers.  \n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "Let the original number of friends be \\( n \\).  \nThe total cost is Rs. 96, so each person would have paid \\( \\frac{96}{n} \\) if all had come.\n\nWhen 4 friends didn't come, the number attending was \\( n - 4 \\).  \nEach of them had to pay \\( \\frac{96}{n - 4} \\).\n\nThe extra amount each paid is Rs. 4, so:\n\n\\[\n\\frac{96}{n - 4} - \\frac{96}{n} = 4\n\\]\n\nFactor out 96:\n\n\\[\n96 \\left( \\frac{1}{n-4} - \\frac{1}{n} \\right) = 4\n\\]\n\n\\[\n96 \\cdot \\frac{n - (n-4)}{n(n-4)} = 4\n\\]\n\n\\[\n96 \\cdot \\frac{4}{n(n-4)} = 4\n\\]\n\nMultiply both sides:\n\n\\[\n\\frac{384}{n(n-4)} = 4\n\\]\n\n\\[\n384 = 4n(n-4)\n\\]\n\n\\[\n96 = n(n-4)\n\\]\n\n\\[\nn^2 - 4n - 96 = 0\n\\]\n\nSolve:\n\n\\[\nn = \\frac{4 \\pm \\sqrt{16 + 384}}{2} = \\frac{4 \\pm \\sqrt{400}}{2} = \\frac{4 \\pm 20}{2}\n\\]\n\nPositive solution: \\( n = \\frac{24}{2} = 12 \\).\n\nSo originally 12 friends. Those who attended = \\( 12 - 4 = 8 \\).\n\nAnswer: A"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "First, find the perimeter of the rectangle.  \nPerimeter = 2 × (length + breadth) = 2 × (27 + 17) = 2 × 44 = 88 cm.\n\nThe same wire is rebent into a square, so the perimeter of the square is also 88 cm.  \nA square has 4 equal sides, so each side = 88 ÷ 4 = 22 cm.\n\nAnswer: C"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "Let the amount each nephew receives be \\( x \\).\n\nThen each daughter receives \\( 4x \\), and each son receives \\( 5x \\).\n\nThere are:  \n- 5 sons → total for sons = \\( 5 \\times 5x = 25x \\)  \n- 4 daughters → total for daughters = \\( 4 \\times 4x = 16x \\)  \n- 2 nephews → total for nephews = \\( 2 \\times x = 2x \\)\n\nThe total money is:  \n\\[\n25x + 16x + 2x = 43x\n\\]  \nWe know this equals Rs 8600:  \n\\[\n43x = 8600\n\\]  \n\\[\nx = \\frac{8600}{43} = 200\n\\]\n\nEach daughter receives:  \n\\[\n4x = 4 \\times 200 = 800\n\\]\n\nAnswer: E"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Let’s break it down.\n\nMeenu says:  \n\"I weigh 29 Kgs plus half of my weight.\"\n\nLet Meenu’s actual weight be \\( w \\).  \nAccording to her statement:  \n\\[\nw = 29 + \\frac{1}{2}w\n\\]  \nSubtract \\(\\frac{1}{2}w\\) from both sides:  \n\\[\nw - \\frac{1}{2}w = 29\n\\]  \n\\[\n\\frac{1}{2}w = 29\n\\]  \nMultiply both sides by 2:  \n\\[\nw = 58\n\\]  \n\nSo Meenu weighs 58 Kgs.\n\nAnswer: D"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "Let’s think it through step by step.\n\nRoy has 5 tablets and takes one every 15 minutes.\n\n- He takes the first tablet at time 0.\n- After 15 minutes, he takes the second tablet.\n- After another 15 minutes (30 minutes total), he takes the third.\n- After another 15 minutes (45 minutes total), he takes the fourth.\n- After another 15 minutes (60 minutes total), he takes the fifth.\n\nSo the total time from the first tablet to the last tablet is 60 minutes.\n\nAnswer: E"
+    }
+  ]
+}

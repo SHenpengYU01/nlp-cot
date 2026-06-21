@@ -1,0 +1,708 @@
+{
+  "run_id": "20260617_011343",
+  "timestamp": "2026-06-17T01:18:50.191803",
+  "config": {
+    "strategy": "rag_cot",
+    "task": "aqua",
+    "model": "deepseek-v4-flash",
+    "dataset_split": "test",
+    "n_samples": 50,
+    "temperature": 0.7,
+    "max_tokens": 1024
+  },
+  "strategy_info": {
+    "name": "rag_cot",
+    "config": {
+      "top_k": 3,
+      "max_hops": 2,
+      "max_context_docs": 5,
+      "use_query_planner": true,
+      "planner_temperature": 0.1
+    },
+    "harness_subsystems": {
+      "instructions": true,
+      "tools": true,
+      "environment": true,
+      "state": true,
+      "feedback": false
+    }
+  },
+  "task_info": {
+    "name": "aqua",
+    "config": {},
+    "dataset": "AQuA",
+    "data_dir": "data/AQuA"
+  },
+  "model_info": {
+    "model_name": "deepseek-v4-flash",
+    "config": {},
+    "provider": "openai_compatible",
+    "base_url": "https://api.deepseek.com/v1"
+  },
+  "metrics": {
+    "accuracy": 0.84,
+    "correct": 42,
+    "total": 50,
+    "avg_reasoning_steps": 1.28,
+    "avg_input_tokens": 458.14,
+    "avg_output_tokens": 75.04,
+    "total_input_tokens": 22907,
+    "total_output_tokens": 3752,
+    "detailed": [
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 618,
+        "output_tokens": 77
+      },
+      {
+        "prediction": "",
+        "correct": "E",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 560,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 208,
+        "output_tokens": 58
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 518,
+        "output_tokens": 109
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 454,
+        "output_tokens": 121
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 569,
+        "output_tokens": 93
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 473,
+        "output_tokens": 102
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 533,
+        "output_tokens": 66
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 440,
+        "output_tokens": 104
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 317,
+        "output_tokens": 46
+      },
+      {
+        "prediction": "C",
+        "correct": "B",
+        "is_correct": false,
+        "reasoning_steps": 3,
+        "input_tokens": 566,
+        "output_tokens": 181
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 2,
+        "input_tokens": 500,
+        "output_tokens": 109
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 249,
+        "output_tokens": 53
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 165,
+        "output_tokens": 14
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 221,
+        "output_tokens": 46
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 276,
+        "output_tokens": 68
+      },
+      {
+        "prediction": "",
+        "correct": "A",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 565,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 597,
+        "output_tokens": 76
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 669,
+        "output_tokens": 78
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 194,
+        "output_tokens": 36
+      },
+      {
+        "prediction": "",
+        "correct": "C",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 481,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "",
+        "correct": "A",
+        "is_correct": false,
+        "reasoning_steps": 1,
+        "input_tokens": 572,
+        "output_tokens": 132
+      },
+      {
+        "prediction": "",
+        "correct": "E",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 504,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 526,
+        "output_tokens": 116
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 546,
+        "output_tokens": 70
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 470,
+        "output_tokens": 52
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 485,
+        "output_tokens": 74
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 3,
+        "input_tokens": 552,
+        "output_tokens": 150
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 482,
+        "output_tokens": 68
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 306,
+        "output_tokens": 37
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 513,
+        "output_tokens": 125
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 549,
+        "output_tokens": 80
+      },
+      {
+        "prediction": "",
+        "correct": "B",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 350,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 301,
+        "output_tokens": 60
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 257,
+        "output_tokens": 66
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 248,
+        "output_tokens": 22
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 500,
+        "output_tokens": 58
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 10,
+        "input_tokens": 497,
+        "output_tokens": 136
+      },
+      {
+        "prediction": "D",
+        "correct": "D",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 538,
+        "output_tokens": 80
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 498,
+        "output_tokens": 104
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 478,
+        "output_tokens": 56
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 600,
+        "output_tokens": 293
+      },
+      {
+        "prediction": "C",
+        "correct": "C",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 417,
+        "output_tokens": 69
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 4,
+        "input_tokens": 510,
+        "output_tokens": 136
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 508,
+        "output_tokens": 54
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 490,
+        "output_tokens": 62
+      },
+      {
+        "prediction": "E",
+        "correct": "E",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 546,
+        "output_tokens": 72
+      },
+      {
+        "prediction": "A",
+        "correct": "A",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 562,
+        "output_tokens": 78
+      },
+      {
+        "prediction": "",
+        "correct": "D",
+        "is_correct": false,
+        "reasoning_steps": 0,
+        "input_tokens": 485,
+        "output_tokens": 0
+      },
+      {
+        "prediction": "B",
+        "correct": "B",
+        "is_correct": true,
+        "reasoning_steps": 1,
+        "input_tokens": 444,
+        "output_tokens": 65
+      }
+    ],
+    "elapsed_time": 306.30807876586914,
+    "throughput": 0.16323434955242627
+  },
+  "results": [
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The car's initial distance from the tower base is equal to the tower's height (since tan45° = 1). After 10 minutes, the distance becomes height/√3 (since tan60° = √3). The distance traveled in 10 minutes is height(1 - 1/√3). Using the uniform speed, the time to cover the remaining distance (height/√3) is calculated as 5(√3+1) minutes.\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "E",
+      "output": ""
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The question asks which value is divisible by both 9 and 12. Among the options, only 36 is divisible by 9 (36 ÷ 9 = 4) and by 12 (36 ÷ 12 = 3). The other numbers do not satisfy both conditions.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The probability that neither stock increases is given by \\(P(\\text{not A and not B}) = 1 - P(A \\cup B)\\). Using inclusion-exclusion, \\(P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\). To maximize \\(P(\\text{neither})\\), we minimize \\(P(A \\cup B)\\), which occurs when \\(P(A \\cap B)\\) is maximized. The maximum possible \\(P(A \\cap B)\\) is \\(\\min(P(A), P(B)) = 0.56\\). Then \\(P(A \\cup B) = 0.56 + 0.74 - 0.56 = 0.74\\), so \\(P(\\text{neither}) = 1 - 0.74 = 0.26\\).\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The trader sold the article at a 20% profit, meaning the selling price is 120% of the cost price. Using the profit percentage formula from the evidence: Profit percentage = (Profit / Cost price) * 100%. Here, selling price = Rs.360, profit = 360 - cost price. So 20% = ((360 - CP) / CP) * 100% → 0.2 = (360 - CP)/CP → 0.2 CP = 360 - CP → 1.2 CP = 360 → CP = 360 / 1.2 = 300. Therefore, the cost price is Rs.300.\n\nAnswer: B"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The problem describes a two-step process: first, 20 white marbles are painted black and returned, creating 20 black marbles in a bag of Q total. Then, a random sample of 20 marbles is drawn, containing 1 black marble. The sample proportion (1/20 = 5%) is stated to equal the actual proportion of black marbles in the bag. Setting up the equation 20/Q = 1/20 gives Q = 400.\n\nAnswer: D"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The question asks for the number of distinct bike numbers formed by 2 letters followed by 2 digits, with the condition that the two letters must be distinct. There are 26 letters and 10 digits (0-9). The number of ways to choose two distinct letters is 26 × 25, and the number of ways to choose two digits (allowing repetition) is 10 × 10 = 100. Multiplying gives 26 × 25 × 100 = 65,000.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The total distance is 100 miles/hour × 10 hours = 1000 miles. One quarter of that distance is 250 miles, covered at 100 mph, taking 2.5 hours. The remaining 750 miles are covered at 75 mph, taking 10 hours. Total time = 2.5 + 10 = 12.5 hours.\n\nAnswer: C"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "The maximum number of students who could have neither attended the prom nor the debating session occurs when the number of attendees for each event is at its minimum (90 for prom and 70 for debating) and the overlap between the two groups is maximized (70, meaning all debating attendees also attend prom). This yields a total of 90 students who attended at least one event, leaving 200 - 90 = 110 students who did neither.\n\nAnswer: E"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The salesperson earns a 10% commission on each $250 sale, so the commission per sale is $25. To reach at least $1000, the number of sales required is $1000 ÷ $25 = 40.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "B",
+      "output": "The yearly profit is calculated as total revenue minus total production cost. The monthly production is 420 units, so yearly production is 420 × 12 = 5040 units. The cost per component is $110, so total yearly cost is 5040 × 110 = $554,400. Let the selling price per component be \\( p \\). Then yearly revenue is 5040\\( p \\), and profit is 5040\\( p \\) - 554,400. We require this profit to be at least $626,400:\n\n\\[\n5040p - 554,400 \\geq 626,400\n\\]\n\\[\n5040p \\geq 1,180,800\n\\]\n\\[\np \\geq \\frac{1,180,800}{5040} = 234.2857...\n\\]\n\nSince the selling price must be a whole number from the options, the minimum price that meets the inequality is $240 (as $230 gives a profit of $604,800, which is insufficient). Therefore, the correct answer is 240.\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The total number of staplers produced is 4,000, which corresponds to option A.\n\nLet \\( T \\) be the total number of staplers produced.  \nDefective staplers: \\( 10\\% \\) of \\( T \\), so \\( 0.1T \\).  \nNon-defective staplers: \\( T - 0.1T = 0.9T \\).  \nRejected non-defective staplers: \\( 2\\% \\) of non-defective, i.e., \\( 0.02 \\times 0.9T = 0.018T \\).  \nGiven that this equals 72:  \n\\[\n0.018T = 72 \\quad \\Rightarrow \\quad T = \\frac{72}{0.018} = 4000.\n\\]\n\nAnswer: A"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The combined rate of Machine A (1/6 yo-yo per minute) and Machine B (1/9 yo-yo per minute) is 5/18 yo-yos per minute. To produce 10 yo-yos, the time required is 10 divided by 5/18, which equals 36 minutes.\n\nAnswer: C"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "Add +45 and -30: 45 + (-30) = 15.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The word \"PROBLEC\" consists of 7 distinct letters. The number of ways to rearrange these letters into 7-letter words without repetition is the number of permutations of 7 distinct objects, which is 7!.\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The conditional probability P(A|B) for independent events equals P(A) because the events do not influence each other. Using the formula P(A|B) = P(A ∩ B) / P(B) and independence gives P(A ∩ B) = P(A)P(B) = 0.2 * 0.8 = 0.16, so P(A|B) = 0.16 / 0.8 = 0.2.\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "A",
+      "output": ""
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The total number of microwave ovens sold last year (12 months) is 12 × 42 = 504. The total sold in the first 10 months of this year is 10 × 20 = 200. The overall total for 22 months is 504 + 200 = 704, and the average is 704 ÷ 22 = 32.\n\nAnswer: D"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The average of the highest and lowest scores is x, so their sum is 2x. The total sum of all z scores is zy. Excluding the highest and lowest, the sum is zy - 2x, and there are z - 2 students. Thus, the average for the excluded group is (zy - 2x) / (z - 2).\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The denominator simplifies to 13, leading to the equation 5 + ? × 19 - 15 - 7 = 78. Solving gives ? = 5.\n\nAnswer: C"
+    },
+    {
+      "prediction": "",
+      "correct": "C",
+      "output": ""
+    },
+    {
+      "prediction": "",
+      "correct": "A",
+      "output": "The problem involves work rates: Alex takes 7 hours per toy (rate = 1/7 toys per hour), Jacob takes 9 hours per toy (rate = 1/9 toys per hour). They produce a total of 35 toys, and their working hours are nearly equal. To find Jacob's number of toys, let a be Alex's toys and b be Jacob's toys, so a + b = 35. Their hours are 7a and 9b, which should be approximately equal. Solving 7a = 9b gives b = 245/16 ≈ 15.3125. The integer closest to this is 15, and checking the hours: for b="
+    },
+    {
+      "prediction": "",
+      "correct": "E",
+      "output": ""
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The total number of students must be a multiple of the denominators (16, 10, and 8) to have integer counts for each subject. The least common multiple (LCM) of 16, 10, and 8 is 80. Therefore, the total number of students must be a multiple of 80. The smallest 4-digit multiple of 80 is 80 × 13 = 1040, and the largest 4-digit multiple of 80 is 80 × 124 = 9920. The difference between the maximum and minimum is 9920 − 1040 = 8880.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The speed on a windy day is 15 mph - 4 mph = 11 mph. Time in hours is 21 minutes / 60 = 0.35 hours. Using the distance formula: Distance = Speed × Time = 11 × 0.35 = 3.85 miles. Rounded to the nearest hundredth, it is 3.85 miles.\n\nAnswer: D"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The cost price is found by noting that a 40% profit on cost equals $20.00. Therefore, cost price = $20 / 0.40 = $50.00, and selling price = cost + profit = $50 + $20 = $70.00.\n\nAnswer: D"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The simple interest formula is used: Interest = Principal × Rate × Time. Here, Principal = Rs. 500, Rate = 6% per annum (0.06), and Time = 4 years. Interest = 500 × 0.06 × 4 = Rs. 120. Total amount to pay = Principal + Interest = 500 + 120 = Rs. 620.\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The routine requires that for any pair (x, y), x must be between 0 and 100 inclusive, and y must be less than or equal to the square root of x. Checking each option:\n\n- (99, 10): √99 ≈ 9.95, and 10 > 9.95, so it fails.\n- (85, 9): √85 ≈ 9.22, and 9 ≤ 9.22, so it satisfies.\n- (50, 7): √50 ≈ 7.07, and 7 ≤ 7.07, so it satisfies.\n- (1, 1): √1 = 1, and 1 ≤ 1, so it satisfies.\n- (1, 0): √1 = 1, and 0 ≤ 1, so it satisfies.\n\nThe only pair that does not satisfy the routine is (99, 10).\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The distance is found by setting the forward and return distances equal. Let \\(d\\) be the distance. Forward speed = \\(d/6\\), return speed = \\(d/6 + 12\\). Using distance = speed × time for the return: \\((d/6 + 12) \\times 4 = d\\). Solving gives \\(d = 144\\) km.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The age difference is constant: when I was 2, my brother was 1, so he is 1 year younger. At age 60, my brother is 59.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The wholesale cost is the base. Let it be \\(C\\). The original retail price is 60% more, so it is \\(C + 0.6C = 1.6C\\). The appliance is sold for 20% less than the original retail price, meaning a discount of 20%. Using the discount formula: Selling price = Original price \\(\\times (1 - \\text{discount percentage}) = 1.6C \\times (1 - 0.2) = 1.6C \\times 0.8 = 1.28C\\). The selling price is \\(1.28C\\), which is \\(0.28C\\) more than the wholesale cost, so it is sold for 28% more than the wholesale cost.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The map scale indicates that 1/4 inch corresponds to 10 miles. To find the actual distance for 20 inches, first determine the number of miles per inch: since 1/4 inch = 10 miles, then 1 inch = 10 × 4 = 40 miles. Multiply by the map length: 20 inches × 40 miles per inch = 800 miles.\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "B",
+      "output": ""
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The number of ways to travel from M to Q is the product of the number of bus options for each segment:  \n3 (M to N) × 4 (N to O) × 1 (O to P) × 3 (P to Q) = 36.\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The diameter of the sphere is equal to the space diagonal of the rectangular solid. Using the Pythagorean theorem in three dimensions:  \n\\[\nd = \\sqrt{3^2 + 4^2 + 15^2} = \\sqrt{9 + 16 + 225} = \\sqrt{250} = 5\\sqrt{10} \\approx 15.8113.\n\\]  \nThis corresponds to option B.\n\nAnswer: B"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The net displacement is 3 km east, so the distance from home is 3 km.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The marked price is found by setting up the difference in profit due to the two discount rates. Using the discount formula, the selling prices are 0.95M and 0.93M. The profit difference is 0.02M, which equals Rs. 15, so M = 750.\n\nAnswer: D"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The difference between the correct value (7/8 of the number) and the incorrect value (7/18 of the number) is 770. Let the number be \\(x\\). Then:\n\n\\[\n\\frac{7}{8}x - \\frac{7}{18}x = 770\n\\]\n\nFactor out \\(7x\\):\n\n\\[\n7x \\left( \\frac{1}{8} - \\frac{1}{18} \\right) = 770\n\\]\n\nCompute the difference:\n\n\\[\n\\frac{1}{8} - \\frac{1}{18} = \\frac{9 - 4}{72} = \\frac{5}{72}\n\\]\n\nSo:\n\n\\[\n7x \\cdot \\frac{5}{72} = \\frac{35}{72}x = 770\n\\]\n\nSolving for \\(x\\):\n\n\\[\nx = 770 \\cdot \\frac{72}{35} = \\frac{770}{35} \\cdot 72 = 22 \\cdot 72 = 1584\n\\]\n\nThus, the number is 1584, which corresponds to option A.\n\nAnswer: A"
+    },
+    {
+      "prediction": "D",
+      "correct": "D",
+      "output": "The monthly salary is given by \\( S = 500 + 0.05 \\times \\text{sales} \\). Setting \\( S = 1500 \\), we have \\( 500 + 0.05 \\times \\text{sales} = 1500 \\), so \\( 0.05 \\times \\text{sales} = 1000 \\), and thus \\( \\text{sales} = 1000 / 0.05 = 20000 \\). Therefore, the monthly sales should be $20,000.\n\nAnswer: D"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The average speed is calculated as the total distance divided by the total time. For a square of side length \\(s\\), the total distance is \\(4s\\). The times for each side are \\(t_1 = s/200\\), \\(t_2 = s/400\\), \\(t_3 = s/600\\), \\(t_4 = s/800\\). The total time is \\(s\\left(\\frac{1}{200} + \\frac{1}{400} + \\frac{1}{600} + \\frac{1}{800}\\right) = s \\cdot \\frac{25}{2400} = s \\cdot \\frac{1}{96}\\). Thus, the average speed is \\(\\frac{4s}{s/96} = 4 \\times 96 = 384\\) km/hr.\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The problem involves determining the number of white and brown sharpeners Jack bought given total quantity and total cost, with a price difference. Solving the system of equations yields 10 white and 8 brown sharpeners, which corresponds to option A.\n\nAnswer: A"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We are solving a work rate problem. The relevant knowledge from the retrieval is the work rate principle: if a person can complete a job in x days (or hours), their work rate is 1/x per day (or per hour). Combined work rate is the sum of individual work rates.\n\n**Step-by-step reasoning:**\n\n- Hose A fills the pool in 8 hours, so its work rate is \\(\\frac{1}{8}\\) of the pool per hour.\n- Let hose B take \\(b\\) hours to fill the pool alone, so its work rate is \\(\\frac{1}{b}\\) of the pool per hour.\n- First, hose A works alone for 2 hours, filling \\(2 \\times \\frac{1}{8} = \\frac{2}{8} = \\frac{1}{4}\\) of the pool.\n- Then both hoses work together for 3 hours, filling \\(3 \\times \\left( \\frac{1}{8} + \\frac{1}{b} \\right)\\) of the pool.\n- The total work fills the entire pool, so:\n  \\[\n  \\frac{1}{4} + 3\\left( \\frac{1}{8} + \\frac{1}{b} \\right) = 1\n  \\]\n- Subtract \\(\\frac{1}{4}\\) from both sides:\n  \\[\n  3\\left( \\frac{1}{8} + \\frac{1}{b} \\right) = \\frac{3}{4}\n  \\]\n- Divide both sides by 3:\n  \\[\n  \\frac{1}{8} + \\frac{1}{b} = \\frac{1}{4}\n  \\]\n- Solve for \\(\\frac{1}{b}\\):\n  \\[\n  \\frac{1}{b} = \\frac{1}{4} - \\frac{1}{8} = \\frac{2}{8} - \\frac{1}{8} = \\frac{1}{8}\n  \\]\n- Therefore, \\(b = 8\\) hours.\n\nThus, hose B alone would take 8 hours to fill the pool.\n\nAnswer: A"
+    },
+    {
+      "prediction": "C",
+      "correct": "C",
+      "output": "The reduction is the difference between the original value and the new value: 120 - 96 = 24. The reduction percent is calculated as (reduction / original) × 100% = (24 / 120) × 100% = 0.2 × 100% = 20%. This matches the percentage decrease formula from the evidence.\n\nAnswer: C"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "We are given a 5-digit number such that appending a 1 to the end (making it a 6-digit number) is three times the number obtained by prepending a 1 to the beginning. Let the number be \\(x\\). Then:\n\n- With a 1 after it: \\(10x + 1\\)\n- With a 1 before it: \\(100000 + x\\)\n\nThe condition is:\n\\[\n10x + 1 = 3(100000 + x)\n\\]\nSolving:\n\\[\n10x + 1 = 300000 + 3x\n\\]\n\\[\n7x = 299999\n\\]\n\\[\nx = \\frac{299999}{7} = 42857\n\\]\n\nThus, the number is 42857, which corresponds to option A.\n\nAnswer: A"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The swim team members who are also in the chess club represent 80% of the swim team (since 20% are not). This 80% equals 24% of all students, so the swim team size is 24% / 0.8 = 30%.\n\nAnswer: B"
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The population increases by 5% annually, so after 1 year it becomes 78000 × (1 + 0.05) = 81900. After 2 years, it becomes 81900 × 1.05 = 85995. Alternatively, using the percentage increase formula twice: 78000 × (1.05)^2 = 78000 × 1.1025 = 85995.\n\nAnswer: B"
+    },
+    {
+      "prediction": "E",
+      "correct": "E",
+      "output": "The two cars are moving towards each other, so their relative speed is the sum of their speeds: 12 mph + 13 mph = 25 mph. The distance between them is 50 miles. Using the formula Time = Distance / Speed, the time to meet is 50 / 25 = 2 hours.\n\nAnswer: E"
+    },
+    {
+      "prediction": "A",
+      "correct": "A",
+      "output": "The servant's monthly income consists of a fixed salary of 1500 plus a commission of 15% on monthly sales. To achieve a total income of 6000, the commission must be 6000 - 1500 = 4500. Since 15% of sales equals 4500, the sales amount S satisfies 0.15S = 4500, so S = 4500 / 0.15 = 30000.\n\nAnswer: A"
+    },
+    {
+      "prediction": "",
+      "correct": "D",
+      "output": ""
+    },
+    {
+      "prediction": "B",
+      "correct": "B",
+      "output": "The product's price is reduced by 30%, so it becomes 70% of the original. To return to the original price (100%), the increase needed is 30 percentage points relative to the reduced price. Using the percentage increase formula, the required percentage is (30/70) × 100% ≈ 42.86%.\n\nAnswer: B"
+    }
+  ]
+}

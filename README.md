@@ -134,8 +134,8 @@ $env:OPENAI_API_KEY="your-api-key-here"
 # 基础 COT（默认 5 条样本）
 python harness.py --strategy base_cot --dataset aqua
 
-# RAG + COT（检索 top-3 知识）
-python harness.py --strategy rag_cot --dataset aqua --top_k 3
+# RAG + COT（两跳检索 + query planning）
+python harness.py --strategy rag_cot --dataset aqua --top_k 3 --rag_hops 2
 
 # Self-Consistency（7 条推理路径 + 质量加权投票 + 提前停止）
 python harness.py --strategy self_consistency --dataset aqua --n_paths 7
@@ -254,10 +254,10 @@ python harness_report.py
 
 ### 6. RAG + COT
 
-- **原理**：在推理前从知识库检索相关数学知识，注入 Prompt 中辅助推理
-- **参数**：`--top_k K`（检索文档数，默认 3）
+- **原理**：采用 IRCoT 风格的两跳检索流程，先用题目和知识库做首轮召回，再根据已检索证据生成 follow-up query 进行二跳检索，最后将去重后的证据块注入 Prompt 辅助推理
+- **参数**：`--top_k K`（每跳检索文档数，默认 3），`--rag_hops N`（检索轮数，默认 2），`--rag_no_planner`（关闭 query planning）
 - **Harness 覆盖**：Instructions + Tools + Environment + State（4/5）
-- **特点**：当知识库质量高时加速推理。100 样本准确率达到 **92.0%**，与 base_cot 接近，当前 keyword-based 检索器质量有限，升级后潜力较大
+- **特点**：相比一次性拼接检索结果，这一版更接近题目要求的“检索与思维链交替执行”。它通过 topic-aware seed query + query planning 降低无关知识干扰，适合知识密集型多步题
 
 ### 7. Multi-Agent Debate
 
@@ -280,7 +280,7 @@ python harness_report.py
 | **State** | 运行时状态管理（多路径历史、检索上下文、辩论记录） | self_consistency, prefix_consistency, rag_cot, multi_agent_debate, step_verifier |
 | **Feedback** | 反馈闭环（步骤级验证打分、多 Agent 互评纠错、前缀再生一致性） | prefix_consistency, multi_agent_debate, step_verifier |
 
-**核心洞察**：子系统覆盖数 ≠ 准确率，但**高质量的 Feedback 机制**能显著提升性能。升级后的 `multi_agent_debate`（4/5）通过 5 Agent 并行 + 交叉评审 + 收敛检测，在 100 样本上达到 **95.0%**，为所有策略最高；`self_consistency`（3/5）和 `step_verifier`（5/5）均达到 **94.0%**。这说明**高质量局部评估**可以来自不同机制：Self-Consistency 通过本地路径质量评分提升 State 聚合质量；Prefix Consistency 通过前缀再生一致性引入轻量 Feedback；Multi-Agent Debate 则通过多角色互评和收敛检测实现最强推理稳定性。`rag_cot`（4/5）准确率为 92.0%，当前 keyword-based 检索器质量有限，说明 Tools 子系统的质量比覆盖本身更关键。
+**核心洞察**：子系统覆盖数 ≠ 准确率，但**高质量的 Feedback 机制**能显著提升性能。升级后的 `multi_agent_debate`（4/5）通过 5 Agent 并行 + 交叉评审 + 收敛检测，在 100 样本上达到 **95.0%**，为所有策略最高；`self_consistency`（3/5）和 `step_verifier`（5/5）均达到 **94.0%**。这说明**高质量局部评估**可以来自不同机制：Self-Consistency 通过本地路径质量评分提升 State 聚合质量；Prefix Consistency 通过前缀再生一致性引入轻量 Feedback；Multi-Agent Debate 则通过多角色互评和收敛检测实现最强推理稳定性。`rag_cot` 已升级为两跳 IRCoT 风格检索，但效果仍受知识库规模与覆盖面影响，说明 Tools 子系统的质量比覆盖本身更关键。
 
 ---
 
