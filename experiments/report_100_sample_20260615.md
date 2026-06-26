@@ -142,5 +142,3 @@
 | 20260615_221801 | base_cot | 100 |
 
 ---
-
-> **Co-Authored-By**: Claude <noreply@anthropic.com>

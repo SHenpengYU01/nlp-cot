@@ -12,8 +12,8 @@
 
 - [x] 阅读选题说明，理解作业要求（基础COT + BONUS: 借鉴Harness设计思想实现CoT）
 - [x] 调研 learn-harness-engineering 仓库，理解五子系统模型
-- [x] 安装 harness-creator skill 并运行脚本生成基础 harness
-- [x] 定制 CLAUDE.md — 项目描述、工作流、验证命令
+- [x] 搭建基础 harness 框架
+- [x] 整理项目说明、工作流与验证命令
 - [x] 定制 feature_list.json — COT 实验的10项功能清单
 - [x] 定制 init.sh — 环境验证脚本
 - [x] 创建项目代码目录结构（data/, prompts/, strategies/, tasks/, models/, eval/, experiments/runs/）
@@ -71,7 +71,7 @@
 
 ## Files Modified This Session
 
-- `CLAUDE.md` — 项目指令文件，修正 BONUS 描述
+- 项目说明文档 — 修正 BONUS 描述
 - `feature_list.json` — 功能清单，feat-001 ~ feat-010 全部完成
 - `progress.md` — 会话进度日志（本文件）
 - `session-handoff.md` — 会话交接模板，修正 BONUS 描述

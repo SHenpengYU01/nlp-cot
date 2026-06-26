@@ -551,5 +551,3 @@ Harness Engineering（walkinglabs, 2024）提出了一种系统化构建 AI 系�
 8. Ling, W., et al. (2017). Program Induction by Rationale Generation: Learning to Solve and Explain Algebraic Word Problems. *ACL 2017*. https://github.com/deepmind/AQuA
 
 ---
-
-> **Co-Authored-By**: Claude \<noreply@anthropic.com\>

@@ -70,9 +70,7 @@
 │   ├── verify_feat010.py
 │   └── verify_feat011.py
 ├── docs/                       # 项目文档
-│   ├── CLAUDE.md               # 开发规范与指令
 │   ├── progress.md             # 开发进度日志
-│   ├── session-handoff.md      # 多会话交接记录
 │   └── 选题说明.md
 ├── harness.py                  # 🚀 实验管理主入口
 ├── harness_report.py           # Harness 子系统覆盖矩阵报告
@@ -371,5 +369,3 @@ python harness_report.py
 - 探索 Prefix Consistency 的变体（不同截断比例、基于句子的截断、多截断点融合）
 
 ---
-
-> **Co-Authored-By**: Claude <noreply@anthropic.com>
