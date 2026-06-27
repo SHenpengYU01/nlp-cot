@@ -16,7 +16,7 @@ from openai import OpenAI
 from .base import BaseModel
 
 # Default API config
-DEFAULT_API_KEY = "sk-823c5a2781684d248d782baca2522811"
+DEFAULT_API_KEY = ""
 DEFAULT_BASE_URL = "https://api.deepseek.com/v1"
 
 
@@ -87,7 +87,35 @@ class OpenAIModel(BaseModel):
             n=n,
             **kwargs
         )
-        return [choice.message.content for choice in response.choices]
+        outputs = []
+        for choice in response.choices:
+            message = choice.message
+            content = getattr(message, "content", None)
+            if isinstance(content, list):
+                content = "\n".join(
+                    str(part.get("text", part)) if isinstance(part, dict) else str(part)
+                    for part in content
+                )
+            content = content or ""
+
+            # Some OpenAI-compatible endpoints may return reasoning text in
+            # provider-specific fields while leaving content empty.
+            if not content:
+                reasoning = getattr(message, "reasoning_content", None)
+                if reasoning:
+                    content = str(reasoning)
+            if not content:
+                extra = getattr(message, "model_extra", None) or {}
+                for key in ("reasoning_content", "reasoning", "text", "output_text"):
+                    if extra.get(key):
+                        content = str(extra[key])
+                        break
+
+            if not content:
+                finish_reason = getattr(choice, "finish_reason", "")
+                content = f"[EMPTY_RESPONSE finish_reason={finish_reason}]"
+            outputs.append(content)
+        return outputs
 
     def get_model_info(self) -> Dict[str, Any]:
         info = super().get_model_info()

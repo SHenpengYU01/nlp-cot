@@ -295,6 +295,52 @@ Harness Engineering（walkinglabs, 2024）提出了一种系统化构建 AI 系�
 
 **核心洞察**：子系统覆盖数与准确率之间不存在单调正相关关系。`self_consistency`（3/5）以最少的外围机制达到了 94.0% 的最高准确率，证明**高质量的局部评估**（路径质量评分）比复杂的系统架构更高效。
 
+### 3.8 Evidence-Calibrated Adaptive CoT Harness
+
+在完成基础策略对比后，我们进一步将 Harness Engineering 从“实验管理框架”推进到“推理过程控制框架”，设计了 `evidence_calibrated_harness`。该方法不修改底层大模型参数，而是在推理时构建外部控制层，对 CoT 输出进行约束、诊断、证据审计、策略升级和最终裁决。
+
+该方案针对基础 Harness 中最典型的隐性失败：**高置信错误**。即模型输出格式正确、推理看似完整，`Base CoT -> reliability=1.00`，但最终选项仍然错误。普通 linter 难以发现这类错误，因此本项目引入证据校准机制。
+
+**整体流程**如下：
+
+```
+Base CoT
+    ↓
+Surface Lint
+    ↓
+Evidence Calibration
+    ↓
+Prefix Consistency
+    ↓
+Step Verifier
+    ↓
+Multi-Agent Debate
+    ↓
+Evidence-Aware Final Arbiter
+```
+
+其中各模块承担不同 Harness 职责：
+
+| 模块 | 作用 | Harness 体现 |
+|---|---|---|
+| Surface Lint | 检查答案格式、空输出、短推理、冲突答案 | Architecture Constraints |
+| Risk Classifier | 识别算术风险、选项匹配风险、语义误读风险 | State / Feedback |
+| Evidence Probes | 通过代回检查、选项消除、算术审计验证 Base 答案 | Tools / Feedback |
+| Prefix Consistency | 检查推理前缀再生成是否稳定 | State / Feedback |
+| Step Verifier | 对多条路径进行步骤级评分 | Tools / Feedback |
+| Multi-Agent Debate | 在低置信场景下补充多角色候选答案 | Feedback |
+| Final Arbiter | 综合各阶段证据给出最终答案 | State / Feedback |
+
+**核心创新点**在于，系统不再把“格式正确的 CoT”直接视为可信答案，而是通过异质证据校准置信度：
+
+- `back_substitution`：将候选答案代回题目条件，检查是否满足约束；
+- `option_elimination`：逐个排除 A-E 选项，避免只沿着 Base 推理路径前进；
+- `arithmetic_audit`：独立检查百分比、比例、近似和选项匹配；
+- `prefix_low_stability`：当初始投票一致但再生成一致性低时，继续升级而不直接接受；
+- `evidence_aware_final_arbiter`：最终不盲信最后一个模块，而是综合探针、Prefix、Verifier 和 Debate 的证据。
+
+该方法体现了 Harness Engineering 的核心思想：**Human Steer, Agent Execute**。模型负责生成候选推理，Harness 负责约束输出、识别风险、选择工具、触发反馈循环并记录状态。换言之，创新点不在于让模型“多想几遍”，而在于让外部控制系统判断什么时候应该相信模型、什么时候必须修复或升级推理。
+
 ---
 
 ## 4. 实验设计

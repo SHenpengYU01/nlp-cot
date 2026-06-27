@@ -43,15 +43,19 @@ class AQuATask(BaseTask):
         Extract the answer choice (A-E) from generated text.
         Looks for patterns like 'Answer: B', 'correct answer is C', etc.
         """
-        text = text.strip()
+        text = (text or "").strip()
+        if text.startswith("[EMPTY_RESPONSE"):
+            return ""
 
         # Try explicit answer patterns (ordered by specificity)
         patterns = [
-            r"^[Aa]nswer\s*:\s*([A-E])\s*$",          # "Answer: B" on its own line
-            r"[Aa]nswer\s*[:is)]+\s*([A-E])",
-            r"[Cc]orrect\s*(?:answer|option)\s*[:is)]+\s*([A-E])",
-            r"\b([A-E])\)[\s]*(?:is correct|is the answer|is right)",
-            r"(?:choose|select|pick)\s+([A-E])\b",
+            r"(?im)^\s*(?:final\s+answer|answer|答案|最终答案|正确答案)\s*[:：\-]?\s*[\(\[]?\s*([A-E])\s*[\)\]]?\s*$",
+            r"(?i)(?:final\s+answer|answer|correct\s*(?:answer|option)|答案|最终答案|正确答案)\s*(?:is|为|是|:|：|-)?\s*[\(\[]?\s*([A-E])\s*[\)\]]?",
+            r"(?i)(?:option|choice|选项)\s*[\(\[]?\s*([A-E])\s*[\)\]]?\s*(?:is|为|是)?\s*(?:correct|right|正确|答案)?",
+            r"(?i)\b([A-E])\)\s*(?:is correct|is the answer|is right|正确|是答案)",
+            r"(?i)(?:choose|select|pick|选择)\s*[\(\[]?\s*([A-E])\s*[\)\]]?\b",
+            r"\\boxed\{\s*([A-E])\s*\}",
+            r"【\s*([A-E])\s*】",
         ]
         for pat in patterns:
             match = re.search(pat, text, re.MULTILINE)

@@ -345,6 +345,75 @@ final = _aggregate_votes(predictions, weights)
   \end{columns}
 \end{frame}
 
+\begin{frame}{Evidence-Calibrated Harness：把 CoT 变成受控推理流程}
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.55cm and 0.45cm,
+    stage/.style={draw=Accent, rounded corners=2pt, fill=SoftBlue, align=center,
+      minimum width=2.35cm, minimum height=0.62cm, font=\scriptsize},
+    repair/.style={draw=Warn, rounded corners=2pt, fill=SoftOrange, align=center,
+      minimum width=2.55cm, minimum height=0.62cm, font=\scriptsize},
+    final/.style={draw=Good, rounded corners=2pt, fill=SoftGreen, align=center,
+      minimum width=2.85cm, minimum height=0.65cm, font=\scriptsize\bfseries},
+    arr/.style={-{Latex[length=1.8mm]}, thick, draw=Accent}
+  ]
+    \node[stage] (base) {Base CoT\\候选推理};
+    \node[stage, right=of base] (lint) {Surface Lint\\格式约束};
+    \node[repair, right=of lint] (evi) {Evidence Calibration\\代回 / 消除 / 审计};
+    \node[stage, below=0.92cm of evi] (prefix) {Prefix Consistency\\稳定性};
+    \node[stage, left=of prefix] (verifier) {Step Verifier\\步骤评分};
+    \node[stage, left=of verifier] (debate) {Multi-Agent Debate\\候选补充};
+    \node[final, below=0.72cm of verifier] (arbiter) {Evidence-Aware Final Arbiter\\综合证据裁决};
+    \draw[arr] (base) -- (lint);
+    \draw[arr] (lint) -- (evi);
+    \draw[arr] (evi) -- (prefix);
+    \draw[arr] (prefix) -- (verifier);
+    \draw[arr] (verifier) -- (debate);
+    \draw[arr] (debate.south) |- (arbiter.west);
+    \draw[arr] (verifier) -- (arbiter);
+    \draw[arr] (prefix.south) |- (arbiter.east);
+  \end{tikzpicture}
+
+  \vspace{0.45em}
+  \smallnote{核心思想：不直接接受一次格式正确的 CoT，而是用异质证据校准置信度；证据不足或冲突时，Harness 自动升级推理策略。}
+\end{frame}
+
+\begin{frame}{Harness 体现：模型执行推理，控制层负责约束、反馈和裁决}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      \begin{block}{Harness 在本方案中的职责}
+        \begin{itemize}
+          \tightitems
+          \item \textbf{约束}：Surface Lint 限制答案格式、空输出和短推理。
+          \item \textbf{反馈}：Evidence Probe、Prefix、Verifier、Debate 持续产生可靠性信号。
+          \item \textbf{路由}：根据失败类型决定接受、修复或升级。
+          \item \textbf{状态}：保存 \texttt{harness\_trace}、risk types、probe results、arbiter scores。
+          \item \textbf{裁决}：Final Arbiter 综合所有阶段证据，而不是盲信最后一个模块。
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{五子系统映射}
+        \small
+        \begin{tabularx}{\linewidth}{lY}
+          \toprule
+          子系统 & 对应实现 \\
+          \midrule
+          Instructions & CoT / Probe / Verifier prompts \\
+          Tools & RAG、Verifier、Evidence probes \\
+          Environment & AQuA、答案抽取、指标计算 \\
+          State & 多路径、探针结果、阶段 trace \\
+          Feedback & Prefix 稳定性、审计冲突、Debate \\
+          \bottomrule
+        \end{tabularx}
+      \end{block}
+      \begin{alertblock}{一句话}
+        创新不是让模型多想几遍，而是让 Harness 判断何时该相信、何时该升级。
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \section{实验结果}
 
 \begin{frame}{实验设置：AQuA test 前 100 条，统一 API 调用}
