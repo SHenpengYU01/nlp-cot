@@ -33,6 +33,7 @@ from strategies import (
     MultiAgentDebateStrategy,
     PrefixConsistencyStrategy,
     FewShotCOTStrategy,
+    EvidenceCalibratedHarnessStrategy,
 )
 from tasks import AQuATask
 
@@ -68,6 +69,7 @@ def load_strategy(strategy_name: str, model, task, **kwargs):
         "multi_agent_debate": MultiAgentDebateStrategy,
         "prefix_consistency": PrefixConsistencyStrategy,
         "few_shot_cot": FewShotCOTStrategy,
+        "evidence_calibrated_harness": EvidenceCalibratedHarnessStrategy,
     }
     if strategy_name not in registry:
         raise ValueError(f"Unknown strategy: {strategy_name}. Available: {list(registry.keys())}")
@@ -99,6 +101,19 @@ def _safe_write(msg: str):
     except UnicodeEncodeError:
         # Fallback: encode with replacement for non-UTF-8 terminals
         tqdm.write(msg.encode(sys.stdout.encoding or "utf-8", errors="replace").decode(sys.stdout.encoding or "utf-8"))
+
+
+def _is_fatal_api_error(exc: Exception) -> bool:
+    """Return True for API errors that make continuing the run useless."""
+    text = str(exc).lower()
+    fatal_markers = [
+        "401",
+        "authentication",
+        "invalid api key",
+        "api key",
+        "unauthorized",
+    ]
+    return any(marker in text for marker in fatal_markers)
 
 
 def run_experiment(
@@ -177,11 +192,18 @@ def run_experiment(
                 "output": f"ERROR: {e}",
                 "metadata": {},
             })
+            if _is_fatal_api_error(e):
+                _safe_write(
+                    "Fatal API authentication error detected. "
+                    "Stopping this run early; please set a valid OPENAI_API_KEY or pass --api_key."
+                )
+                break
 
     elapsed = time.time() - start_time
 
     # 5. Feedback — compute metrics and save
-    metrics = compute_metrics(results, examples)
+    evaluated_examples = examples[:len(results)]
+    metrics = compute_metrics(results, evaluated_examples)
     metrics["elapsed_time"] = elapsed
     metrics["throughput"] = len(examples) / elapsed if elapsed > 0 else 0.0
 
@@ -194,6 +216,7 @@ def run_experiment(
             "model": model_name,
             "dataset_split": dataset_split,
             "n_samples": len(examples),
+            "completed_samples": len(results),
             "temperature": temperature,
             "max_tokens": max_tokens,
         },
@@ -206,8 +229,9 @@ def run_experiment(
                 "prediction": r["prediction"],
                 "correct": ex.get("correct", ""),
                 "output": r["output"],
+                "metadata": r.get("metadata", {}),
             }
-            for r, ex in zip(results, examples)
+            for r, ex in zip(results, evaluated_examples)
         ],
     }
 
@@ -243,8 +267,14 @@ def main():
     # Strategy-specific parameters
     parser.add_argument("--n_paths", type=int, default=5, help="Number of reasoning paths per prompt (for self_consistency / step_verifier / prefix_consistency)")
     parser.add_argument("--n_prompts", type=int, default=3, help="Number of diverse prompts (for step_verifier)")
+    parser.add_argument("--harness_n_prompts", type=int, default=1, help="Number of verifier prompts inside evidence_calibrated_harness")
+    parser.add_argument("--harness_n_paths", type=int, default=3, help="Number of paths per adaptive stage inside evidence_calibrated_harness")
     parser.add_argument("--truncation_ratio", type=float, default=0.5, help="CoT truncation ratio for prefix regeneration (for prefix_consistency)")
     parser.add_argument("--regen_count", type=int, default=3, help="Number of regenerations per prefix (for prefix_consistency)")
+    parser.add_argument("--min_paths", type=int, default=3, help="Minimum initial paths before early stopping (for prefix_consistency / evidence_calibrated_harness)")
+    parser.add_argument("--early_stop_agreement", type=float, default=1.0, help="Initial path agreement threshold for early stopping (for prefix_consistency / evidence_calibrated_harness)")
+    parser.add_argument("--min_regen", type=int, default=2, help="Minimum regenerations before early stopping (for prefix_consistency / evidence_calibrated_harness)")
+    parser.add_argument("--target_consistency", type=float, default=1.0, help="Target prefix consistency for regeneration early stopping (for prefix_consistency / evidence_calibrated_harness)")
     parser.add_argument("--weight_fn", type=str, default="linear", help="Weight function for prefix consistency voting: linear/quadratic/cubic/unanimous")
     parser.add_argument("--n_agents", type=int, default=3, help="Number of agents (for multi_agent_debate)")
     parser.add_argument("--n_rounds", type=int, default=2, help="Number of debate rounds (for multi_agent_debate)")
@@ -254,13 +284,22 @@ def main():
     parser.add_argument("--rag_no_planner", action="store_true", help="Disable the query-planning hop for rag_cot")
     parser.add_argument("--n_shots", type=int, default=5, help="Number of few-shot examples (for few_shot_cot)")
     parser.add_argument("--local_verifier", action="store_true", help="Use local DeBERTa verifier instead of LLM verifier")
-    parser.add_argument("--verifier_model_path", type=str, default="k1r1same/aqua-verifier", help="HuggingFace model name or local path to the verifier model")
+    parser.add_argument("--verifier_model_path", type=str, default="data/checkpoint", help="Path to the local verifier model checkpoint")
+    parser.add_argument("--base_threshold", type=float, default=0.80, help="Acceptance threshold after Base/Few-shot/RAG stages (for evidence_calibrated_harness)")
+    parser.add_argument("--vote_threshold", type=float, default=0.70, help="Acceptance threshold after vote-based stages (for evidence_calibrated_harness)")
+    parser.add_argument("--verifier_threshold", type=float, default=0.70, help="Acceptance threshold after verifier stage (for evidence_calibrated_harness)")
+    parser.add_argument("--max_stage", type=str, default="debate", choices=["verifier", "debate"], help="Maximum escalation stage (for evidence_calibrated_harness)")
+    parser.add_argument("--max_probes", type=int, default=3, help="Maximum evidence probes after accepted Base CoT (for evidence_calibrated_harness)")
+    parser.add_argument("--probe_max_tokens", type=int, default=384, help="Max tokens for each evidence probe (for evidence_calibrated_harness)")
+    parser.add_argument("--probe_temperature", type=float, default=0.0, help="Temperature for evidence probes (for evidence_calibrated_harness)")
+    parser.add_argument("--evidence_accept_threshold", type=float, default=3.0, help="Support score required to accept Base after evidence calibration")
+    parser.add_argument("--evidence_reject_threshold", type=float, default=0.0, help="Support score at or below this triggers escalation")
 
     args = parser.parse_args()
 
     # Strategy-specific kwargs
     strategy_kwargs = {}
-    if args.strategy == "step_verifier" and args.local_verifier:
+    if args.strategy in ("step_verifier", "evidence_calibrated_harness") and args.local_verifier:
         print(f"Loading local verifier from {args.verifier_model_path} ...")
         strategy_kwargs["local_verifier"] = DebertaStepVerifier(
             model_path=args.verifier_model_path,
@@ -273,6 +312,10 @@ def main():
     if args.strategy == "prefix_consistency":
         strategy_kwargs["truncation_ratio"] = args.truncation_ratio
         strategy_kwargs["regen_count"] = args.regen_count
+        strategy_kwargs["min_paths"] = args.min_paths
+        strategy_kwargs["early_stop_agreement"] = args.early_stop_agreement
+        strategy_kwargs["min_regen"] = args.min_regen
+        strategy_kwargs["target_consistency"] = args.target_consistency
         strategy_kwargs["weight_fn"] = args.weight_fn
     if args.strategy == "multi_agent_debate":
         strategy_kwargs["n_agents"] = args.n_agents
@@ -284,6 +327,27 @@ def main():
         strategy_kwargs["use_query_planner"] = not args.rag_no_planner
     if args.strategy == "few_shot_cot":
         strategy_kwargs["n_shots"] = args.n_shots
+    if args.strategy == "evidence_calibrated_harness":
+        strategy_kwargs["base_threshold"] = args.base_threshold
+        strategy_kwargs["vote_threshold"] = args.vote_threshold
+        strategy_kwargs["verifier_threshold"] = args.verifier_threshold
+        strategy_kwargs["max_stage"] = args.max_stage
+        strategy_kwargs["n_paths"] = args.harness_n_paths
+        strategy_kwargs["regen_count"] = args.regen_count
+        strategy_kwargs["min_paths"] = args.min_paths
+        strategy_kwargs["early_stop_agreement"] = args.early_stop_agreement
+        strategy_kwargs["min_regen"] = args.min_regen
+        strategy_kwargs["target_consistency"] = args.target_consistency
+        strategy_kwargs["n_prompts"] = args.harness_n_prompts
+        strategy_kwargs["n_agents"] = args.n_agents
+        strategy_kwargs["n_rounds"] = args.n_rounds
+        strategy_kwargs["n_shots"] = args.n_shots
+        strategy_kwargs["top_k"] = args.top_k
+        strategy_kwargs["max_probes"] = args.max_probes
+        strategy_kwargs["probe_max_tokens"] = args.probe_max_tokens
+        strategy_kwargs["probe_temperature"] = args.probe_temperature
+        strategy_kwargs["evidence_accept_threshold"] = args.evidence_accept_threshold
+        strategy_kwargs["evidence_reject_threshold"] = args.evidence_reject_threshold
 
     run_experiment(
         strategy_name=args.strategy,

@@ -6,7 +6,7 @@
 
 ## 📋 项目简介
 
-本项目基于 OpenAI-compatible API（DeepSeek 官方 / deepseek-v4-flash），在 AQuA（Algebraic Word Problems）数据集上实现并对比 7 种 CoT 推理策略：
+本项目基于 OpenAI-compatible API（DeepSeek 官方 / deepseek-v4-flash），在 AQuA（Algebraic Word Problems）数据集上实现并对比多种 CoT 推理策略：
 
 1. **Base COT** — 基础思维链推理
 2. **Self-Consistency** — 多路径采样 + 路径质量加权投票
@@ -15,8 +15,11 @@
 5. **Few-Shot CoT** — 随机采样示例的少样本思维链
 6. **RAG + COT** — 检索增强思维链
 7. **Multi-Agent Debate** — 多 Agent 协作辩论推理
+8. **Evidence-Calibrated Adaptive CoT Harness** — 基于 Harness 的证据校准自适应推理控制
 
 **核心设计**：借鉴 [Harness Engineering](https://github.com/walkinglabs/learn-harness-engineering) 的五子系统思想（Instructions / Tools / Environment / State / Feedback），将每种 CoT 策略映射到 Harness 子系统，系统化地设计、实现与评估推理框架。
+
+其中 `evidence_calibrated_harness` 是本项目的 Harness 创新增强版：它不修改底层模型，而是在推理阶段增加外部控制层，通过 Surface Lint、风险识别、异质证据探针、Prefix 稳定性检查、Step Verifier、Multi-Agent Debate 与 Evidence-Aware Final Arbiter，减少 Base CoT 中“表面可靠但实际错误”的高置信错误。
 
 ---
 
@@ -33,7 +36,7 @@
 │   ├── few_shot_cot.txt        # Few-Shot CoT 模板（{few_shot_examples}）
 │   ├── rag_cot.txt
 │   └── step_verifier.txt
-├── strategies/                 # 7 种 CoT 策略实现
+├── strategies/                 # CoT 策略实现
 │   ├── base.py                 # 策略基类（含 Harness 子系统声明）
 │   ├── base_cot.py
 │   ├── self_consistency.py
@@ -41,7 +44,15 @@
 │   ├── step_verifier.py        # 步骤级验证 + 本地 DeBERTa verifier
 │   ├── few_shot_cot.py         # Few-Shot CoT（随机采样示例 + LLM 生成推理链）
 │   ├── rag_cot.py
-│   └── multi_agent_debate.py
+│   ├── multi_agent_debate.py
+│   ├── harness_guided_cot.py
+│   └── evidence_calibrated_harness.py
+├── harness_control/            # Harness 控制层：lint、失败分析、路由、证据校准
+│   ├── cot_linter.py
+│   ├── failure_analyzer.py
+│   ├── adaptive_router.py
+│   ├── evidence_calibrator.py
+│   └── entropy_manager.py
 ├── models/                     # LLM 接口封装 + 本地验证器
 │   ├── base.py
 │   ├── openai_api.py           # OpenAI-compatible API 封装
@@ -70,9 +81,7 @@
 │   ├── verify_feat010.py
 │   └── verify_feat011.py
 ├── docs/                       # 项目文档
-│   ├── CLAUDE.md               # 开发规范与指令
 │   ├── progress.md             # 开发进度日志
-│   ├── session-handoff.md      # 多会话交接记录
 │   └── 选题说明.md
 ├── harness.py                  # 🚀 实验管理主入口
 ├── harness_report.py           # Harness 子系统覆盖矩阵报告
@@ -154,6 +163,9 @@ python harness.py --strategy step_verifier --dataset aqua --n_paths 3
 
 # Few-Shot CoT（5 个随机示例）
 python harness.py --strategy few_shot_cot --dataset aqua --n_shots 5
+
+# Evidence-Calibrated Harness（风险识别 + 异质证据探针 + 自适应升级）
+python harness.py --strategy evidence_calibrated_harness --dataset aqua --n_samples 10 --model deepseek-v4-flash --base_url "https://api.deepseek.com"
 ```
 
 ### 批量测试（50 条样本）
@@ -266,6 +278,19 @@ python harness_report.py
 - **Harness 覆盖**：Instructions + Environment + State + Feedback（4/5）
 - **特点**：多角色并行协作显著提升了推理稳定性。100 样本准确率达到 **95.0%**，为所有策略中最高；50 样本准确率 **94.0%**。但因 5 Agent × 多轮调用，实际 API 调用量约为 15 次/题，成本较高
 
+### 8. Evidence-Calibrated Adaptive CoT Harness
+
+- **原理**：在 Base CoT 后不直接接受高置信答案，而是由 Harness 控制层进行风险识别和证据校准。若 Base 输出通过 Surface Lint，系统会启动 `back_substitution`、`option_elimination`、`arithmetic_audit` 等异质探针；若证据冲突或不充分，则继续升级到 Prefix Consistency、Step Verifier、Multi-Agent Debate，最后由 Evidence-Aware Final Arbiter 综合所有阶段证据裁决。
+- **解决问题**：针对 `Base CoT -> reliability=1.00` 但实际答案错误的高置信错误，避免仅凭格式正确和推理完整就过早接受答案。
+- **Harness 覆盖**：Instructions + Tools + Environment + State + Feedback（5/5）
+- **Harness 体现**：模型负责生成候选推理，Harness 负责约束、诊断、路由、反馈、状态记录和最终裁决。
+- **参数**：`--max_probes` 控制证据探针数量，`--probe_temperature` 控制探针稳定性，`--evidence_accept_threshold` 控制 Base 答案被证据接受的门槛。
+- **运行示例**：
+
+```bash
+python harness.py --strategy evidence_calibrated_harness --dataset aqua --n_samples 100 --model deepseek-v4-flash --base_url "https://api.deepseek.com"
+```
+
 ---
 
 ## 🔧 Harness Engineering 设计思想
@@ -325,6 +350,9 @@ python harness_report.py
 | 文件 | 说明 |
 |---|---|
 | `harness.py` | 实验主入口，注册全部策略，支持命令行参数，实时显示进度与准确率 |
+| `harness_control/` | Harness 控制层，包含 CoT Linter、Failure Analyzer、Adaptive Router、Evidence Calibrator 与 Entropy Manager |
+| `strategies/harness_guided_cot.py` | 基础 Harness-Guided CoT：根据失败类型动态路由到 RAG、Few-shot、Prefix、Verifier、Debate |
+| `strategies/evidence_calibrated_harness.py` | Evidence-Calibrated Harness：风险识别、异质证据探针、自适应升级与最终裁决 |
 | `scripts/run_experiments.py` | 批量测试 Python 脚本，支持串行/并行/单策略模式 |
 | `scripts/run_all.sh` | 批量测试 Bash 脚本，顺序执行全部策略 |
 | `eval/metrics.py` | 评估指标：准确率、推理步数、Token 估算、多实验对比 |
@@ -371,5 +399,3 @@ python harness_report.py
 - 探索 Prefix Consistency 的变体（不同截断比例、基于句子的截断、多截断点融合）
 
 ---
-
-> **Co-Authored-By**: Claude <noreply@anthropic.com>

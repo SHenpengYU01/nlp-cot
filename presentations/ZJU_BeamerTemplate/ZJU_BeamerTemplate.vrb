@@ -1,0 +1,33 @@
+\frametitle{结合真实代码：self\_consistency.py 的执行流程}
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.49\textwidth}
+      \begin{block}{关键函数}
+        \begin{itemize}
+          \tightitems
+          \item \texttt{\_path\_quality}: 计算每条路径的启发式质量分．
+          \item \texttt{\_aggregate\_votes}: 按权重聚合，并用原始票数、最佳路径质量、出现顺序打破平票．
+          \item \texttt{\_can\_stop\_early}: 当领先答案无法被剩余路径追上时提前停止．
+          \item \texttt{run}: 生成路径、抽取答案、重试空答案、聚合最终预测．
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{伪代码}
+        \scriptsize
+\begin{verbatim}
+for i in range(n_paths):
+    raw = model.generate(prompt, temperature)
+    pred = task.extract_answer(raw)
+    if retry_on_empty and not pred:
+        raw = model.generate(prompt, low_temp)
+    weight = _path_quality(raw, pred)
+    save(pred, weight)
+    if _can_stop_early(...):
+        break
+
+final = _aggregate_votes(predictions, weights)
+\end{verbatim}
+      \end{block}
+      \smallnote{低温重试让模型输出更稳定，主要用于补救没有 \texttt{Answer: X} 的样本．}
+    \end{column}
+  \end{columns}

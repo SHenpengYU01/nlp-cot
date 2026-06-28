@@ -1,0 +1,75 @@
+{
+  "run_id": "20260628_133949",
+  "timestamp": "2026-06-28T13:39:50.707179",
+  "config": {
+    "strategy": "evidence_calibrated_harness",
+    "task": "aqua",
+    "model": "deepseek-v4-flash",
+    "dataset_split": "test",
+    "n_samples": 1,
+    "completed_samples": 1,
+    "temperature": 0.7,
+    "max_tokens": 1024
+  },
+  "strategy_info": {
+    "name": "evidence_calibrated_harness",
+    "config": {
+      "base_threshold": 0.8,
+      "vote_threshold": 0.7,
+      "verifier_threshold": 0.7,
+      "evidence_accept_threshold": 3.0,
+      "evidence_reject_threshold": 0.0,
+      "max_stage": "debate",
+      "max_probes": 3
+    },
+    "harness_subsystems": {
+      "instructions": true,
+      "tools": true,
+      "environment": true,
+      "state": true,
+      "feedback": true
+    }
+  },
+  "task_info": {
+    "name": "aqua",
+    "config": {},
+    "dataset": "AQuA",
+    "data_dir": "data/AQuA"
+  },
+  "model_info": {
+    "model_name": "deepseek-v4-flash",
+    "config": {},
+    "provider": "openai_compatible",
+    "base_url": "https://api.deepseek.com/v1"
+  },
+  "metrics": {
+    "accuracy": 0.0,
+    "correct": 0,
+    "total": 1,
+    "avg_reasoning_steps": 1.0,
+    "avg_input_tokens": 0.0,
+    "avg_output_tokens": 28.0,
+    "total_input_tokens": 0,
+    "total_output_tokens": 28,
+    "detailed": [
+      {
+        "prediction": "",
+        "correct": "A",
+        "is_correct": false,
+        "reasoning_steps": 1,
+        "input_tokens": 0,
+        "output_tokens": 28
+      }
+    ],
+    "elapsed_time": 0.8020968437194824,
+    "throughput": 1.2467322466484239
+  },
+  "results": [
+    {
+      "prediction": "",
+      "correct": "A",
+      "output": "ERROR: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****2811 is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "metadata": {}
+    }
+  ]
+}

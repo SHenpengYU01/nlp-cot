@@ -1,0 +1,8 @@
+\beamer@sectionintoc {1}{任务背景}{3}{0}{1}
+\beamer@sectionintoc {2}{Self-Consistency}{5}{0}{2}
+\beamer@sectionintoc {3}{Step-Aware Verifier}{8}{0}{3}
+\beamer@sectionintoc {4}{RAG + CoT}{9}{0}{4}
+\beamer@sectionintoc {5}{Multi-Agent Debate}{10}{0}{5}
+\beamer@sectionintoc {6}{Bonus: Harness Engineering}{11}{0}{6}
+\beamer@sectionintoc {7}{实验结果}{14}{0}{7}
+\beamer@sectionintoc {8}{总结}{18}{0}{8}

@@ -35,8 +35,9 @@ EXPERIMENTS = [
     ("rag_cot", ["--top_k", "3"]),
     ("self_consistency", ["--n_paths", "7"]),
     ("prefix_consistency", ["--n_paths", "3", "--truncation_ratio", "0.5", "--regen_count", "3", "--weight_fn", "linear"]),
-    ("multi_agent_debate", ["--n_agents", "3", "--n_rounds", "2"]),
+    ("multi_agent_debate", ["--n_agents", "5", "--n_rounds", "3"]),
     ("step_verifier", ["--n_paths", "3"]),
+    ("evidence_calibrated_harness", []),
 ]
 
 
@@ -171,7 +172,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run COT experiments")
     parser.add_argument("--parallel", action="store_true", help="并行运行（可能限流）")
     parser.add_argument("--max_workers", type=int, default=3, help="并行最大进程数")
-    parser.add_argument("--strategy", type=str, default=None, help="只运行指定策略，包括base_cot, self_consistency, prefix_consistency, step_verifier, rag_cot, multi_agent_debate")
+    parser.add_argument("--strategy", type=str, default=None, help="只运行指定策略，包括 base_cot, self_consistency, prefix_consistency, step_verifier, rag_cot, multi_agent_debate, evidence_calibrated_harness")
     parser.add_argument("--n_samples", type=int, default=N_SAMPLES, help="测试样本数（默认 100）")
     args = parser.parse_args()
 

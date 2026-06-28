@@ -8,7 +8,6 @@
 \usepackage{array}
 \usepackage{ragged2e}
 \usepackage{tikz}
-\usepackage{bbm}
 \usetikzlibrary{arrows.meta,positioning,calc}
 \graphicspath{{./figures/}}
 \zjusectioncolor{blue}
@@ -35,8 +34,8 @@
 
 \title[nlp-cot]{基于大语言模型的思维链推理策略对比研究}
 \subtitle{Base CoT、Self-Consistency、Prefix Consistency、Step-Aware Verifier、RAG + CoT、Multi-Agent Debate 与 Harness Engineering}
-\author[nlp-cot]{杨征雨、沈彭宇、马博洋、徐哲楷、曹志凡}
-\institute[ZJU]{浙江大学 \quad 自然语言处理导论课程大作业}
+\author[汇报人：沈彭宇、马博洋、曹志凡]{杨征雨、沈彭宇、马博洋、徐哲楷、曹志凡}
+\institute[ZJU]{汇报人：沈彭宇、马博洋、曹志凡 \\ 浙江大学 \quad 自然语言处理导论课程大作业}
 \date{2026 年 6 月}
 
 \begin{document}
@@ -46,67 +45,30 @@
 \end{frame}
 
 \begin{frame}{汇报结构}
-  \tableofcontents[hideallsubsections]
+  \tableofcontents
 \end{frame}
 
-\section{研究背景与任务}
+\section{任务背景}
 
-\begin{frame}{研究背景：CoT 推理与增强策略}
+\begin{frame}{研究任务：在数学应用题上比较 CoT 增强策略}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Chain-of-Thought 核心思想}
+    \begin{column}{0.52\textwidth}
+      \begin{block}{选题要求}
         \begin{itemize}
           \tightitems
-          \item LLM 面对多步推理时直接输出答案，错误率高。
-          \item CoT 通过引导模型"逐步思考"将复杂问题拆解为可解释的中间步骤。
-          \item 基础 CoT 仅生成单条推理路径，稳定性受温度系数和随机采样影响。
+          \item 面向 AQuA 等推理数据集，分析大语言模型的 Chain-of-Thought 能力。
+          \item 复现并比较多路径推理、verifier、检索增强、多 Agent 协作等方法。
+          \item 关注准确率、推理成本、工程可复现性与失败案例。
+          \item Bonus：用 harness engineering 管理 agentic 推理任务。
         \end{itemize}
       \end{block}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{7 种 CoT 增强策略}
-        \small
-        \begin{enumerate}
-          \tightitems
-          \item Base CoT（Wei et al., 2022）
-          \item Self-Consistency（Wang et al., 2023）
-          \item Prefix Consistency（Iwase et al., 2026）
-          \item Step-Aware Verifier（Li et al., 2023）
-          \item RAG + CoT（Trivedi et al., 2023）
-          \item Multi-Agent Debate（Du et al., 2023）
-        \end{enumerate}
-      \end{block}
-    \end{column}
-  \end{columns}
-  \vspace{0.3em}
-  \begin{alertblock}{研究动机}
-    借鉴 \textbf{Harness Engineering} 五子系统模型（Instructions / Tools / Environment / State / Feedback），
-    在统一实验框架下系统化评估不同 CoT 策略的设计哲学与性能差异。
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{数据集选择与核心挑战}
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{AQuA 数据集}
-        \begin{itemize}
-          \tightitems
-          \item DeepMind 发布的代数应用题数据集。
-          \item 每道题包含英文描述 + 5 选项（A$\sim$E）+ 正确答案。
-          \item 涉及百分比、利率、速度距离时间、几何面积等多种数学概念。
-          \item 需多步逻辑推理，是评估 CoT 的理想数据集。
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{核心研究挑战}
-        \begin{itemize}
-          \tightitems
-          \item \textbf{多策略统一框架：} 不同 CoT 策略输入输出格式、内部状态差异显著。
-          \item \textbf{答案提取鲁棒性：} 自由文本中准确识别最终选项。
-          \item \textbf{API 成本控制：} Debate 等策略每道题数十次调用，百样本达数千次。
-          \item \textbf{Harness 思想融合：} 五子系统模型到 CoT 策略的非直接映射。
-        \end{itemize}
+    \begin{column}{0.44\textwidth}
+      \begin{alertblock}{核心问题}
+        单条 CoT 容易受采样随机性、答案格式、局部计算错误和自相矛盾影响。
+      \end{alertblock}
+      \begin{block}{本项目目标}
+        在统一实验框架下，把不同策略的收益与成本放在同一把尺子上比较。
       \end{block}
     \end{column}
   \end{columns}
@@ -143,58 +105,10 @@
   \smallnote{关键代码：\texttt{harness.py} 负责加载任务、模型、策略并保存实验结果。}
 \end{frame}
 
-\section{Base CoT}
-
-\begin{frame}[fragile]{Base CoT：Chain-of-Thought 推理基础}
-  \framesubtitle{Chain-of-Thought Prompting Elicits Reasoning in Large Language Models}
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{核心公式与流程}
-        \begin{itemize}
-          \tightitems
-          \item Prompt 构造：将问题 $q$、选项 $O$ 与引导语拼接
-          \[
-            P_{\text{CoT}} = T_{\text{base}} \oplus q \oplus O \oplus \text{"Let's think step by step."}
-          \]
-          \item 模型生成输出后，通过答案提取函数 $f_{\text{extract}}(y)$ 得到最终预测 $\hat{a}$。
-          \item 温度系数 0.7，max\_tokens=1024。
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Base CoT 伪代码}
-        \scriptsize
-\begin{verbatim}
-P = T.format(q, O)
-y = M.generate(P, temp=0.7,
-               max_tokens=1024)
-a_hat = extract_answer(y)
-return a_hat
-\end{verbatim}
-      \end{block}
-      \begin{alertblock}{基线性能}
-        \begin{itemize}
-          \tightitems
-          \item 100 样本准确率 \textbf{91\%}，单路径成本最低。
-          \item 平均输出 token 187.6，是效率的参考基线。
-        \end{itemize}
-      \end{alertblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\section{CoT 增强策略}
-\subsection{Self-Consistency}
-
-\begin{frame}{Self-Consistency 算法示意图}
-  \framesubtitle{Self-Consistency Improves Chain of Thought Reasoning in Language Models}
-  \centering
-  \includegraphics[height=0.78\textheight,keepaspectratio]{self-consistency.png}
-\end{frame}
+\section{Self-Consistency}
 
 \begin{frame}{Self-Consistency：从单条推理变成多路径投票}
   \framesubtitle{Self-Consistency Improves Chain of Thought Reasoning in Language Models}
-  \small
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.49\textwidth}
       \begin{block}{论文核心思想}
@@ -207,14 +121,14 @@ return a_hat
       \end{block}
       \begin{block}{原始多数投票}
         \centering
-        路径数多的答案获胜：\quad $\arg\max_y \sum_i \mathbbm{1}[\hat y_i=y]$
+        路径数多的答案获胜：\quad $\arg\max_y \sum_i \mathbb{1}[\hat y_i=y]$
       \end{block}
     \end{column}
     \begin{column}{0.47\textwidth}
       \begin{alertblock}{项目中的改进点}
         多数票不一定代表高质量推理。因此我们负责的 self-consistency 部分改为：
         \[
-          \arg\max_y \sum_i q_i \cdot \mathbbm{1}[\hat y_i=y]
+          \arg\max_y \sum_i q_i \cdot \mathbb{1}[\hat y_i=y]
         \]
         其中 $q_i$ 是第 $i$ 条路径的启发式质量分。
       \end{alertblock}
@@ -296,142 +210,38 @@ final = _aggregate_votes(predictions, weights)
   \end{columns}
 \end{frame}
 
-\subsection{Prefix Consistency}
+\section{Step-Aware Verifier}
 
-\begin{frame}{Prefix Consistency 算法示意图}
-  \framesubtitle{Reliable Chain-of-Thought via Prefix Consistency}
-  \centering
-  \includegraphics[height=0.78\textheight,width=\textwidth,keepaspectratio]{prefix-consistency.png}
-\end{frame}
-
-\begin{frame}{Prefix Consistency：截断-再生评估推理链可靠性}
-  \framesubtitle{Reliable Chain-of-Thought via Prefix Consistency (Iwase et al., 2026)}
-  \small
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{核心机制}
-        \begin{enumerate}
-          \tightitems
-          \item 生成 $N=3$ 条初始 CoT 路径。
-          \item 在每条路径中间位置 $t_i = \lfloor |y_i| \cdot r \rfloor$ 截断（$r=0.5$），得到前缀 $p_i$。
-          \item 从 $p_i$ 再生 $K=3$ 次，得到补全路径。
-          \item 计算前缀一致性得分：
-          \[
-            C_i = \frac{1}{K} \sum_{j=1}^{K} \mathbbm{1}[\text{extract\_answer}(y_{i,j}^{\prime}) = a_i]
-          \]
-        \end{enumerate}
-      \end{block}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{加权投票}
-        \[
-          \hat{a} = \arg\max_{a} \sum_{i=1}^{N} W(C_i) \cdot \mathbbm{1}[a_i = a]
-        \]
-        \vspace{-0.3em}
-        权重函数可选：linear / quadratic / cubic / unanimous
-      \end{block}
-      \begin{alertblock}{实验亮点}
-        \begin{itemize}
-          \tightitems
-          \item 100 样本准确率 \textbf{93.0\%}。
-          \item 平均输出 token 仅 \textbf{159.9}（0.85× base CoT），token 效率最优。
-          \item 无需额外模型，纯 prompt 工程方法。
-        \end{itemize}
-      \end{alertblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\subsection{Step-Aware Verifier}
-
-\begin{frame}{Step-Aware Verifier 算法示意图}
+\begin{frame}{Step-Aware Verifier：从“看最终答案”到“看每一步”}
   \framesubtitle{Making Large Language Models Better Reasoners with Step-Aware Verifier}
-  \centering
-  \includegraphics[height=0.78\textheight,keepaspectratio]{verifier.png}
-\end{frame}
-
-\begin{frame}{LLM Verifier（原版）：每一步都要调一次 API}
-  \framesubtitle{Making Large Language Models Better Reasoners with Step-Aware Verifier}
-  \small
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{论文思路}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{论文思想}
         \begin{itemize}
           \tightitems
-          \item 生成多条推理路径。
-          \item 每条路径拆成 step，每一步调用 LLM 打分（Score: 1-10）。
-          \item 选平均分最高的路径作为最终答案。
+          \item 把推理过程拆成 step。
+          \item 对每一步进行正确性或可信度评估。
+          \item 用 verifier 选择更可靠的推理路径。
         \end{itemize}
-      \end{block}
-      \begin{block}{实现代码}
-        \small \texttt{strategies/step\_verifier.py} 中 \texttt{\_verify\_step()} 对每个 step
-        构造 \texttt{prompts/step\_verifier.txt} 模板，调用 \texttt{model.generate()} 打分。
       \end{block}
     \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{alertblock}{性能代价}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{项目实现}
         \begin{itemize}
           \tightitems
-          \item 每条路径每步 = 1 次 API 调用。
-          \item 10 step $\times$ 5 路径 = 50 次 API / 题。
-          \item 50 样本实测: \textbf{206.6s/条}，极慢。
+          \item 策略入口：\texttt{strategies/step\_verifier.py}。
+          \item verifier 模型封装：\texttt{models/deberta\_verifier.py}。
+          \item 结果保存 step 级评分，用于选择最终答案。
         \end{itemize}
-      \end{alertblock}
-      \begin{block}{聚合}
-        对每条路径求 step 分数均值，取最高值：
-        \[
-          \hat{a} = \arg\max_{i} \frac{1}{|y_i|} \sum_{s \in y_i} V(s)
-        \]
       \end{block}
+      \begin{alertblock}{实验观察}
+        AQuA 前 100 条达到 94\%，但平均输出 token 与耗时明显高于 base/self-consistency。
+      \end{alertblock}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{本地 DeBERTa Verifier：纯 CUDA 推理，零额外 API}
-  \framesubtitle{自定义微调 DeBERTa-v3-large 替代 LLM 验证}
-  \small
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{模型架构与评分}
-        \footnotesize
-        \begin{itemize}
-          \tightitems
-          \item Token 分类训练，推理时\textbf{当序列分类用}——只看 [CLS] 的 \texttt{SOLUTION-CORRECT} 概率。
-          \item STEP 标签仅辅助训练（loss 0.1），推理不用。
-          \item \texttt{score = softmax(logits)[SOLUTION-CORRECT] $\times$ 10}
-        \end{itemize}
-      \end{block}
-      \begin{block}{多 Prompt + 加权投票}
-        \footnotesize
-        \texttt{--n\_prompts}：每道题用多个 random few-shot prompt。
-        \[
-          \hat{a} = \arg\max_{a} \sum_{i=1}^{N} V(y_i) \cdot \mathbb{1}[a_i = a]
-        \]
-      \end{block}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{关键文件}
-        \footnotesize
-        \begin{tabularx}{\linewidth}{lY}
-          \midrule
-          \texttt{step\_verifier.py} & 策略主逻辑 \\
-          \texttt{deberta\_verifier.py} & verifier 包装 \\
-          \texttt{deberta\_model.py} & 自定义模型类 \\
-          \bottomrule
-        \end{tabularx}
-      \end{block}
-      \begin{alertblock}{性能}
-        \textbf{验证纯 CUDA，零 API 调用。}\\
-        50 样本: \textbf{52.3s/条}（LLM 版 $\frac{1}{4}$）。
-      \end{alertblock}
-      \begin{block}{模型分发}
-        \footnotesize
-        \centering
-        \texttt{huggingface.co/k1r1same/aqua-verifier}（国内自动镜像）
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
+\section{RAG + CoT}
 
 \subsection{RAG + CoT}
 
@@ -526,85 +336,72 @@ final = _aggregate_votes(predictions, weights)
   \end{columns}
 \end{frame}
 
-\subsection{Multi-Agent Debate}
+\section{Multi-Agent Debate}
 
-\begin{frame}{Multi-Agent Debate：5 角色协作与交叉评审}
+\begin{frame}{Multi-Agent Debate：让多个角色协作、反驳与裁决}
   \framesubtitle{Improving Factuality and Reasoning in Language Models through Multiagent Debate}
-  \small
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.58cm and 0.72cm,
+    role/.style={draw=Accent, rounded corners=2pt, fill=SoftBlue, align=center,
+      minimum width=2.65cm, minimum height=0.75cm, font=\small},
+    judge/.style={draw=Good, rounded corners=2pt, fill=SoftGreen, align=center,
+      minimum width=3.25cm, minimum height=0.82cm, font=\small\bfseries},
+    arr/.style={-{Latex[length=2mm]}, thick, draw=Accent}
+  ]
+    \node[role] (a1) {Agent 1\\独立推理};
+    \node[role, right=of a1] (a2) {Agent 2\\独立推理};
+    \node[role, right=of a2] (a3) {Agent 3\\独立推理};
+    \node[role, below=0.9cm of a2] (debate) {讨论 / 反思\\指出错误与证据};
+    \node[judge, below=0.88cm of debate] (vote) {裁决或汇总\\输出最终答案};
+    \draw[arr] (a1) -- (debate);
+    \draw[arr] (a2) -- (debate);
+    \draw[arr] (a3) -- (debate);
+    \draw[arr] (debate) -- (vote);
+  \end{tikzpicture}
+
+  \vspace{0.4em}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{5 种认知角色}
-        \begin{tabular}{ll}
-          \toprule
-          角色 & 职责 \\
-          \midrule
-          分析师 (T=0.3) & 逐步推导、代入验证 \\
-          批判者 (T=0.8) & 质疑思路、寻找陷阱 \\
-          直觉者 (T=1.2) & 模式识别、联想题型 \\
-          验证者 (T=0.5) & 代入数值、边界检查 \\
-          综合者 (T=0.7) & 整合各方、权衡决策 \\
-          \bottomrule
-        \end{tabular}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{项目实现}
+        \small \texttt{strategies/multi\_agent\_debate.py} 中模拟多角色生成、互评与最终汇总。
       \end{block}
     \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{核心流程（3 轮）}
-        \begin{enumerate}
-          \tightitems
-          \item 5 Agent 并行独立回答。
-          \item 交叉评审：各 Agent 审阅他人答案，指出漏洞。
-          \item 修订：基于辩论记录修正答案。
-          \item 收敛检测：连续两轮一致则提前停止。
-          \item 多数投票确定最终答案。
-        \end{enumerate}
-      \end{block}
-      \begin{alertblock}{实验亮点}
-        \begin{itemize}
-          \tightitems
-          \item 100 样本准确率 \textbf{95.0\%}（最高）。
-          \item 50→100 样本最稳定（+1.0\%）。
-          \item 实际成本 5$\sim$7× base CoT。
-        \end{itemize}
+    \begin{column}{0.47\textwidth}
+      \begin{alertblock}{实验观察}
+        100 样本准确率 95\%，但真实 API 成本高于保存结果中展示的最终摘要 token。
       \end{alertblock}
     \end{column}
   \end{columns}
 \end{frame}
 
-\section{Harness Engineering}
+\section{Bonus: Harness Engineering}
 
-\begin{frame}{Harness Engineering：五子系统设计思想}
+\begin{frame}{Bonus：用 Harness Engineering 管理 agentic 任务}
   \framesubtitle{参考：\url{https://github.com/walkinglabs/learn-harness-engineering}}
-  \small
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
-      \begin{block}{五子系统模型}
-        \begin{tabular}{ll}
-          \toprule
-          子系统 & 在 CoT 中的体现 \\
-          \midrule
-          \textbf{Instructions} & Prompt 模板与推理格式 \\
-          \textbf{Tools} & 检索器（RAG）、Verifier 模型 \\
-          \textbf{Environment} & AQuA 数据加载、答案提取 \\
-          \textbf{State} & 多路径历史、辩论记录 \\
-          \textbf{Feedback} & 前缀一致性、多 Agent 互评 \\
-          \bottomrule
-        \end{tabular}
+      \begin{block}{为什么需要 harness}
+        \begin{itemize}
+          \tightitems
+          \item 多策略、多参数、多 API 后端很容易变成不可复现实验。
+          \item Harness 把任务、模型、策略、指标、结果保存拆成稳定接口。
+          \item 便于替换个人负责的 \texttt{strategies/*.py}，不影响其他同学模块。
+        \end{itemize}
       \end{block}
     \end{column}
     \begin{column}{0.42\textwidth}
-      \begin{block}{7 策略 Harness 覆盖矩阵}
-        \scriptsize
-        \begin{tabular}{lccccc}
+      \begin{block}{子系统覆盖}
+        \small
+        \begin{tabular}{lcccc}
           \toprule
-          策略 & I & T & E & S & F \\
+          策略 & 指令 & 环境 & 状态 & 反馈 \\
           \midrule
-          Base CoT & Y & N & Y & N & N \\
-          Few-Shot CoT & Y & N & Y & N & N \\
-          Self-Consistency & Y & N & Y & Y & N \\
-          Prefix Consistency & Y & N & Y & Y & Y \\
-          Step Verifier & Y & Y & Y & Y & Y \\
-          RAG + CoT & Y & Y & Y & Y & N \\
-          Debate & Y & N & Y & Y & Y \\
+          Base & 是 & 是 & 否 & 否 \\
+          SC & 是 & 是 & 是 & 否 \\
+          Verifier & 是 & 是 & 是 & 是 \\
+          RAG & 是 & 是 & 是 & 部分 \\
+          Debate & 是 & 是 & 是 & 是 \\
           \bottomrule
         \end{tabular}
       \end{block}
@@ -612,38 +409,71 @@ final = _aggregate_votes(predictions, weights)
   \end{columns}
 \end{frame}
 
-\begin{frame}{Harness 子系统覆盖与准确率关系}
-  \framesubtitle{覆盖数不等于性能——Feedback 质量才是关键}
+\begin{frame}{Evidence-Calibrated Harness：把 CoT 变成受控推理流程}
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.55cm and 0.45cm,
+    stage/.style={draw=Accent, rounded corners=2pt, fill=SoftBlue, align=center,
+      minimum width=2.35cm, minimum height=0.62cm, font=\scriptsize},
+    repair/.style={draw=Warn, rounded corners=2pt, fill=SoftOrange, align=center,
+      minimum width=2.55cm, minimum height=0.62cm, font=\scriptsize},
+    final/.style={draw=Good, rounded corners=2pt, fill=SoftGreen, align=center,
+      minimum width=2.85cm, minimum height=0.65cm, font=\scriptsize\bfseries},
+    arr/.style={-{Latex[length=1.8mm]}, thick, draw=Accent}
+  ]
+    \node[stage] (base) {Base CoT\\候选推理};
+    \node[stage, right=of base] (lint) {Surface Lint\\格式约束};
+    \node[repair, right=of lint] (evi) {Evidence Calibration\\代回 / 消除 / 审计};
+    \node[stage, below=0.92cm of evi] (prefix) {Prefix Consistency\\稳定性};
+    \node[stage, left=of prefix] (verifier) {Step Verifier\\步骤评分};
+    \node[stage, left=of verifier] (debate) {Multi-Agent Debate\\候选补充};
+    \node[final, below=0.72cm of verifier] (arbiter) {Evidence-Aware Final Arbiter\\综合证据裁决};
+    \draw[arr] (base) -- (lint);
+    \draw[arr] (lint) -- (evi);
+    \draw[arr] (evi) -- (prefix);
+    \draw[arr] (prefix) -- (verifier);
+    \draw[arr] (verifier) -- (debate);
+    \draw[arr] (debate.south) |- (arbiter.west);
+    \draw[arr] (verifier) -- (arbiter);
+    \draw[arr] (prefix.south) |- (arbiter.east);
+  \end{tikzpicture}
+
+  \vspace{0.45em}
+  \smallnote{核心思想：不直接接受一次格式正确的 CoT，而是用异质证据校准置信度；证据不足或冲突时，Harness 自动升级推理策略。}
+\end{frame}
+
+\begin{frame}{Harness 体现：模型执行推理，控制层负责约束、反馈和裁决}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{覆盖数 vs 准确率}
-        \small
-        \begin{tabular}{lcc}
-          \toprule
-          策略 & 覆盖数 & 准确率 \\
-          \midrule
-          Debate & 4/5 & \textbf{95.0\%} \\
-          Self-Consistency & 3/5 & \textbf{94.0\%} \\
-          Step Verifier & 5/5 & \textbf{94.0\%} \\
-          Prefix Consistency & 4/5 & \textbf{93.0\%} \\
-          RAG + CoT & 4/5 & \textbf{92.0\%} \\
-          Base CoT & 2/5 & \textbf{91.0\%} \\
-          \bottomrule
-        \end{tabular}
-      \end{block}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{alertblock}{核心洞察}
+    \begin{column}{0.54\textwidth}
+      \begin{block}{Harness 在本方案中的职责}
         \begin{itemize}
           \tightitems
-          \item 覆盖数与准确率\textbf{无单调正相关}。
-          \item Self-Consistency（3/5）以最少机制达到 94\%。
-          \item Step Verifier（5/5，全覆盖）反而未能超越 Debate（4/5）。
+          \item \textbf{约束}：Surface Lint 限制答案格式、空输出和短推理。
+          \item \textbf{反馈}：Evidence Probe、Prefix、Verifier、Debate 持续产生可靠性信号。
+          \item \textbf{路由}：根据失败类型决定接受、修复或升级。
+          \item \textbf{状态}：保存 \texttt{harness\_trace}、risk types、probe results、arbiter scores。
+          \item \textbf{裁决}：Final Arbiter 综合所有阶段证据，而不是盲信最后一个模块。
         \end{itemize}
-      \end{alertblock}
-      \begin{block}{结论}
-        \textbf{高质量 Feedback}（多 Agent 交叉评审、路径质量评分）比\textbf{复杂系统架构}更关键。
       \end{block}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{五子系统映射}
+        \small
+        \begin{tabularx}{\linewidth}{lY}
+          \toprule
+          子系统 & 对应实现 \\
+          \midrule
+          Instructions & CoT / Probe / Verifier prompts \\
+          Tools & RAG、Verifier、Evidence probes \\
+          Environment & AQuA、答案抽取、指标计算 \\
+          State & 多路径、探针结果、阶段 trace \\
+          Feedback & Prefix 稳定性、审计冲突、Debate \\
+          \bottomrule
+        \end{tabularx}
+      \end{block}
+      \begin{alertblock}{一句话}
+        创新不是让模型多想几遍，而是让 Harness 判断何时该相信、何时该升级。
+      \end{alertblock}
     \end{column}
   \end{columns}
 \end{frame}
@@ -678,7 +508,7 @@ final = _aggregate_votes(predictions, weights)
         \foreach \name/\acc/\y/\col in {
           Debate/95/0/Good,
           Self-Consistency/94/1/Accent,
-          Step Ver. (DeBERTa)/94/2/Accent,
+          Step Verifier/94/2/Accent,
           Prefix Consistency/93/3/Warn,
           RAG + CoT/92/4/Warn,
           Base CoT/91/5/Muted}
@@ -696,8 +526,8 @@ final = _aggregate_votes(predictions, weights)
         \begin{itemize}
           \tightitems
           \item Base CoT 已有 91\% 基线。
-          \item Self-Consistency 提升到 94\%。
-          \item Debate 最高为 95\%，成本最高。
+          \item Self-Consistency 提升到 94\%，收益稳定且工程侵入小。
+          \item Debate 最高为 95\%，但成本与调度复杂度更高。
         \end{itemize}
       \end{block}
     \end{column}
@@ -712,8 +542,7 @@ final = _aggregate_votes(predictions, weights)
     \midrule
     Base CoT & 100 & 91 & 91\% & 187.64 & 单路径，成本最低。 \\
     Self-Consistency & 100 & 94 & 94\% & 238.56 & 多路径采样，准确率稳定提升。 \\
-    Step Verifier (LLM) & 100 & 94 & 94\% & 563.74 & step 级评估更细，但输出成本最高。 \\
-    Step Verifier (DeBERTa) & 100 & 94 & 94\% & — & 验证阶段本地 CUDA，零 API 调用。 \\
+    Step Verifier & 100 & 94 & 94\% & 563.74 & step 级评估更细，但输出成本最高。 \\
     RAG + CoT & 100 & 92 & 92\% & 197.90 & 输入 token 增加，受检索质量影响。 \\
     Multi-Agent Debate & 100 & 95 & 95\% & 72.18 & 结果文件只保存摘要，实际调用成本更高。 \\
     \bottomrule
@@ -731,10 +560,9 @@ final = _aggregate_votes(predictions, weights)
         \midrule
         Multi-Agent Debate & 94\% & 95\% \\
         Self-Consistency & 94\% & 94\% \\
-        Step Verifier (LLM) & 92\% & 94\% \\
-        Step Verifier (DeBERTa) & 94\% & 94\% \\
+        Step Verifier & 92\% & 94\% \\
         Prefix Consistency & 94\% & 93\% \\
-        RAG + CoT & 91\% & 92\% \\
+        RAG + CoT & 78\% & 92\% \\
         Base CoT & 92\% & 91\% \\
         \bottomrule
       \end{tabular}
@@ -755,91 +583,44 @@ final = _aggregate_votes(predictions, weights)
 
 \section{总结}
 
-\begin{frame}{Token 消耗与性价比分析}
-  \framesubtitle{100 样本数据}
+\begin{frame}{方法对比总结：不同策略解决不同失败模式}
   \small
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{输出 Token 对比（vs Base CoT）}
-        \begin{tabular}{lrr}
-          \toprule
-          策略 & 平均输出 & 相对 Base \\
-          \midrule
-          Prefix Consistency & \textbf{159.9} & \textbf{0.85×} \\
-          Base CoT & 187.6 & 1.00× \\
-          RAG + CoT & 197.9 & 1.06× \\
-          Self-Consistency & 238.6 & 1.27× \\
-          Step Verifier (LLM) & 563.7 & 3.00× \\
-          \bottomrule
-        \end{tabular}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{综合性价比排名}
-        \begin{enumerate}
-          \tightitems
-          \item \textbf{Debate}（95.0\%）——追求最高准确率
-          \item \textbf{Self-Consistency}（94.0\%）——高准确率 + 可接受成本
-          \item \textbf{Prefix Consistency}（93.0\%, 159.9 tokens）——最低 API 费用
-          \item \textbf{Step Verifier (DeBERTa)}（94.0\%）——零 API 费用
-          \item \textbf{Base CoT}（91.0\%）——最快、最简单
-          \item \textbf{RAG + CoT}（92.0\%）——检索升级后潜力大
-          \item \textbf{Step Verifier (LLM)}（94.0\%）——准确率优先、不计成本
-        \end{enumerate}
-      \end{block}
-    \end{column}
-  \end{columns}
+  \begin{tabularx}{\linewidth}{lYYY}
+    \toprule
+    方法 & 主要解决的问题 & 优势 & 局限 \\
+    \midrule
+    Self-Consistency & 单路径随机错误 & 简单、低风险、可直接替换策略文件 & 多次采样增加调用成本 \\
+    Step Verifier & 中间步骤错误 & 可解释性强，能定位 step 级问题 & verifier 依赖与耗时较高 \\
+    RAG + CoT & 外部知识不足 & 对知识密集题更有潜力 & 数学题收益受检索质量限制 \\
+    Debate & 单模型视角偏差 & 多角色互相纠错，准确率最高 & 调度复杂、成本最高 \\
+    Harness & 实验不可复现 & 统一接口、结果留痕、便于协作 & 需要规范每个策略的输入输出 \\
+    \bottomrule
+  \end{tabularx}
 \end{frame}
 
-\begin{frame}{各方法优越性与局限性}
-  \small
+\begin{frame}{结论：本项目的核心贡献}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{主要优越性}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{算法贡献}
         \begin{itemize}
           \tightitems
-          \item \textbf{Self-Consistency：} 94\% 稳定，路径质量评分 + 早停节省 $\sim$30\% API 调用。
-          \item \textbf{Prefix Consistency：} token 效率最优（0.85× base），无需额外模型，纯 prompt 工程。
-          \item \textbf{DeBERTa Verifier：} 零 API 费用，速度比 LLM 版快 4×（52.3s vs 206.6s/条）。
-          \item \textbf{Multi-Agent Debate：} 最高准确率 95\%，5 种认知风格 + 交叉评审。
+          \item 将普通 self-consistency 从“多数投票”改为“自适应加权投票”。
+          \item 加入答案有效性检查、空答案低温重试、早停剪枝和平票质量打破。
+          \item 不占用 verifier、RAG、debate 的方法边界，只用本路径文本启发式信号。
         \end{itemize}
       \end{block}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{主要局限性}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{工程贡献}
         \begin{itemize}
           \tightitems
-          \item \textbf{Debate：} 实际成本 5$\sim$7× base CoT，温度差异大时可能无法收敛。
-          \item \textbf{RAG + CoT：} Jaccard 缺乏语义理解，知识库仅 15 条。
-          \item \textbf{Step Verifier (LLM)：} 速度极慢（206.6s/条），token 消耗 3× base。
-          \item \textbf{Prefix Consistency：} 墙钟时间较长（64.4s/条），截断比固定 0.5。
+          \item 统一策略接口，方便各成员替换 \texttt{strategies} 下自己的方法。
+          \item 实验结果自动写入 \texttt{experiments/runs}，便于复查与报告。
+          \item 支持 API key / base url / model 参数化，避免硬编码密钥。
         \end{itemize}
       \end{block}
     \end{column}
   \end{columns}
-\end{frame}
-
-\begin{frame}{主要结论}
-  \begin{enumerate}
-    \tightitems
-    \item \textbf{Multi-Agent Debate 准确率最高（95.0\%）：} 5 Agent 并行 + 交叉评审 + 收敛检测，是追求极致准确率的上限方案。
-    \item \textbf{Self-Consistency 最鲁棒（94.0\% 稳定）：} 50 和 100 样本均保持 94\%，路径质量评分 + 早停实现高 token 效率。
-    \item \textbf{Prefix Consistency token 效率最优：} 平均输出 token 仅 159.9（0.85× base），准确率 93.0\%，验证了截断-再生一致性信号的可靠性。
-    \item \textbf{高质量 Feedback 比复杂架构更关键：} 覆盖数 3/5 的 Self-Consistency 超越覆盖数 5/5 的 Step Verifier，证明\textbf{局部评估质量}比\textbf{系统复杂度}更重要。
-    \item \textbf{RAG 受检索器质量严重制约：} 当前 Jaccard 检索器是瓶颈，升级 Embedding 语义检索后潜力大。
-  \end{enumerate}
-
-  \vspace{0.5em}
-  \begin{block}{未来工作}
-    \small
-    \begin{itemize}
-      \tightitems
-      \item Debate 优化：自适应角色配置、引入仲裁者 Agent、基于置信度的加权投票。
-      \item 检索器升级：BGE / E5 语义检索替代 Jaccard，扩充知识库规模。
-      \item 扩展验证：在 GSM8K、MATH 等更大数据集上验证泛化能力。
-      \item Tree-of-Thought：将多路径策略扩展为树状搜索结构。
-    \end{itemize}
-  \end{block}
 \end{frame}
 
 \begin{frame}{代码与参考}
@@ -851,9 +632,7 @@ final = _aggregate_votes(predictions, weights)
       \midrule
       \texttt{harness.py} & 统一实验入口与结果保存。 \\
       \texttt{strategies/self\_consistency.py} & 自适应加权 self-consistency。 \\
-      \texttt{strategies/prefix\_consistency.py} & Prefix Consistency 策略。 \\
       \texttt{strategies/step\_verifier.py} & Step-aware verifier 策略。 \\
-      \texttt{models/deberta\_verifier.py} & DeBERTa 本地 verifier 封装。 \\
       \texttt{strategies/rag\_cot.py} & 检索增强 CoT。 \\
       \texttt{strategies/multi\_agent\_debate.py} & 多 Agent debate。 \\
       \texttt{experiments/runs/*.json} & 实验结果与逐样本输出。 \\
@@ -862,11 +641,9 @@ final = _aggregate_votes(predictions, weights)
   \end{block}
   \begin{block}{参考论文}
     \scriptsize
-    Chain-of-Thought Prompting Elicits Reasoning in Large Language Models;
     Self-Consistency Improves Chain of Thought Reasoning in Language Models;
-    Reliable Chain-of-Thought via Prefix Consistency;
     Making Large Language Models Better Reasoners with Step-Aware Verifier;
-    Interleaving Retrieval with Chain-of-Thought Reasoning;
+    Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions;
     Improving Factuality and Reasoning in Language Models through Multiagent Debate.
   \end{block}
 \end{frame}
@@ -875,6 +652,7 @@ final = _aggregate_votes(predictions, weights)
   \centering
   \vspace{2.2cm}
   {\Huge 谢谢！}\\[0.8em]
+  {\large 欢迎提问}
 \end{frame}
 
 \end{document}

@@ -1,11 +1,11 @@
 \documentclass[lang=cn,a4paper,newtx]{elegantpaper}
 
 \title{基于 Harness Engineering 的 Chain-of-Thought 推理策略对比研究}
-% \author{作者1 \\ 某某大学/机构 \and 作者2 \\ 某某大学/机构}
+
 \institute{项目地址：\href{https://github.com/SHenpengYU01/nlp-cot}{https://github.com/SHenpengYU01/nlp-cot}}
 
 % \version{1.0}
-\date{\zhdate{2026/6/22}}
+\date{\zhdate{2026/6/28}}
 
 \usepackage{array}
 \usepackage{booktabs}
@@ -16,6 +16,8 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
 
 \lstset{
   basicstyle=\small\ttfamily,
@@ -32,7 +34,7 @@
 \maketitle
 
 \begin{abstract}
-大语言模型（LLM）在复杂推理任务上的表现受限于其直接输出答案的倾向。Chain-of-Thought（CoT）提示技术通过引导模型生成中间推理步骤，显著提升了数学推理等任务的准确率。然而，单一推理路径仍存在不稳定性问题。本文在 AQuA（Algebraic Word Problems）数据集上系统实现并对比了 7 种 CoT 变体策略，包括 Base COT、Self-Consistency、Prefix Consistency、Step-Aware Verifier、Few-Shot CoT、RAG + COT 和 Multi-Agent Debate。特别地，本文借鉴 Harness Engineering 的五子系统设计思想（Instructions / Tools / Environment / State / Feedback），将每种策略映射到 Harness 子系统覆盖矩阵，系统化地评估不同设计选择对推理性能的影响。实验结果表明，在 100 样本测试中，升级后的 Multi-Agent Debate 达到 \textbf{95.0\%} 的最高准确率，Self-Consistency 和 Step-Aware Verifier 均达到 \textbf{94.0\%}，Prefix Consistency 以 \textbf{93.0\%} 的准确率和 \textbf{159.9} 的平均输出 token 成为 token 效率最优的策略。研究还发现，Harness 子系统覆盖数与准确率之间不存在单调正相关关系，但\textbf{高质量的 Feedback 机制}（如多 Agent 交叉评审、路径质量评分）能显著提升推理稳定性，\textbf{高质量的局部评估机制}比复杂的系统架构更为关键。
+大语言模型（LLM）在复杂推理任务上的表现受限于其直接输出答案的倾向。Chain-of-Thought（CoT）提示技术通过引导模型生成中间推理步骤，显著提升了数学推理等任务的准确率。然而，单一推理路径仍存在不稳定性问题。本文在 AQuA（Algebraic Word Problems）数据集上系统实现并对比了 7 种 CoT 变体策略，包括 Base COT、Self-Consistency、Prefix Consistency、Step-Aware Verifier、Few-Shot CoT、RAG + COT 和 Multi-Agent Debate。特别地，本文借鉴 Harness Engineering 的五子系统设计思想（Instructions / Tools / Environment / State / Feedback），将每种策略映射到 Harness 子系统覆盖矩阵，系统化地评估不同设计选择对推理性能的影响。\textbf{作为本文的核心创新点}，我们在基础策略对比之上进一步设计了 \textbf{Evidence-Calibrated Adaptive CoT Harness}：它将 Harness 从“实验管理框架”推进为“推理过程控制框架”，在推理时构建外部控制层，通过异质证据探针（代回校验、选项消除、算术审计）校准置信度，并结合 Prefix Consistency、Step Verifier、Multi-Agent Debate 形成证据驱动的升级与裁决闭环，专门针对基础 CoT 中难以察觉的“高置信错误”。实验结果表明，在 100 样本测试中，升级后的 Multi-Agent Debate 达到 \textbf{95.0\%} 的最高准确率，Self-Consistency 和 Step-Aware Verifier 均达到 \textbf{94.0\%}，Prefix Consistency 以 \textbf{93.0\%} 的准确率和 \textbf{159.9} 的平均输出 token 成为 token 效率最优的策略。研究还发现，Harness 子系统覆盖数与准确率之间不存在单调正相关关系，但\textbf{高质量的 Feedback 机制}（如多 Agent 交叉评审、路径质量评分、证据校准）能显著提升推理稳定性，\textbf{高质量的局部评估机制}比复杂的系统架构更为关键。
 \keywords{Chain-of-Thought；Self-Consistency；Prefix Consistency；Harness Engineering；大语言模型；数学推理}
 \end{abstract}
 
@@ -67,6 +69,7 @@ CoT 的核心思想是将复杂问题分解为一系列可解释的中间步骤�
   \item 借鉴 Harness Engineering 五子系统思想，系统化分析各策略的设计特征。
   \item 在 50 样本和 100 样本两个规模上对比各策略的准确率、效率和 token 消耗。
   \item 深入分析各方法的优越性与局限性，为实际应用中的策略选择提供指导。
+  \item \textbf{设计 Evidence-Calibrated Adaptive CoT Harness}，将 Harness 从实验管理框架推进为推理过程控制框架，通过异质证据校准置信度并触发策略升级闭环，针对基础 CoT 的“高置信错误”给出系统化解决方案。
 \end{enumerate}
 
 \section{研究内容与任务挑战}
@@ -464,6 +467,70 @@ step\_verifier & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\c
 
 \textbf{核心洞察}：子系统覆盖数与准确率之间不存在单调正相关关系。\texttt{self\_consistency}（3/5）以最少的外围机制达到了 94.0\% 的最高准确率，证明\textbf{高质量的局部评估}（路径质量评分）比复杂的系统架构更高效。
 
+\subsection{Evidence-Calibrated Adaptive CoT Harness（创新点）}
+\label{sec:evidence-harness}
+
+在完成基础策略对比后，我们进一步将 Harness Engineering 从“实验管理框架”推进到“推理过程控制框架”，设计了 \texttt{evidence\_calibrated\_harness}。该方法不修改底层大模型参数，而是在推理时构建外部控制层，对 CoT 输出进行约束、诊断、证据审计、策略升级和最终裁决。
+
+该方案针对基础 Harness 中最典型的隐性失败：\textbf{高置信错误}。即模型输出格式正确、推理看似完整（\texttt{Base CoT $\to$ reliability=1.00}），但最终选项仍然错误。普通 linter 难以发现这类错误，因此本项目引入证据校准机制。
+
+\textbf{整体流程}如图~\ref{fig:evidence-harness} 所示：
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  node distance=0.55cm,
+  every node/.style={draw, rounded corners, align=center, minimum width=4.6cm, minimum height=0.65cm, font=\small}]
+  \node (a) {Base CoT};
+  \node[below=of a] (b) {Surface Lint};
+  \node[below=of b] (c) {Evidence Calibration};
+  \node[below=of c] (d) {Prefix Consistency};
+  \node[below=of d] (e) {Step Verifier};
+  \node[below=of e] (f) {Multi-Agent Debate};
+  \node[below=of f] (g) {Evidence-Aware Final Arbiter};
+  \draw[-{Latex[length=2.5mm]}] (a) -- (b);
+  \draw[-{Latex[length=2.5mm]}] (b) -- (c);
+  \draw[-{Latex[length=2.5mm]}] (c) -- (d);
+  \draw[-{Latex[length=2.5mm]}] (d) -- (e);
+  \draw[-{Latex[length=2.5mm]}] (e) -- (f);
+  \draw[-{Latex[length=2.5mm]}] (f) -- (g);
+\end{tikzpicture}
+\caption{Evidence-Calibrated Adaptive CoT Harness 流程}
+\label{fig:evidence-harness}
+\end{figure}
+
+其中各模块承担不同 Harness 职责：
+
+\begin{table}[htbp]
+\centering
+\caption{Evidence-Calibrated Harness 各模块的职责与 Harness 体现}
+\begin{tabular}{lll}
+\toprule
+模块 & 作用 & Harness 体现 \\
+\midrule
+Surface Lint & 检查答案格式、空输出、短推理、冲突答案 & Architecture Constraints \\
+Risk Classifier & 识别算术风险、选项匹配风险、语义误读风险 & State / Feedback \\
+Evidence Probes & 通过代回检查、选项消除、算术审计验证 Base 答案 & Tools / Feedback \\
+Prefix Consistency & 检查推理前缀再生成是否稳定 & State / Feedback \\
+Step Verifier & 对多条路径进行步骤级评分 & Tools / Feedback \\
+Multi-Agent Debate & 在低置信场景下补充多角色候选答案 & Feedback \\
+Final Arbiter & 综合各阶段证据给出最终答案 & State / Feedback \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{核心创新点}在于，系统不再把“格式正确的 CoT”直接视为可信答案，而是通过异质证据校准置信度：
+
+\begin{itemize}
+  \item \texttt{back\_substitution}：将候选答案代回题目条件，检查是否满足约束；
+  \item \texttt{option\_elimination}：逐个排除 A--E 选项，避免只沿着 Base 推理路径前进；
+  \item \texttt{arithmetic\_audit}：独立检查百分比、比例、近似和选项匹配；
+  \item \texttt{prefix\_low\_stability}：当初始投票一致但再生成一致性低时，继续升级而不直接接受；
+  \item \texttt{evidence\_aware\_final\_arbiter}：最终不盲信最后一个模块，而是综合探针、Prefix、Verifier 和 Debate 的证据。
+\end{itemize}
+
+该方法体现了 Harness Engineering 的核心思想：\textbf{Human Steer, Agent Execute}。模型负责生成候选推理，Harness 负责约束输出、识别风险、选择工具、触发反馈循环并记录状态。换言之，创新点不在于让模型“多想几遍”，而在于让外部控制系统判断什么时候应该相信模型、什么时候必须修复或升级推理。
+
 \section{实验设计}
 
 \subsection{数据集与样本选择}
@@ -588,6 +655,7 @@ few\_shot\_cot & --- & --- & --- & --- & --- \\
 \textbf{step\_verifier (LLM)} & \textbf{94.0\%} & 563.7 & --- & 21.6 \\
 \textbf{prefix\_consistency} & \textbf{93.0\%} & \textbf{159.9} & 130.0 & 6.7 \\
 \textbf{rag\_cot} & \textbf{92.0\%} & 197.9 & 238.6 & 6.0 \\
+\textbf{evidence\_calibrated\_harness} & \textbf{92.0\%} & 335.7 & 261.8 & 5.25 \\
 base\_cot & 91.0\% & 187.6 & 130.0 & 5.8 \\
 few\_shot\_cot & --- & --- & --- & --- \\
 \bottomrule
@@ -733,6 +801,55 @@ step\_verifier (LLM) & 563.7 & 3.00$\times$ \\
   \item \textbf{截断比例敏感}：truncation\_ratio 的选择影响一致性评估的准确性，当前固定为 0.5，未进行自适应优化。
 \end{itemize}
 
+\subsection{Evidence-Calibrated Harness 测试结果分析}
+\label{sec:evidence-harness-results}
+
+作为创新点的 \texttt{evidence\_calibrated\_harness}（运行 ID \texttt{20260627\_020138}，100 样本）在 AQuA test 前一百条上取得 \textbf{92.0\%} 的准确率，平均输出 token 335.7、平均输入 token 261.8、平均耗时 63.3s/条。本节从级联机制、证据校准有效性、净增益与失效模式四个角度对其测试数据进行分析。
+
+\textbf{(1) 级联提前终止的高效性}。Harness 配置了 base\_cot $\to$ evidence\_calibration $\to$ prefix\_consistency $\to$ rag\_cot $\to$ few\_shot\_cot $\to$ step\_verifier $\to$ multi\_agent\_debate 的升级链。100 题的最终接受阶段分布如表~\ref{tab:ech-stage} 所示：
+
+\begin{table}[htbp]
+\centering
+\caption{Evidence-Calibrated Harness 各最终接受阶段的样本数与错误率}
+\label{tab:ech-stage}
+\begin{tabular}{lcc}
+\toprule
+最终接受阶段 & 样本数 & 错误数（错误率） \\
+\midrule
+prefix\_consistency & 62 & 0（0.0\%） \\
+step\_verifier & 15 & 4（26.7\%） \\
+few\_shot\_cot & 10 & 1（10.0\%） \\
+evidence\_calibration & 8 & 0（0.0\%） \\
+multi\_agent\_debate & 3 & 3（100\%） \\
+rag\_cot & 2 & 0（0.0\%） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+可见级联机制有效实现了\textbf{提前终止}：62\% 的题在廉价的 prefix\_consistency 阶段即被接受且零错误，仅 3\% 的题一路升级到最昂贵的 debate 阶段。各策略的激活频率依次为 base\_cot 100\%、prefix\_consistency 80\%、rag\_cot 38\%、few\_shot\_cot 36\%、step\_verifier 18\%、evidence\_calibration 8\%、multi\_agent\_debate 3\%。
+
+\textbf{(2) 证据校准的精准性}。8 个在 evidence\_calibration 阶段被接受的案例\textbf{全部正确}（8/8）。证据探针（back\_substitution / option\_elimination / arithmetic\_audit）确实起到了"确认高置信答案"的作用——例如在距离题中三个探针全部给出 \texttt{stance=support}、evidence score=6.0，正确接受答案。这验证了"Human Steer, Agent Execute"思想在确认环节的有效性。
+
+\textbf{(3) 相对 base\_cot 的净增益}。逐题比对 base\_cot 单独预测与 Harness 最终预测：
+
+\begin{itemize}
+  \item base\_cot 单独正确：90/100；
+  \item Harness 翻转 base 答案的题：9/100，其中翻转正确（base 错$\to$对）5 题，翻转错误（base 对$\to$错）3 题；
+  \item \textbf{净增益 $+2$}（90 $\to$ 92）。
+\end{itemize}
+
+这表明 Harness 确实修复了一部分"高置信错误"，但同时引入了少量"误伤"，二者部分抵消。
+
+\textbf{(4) 失效模式分析}。测试数据揭示了三类典型失效：
+
+\textit{模式 A — Debate 兜底失效（3/3 全错）}。升级到 multi\_agent\_debate 的 3 题\textbf{全部答错}。这些是"全策略低置信"的最难题：trace 显示 base reliability=1.00 但 evidence\_calibration 判定 \texttt{confident\_wrong\_risk}，prefix\_consistency 报告 \texttt{prefix\_low\_stability}，step\_verifier 报告 \texttt{low\_verifier\_score}，最终 debate 也仅得到 \texttt{weak\_debate\_consensus}。其根因在于：Harness \textbf{正确识别了这些是难题}（多次低置信信号一致），但\textbf{没有任何单一策略能够真正解出}这些题，而 debate 给出的答案恰好是错的。换言之，兜底策略本身在难题上的能力上限决定了级联末端的天花板。
+
+\textit{模式 B — 翻转致伤（3 例）}。3 例中 base\_cot 本来答对，Harness 因低置信信号触发升级后反而改错。其根因在于低置信信号存在\textbf{误报}：例如 prefix 再生一致性与 step verifier 评分在 base 已正确时仍可能因模型输出的随机性偏低，从而触发不必要的升级，并把对的答案替换成错答案。这是级联式"保守升级"策略的固有风险。
+
+\textit{模式 C — 未超越最强单策略}。整体准确率 92.0\% 低于 multi\_agent\_debate（95.0\%）和 self\_consistency / step\_verifier（94.0\%）。其根因在于：Harness 以"逐级升级、能省则省"为目标，倾向于在低成本阶段尽早接受答案，这种保守策略避免了高昂成本，却牺牲了顶端准确率——它没有为每道题都强制调用最强策略，因此难以触及单策略天花板。
+
+\textbf{改进方向}：(i) 将最终兜底从 multi\_agent\_debate 替换为 self\_consistency（94\%、更鲁棒且更便宜），以提升难题救援率；(ii) 对"base reliability=1.00 但 evidence 反对"的矛盾案例提高升级阈值，减少模式 B 的翻转致伤；(iii) 在 evidence\_calibration 的 accept/reject 之间引入"维持 base 答案"的中间档，避免无谓升级。
+
 \section{Harness 子系统覆盖与准确率关系讨论}
 
 将 100 样本准确率与 Harness 子系统覆盖数进行对比，可以观察到以下规律：
@@ -775,12 +892,14 @@ step\_verifier & 5/5 & \textbf{94.0\%} \\
   \item \textbf{Prefix Consistency 是 token 效率最优的策略}：以 159.9 的平均输出 token 实现了 93.0\% 的准确率，验证了截断再生一致性作为可靠性信号的有效性。
   \item \textbf{Harness 子系统覆盖数与准确率无单调正相关，但高质量 Feedback 能突破瓶颈}：\texttt{multi\_agent\_debate}（4/5）以高质量的交叉评审 Feedback 达到了 95.0\%，而 \texttt{self\_consistency}（3/5）以本地路径质量评分达到 94.0\%。证明\textbf{Feedback 质量}而非覆盖数本身是决定准确率的关键。
   \item \textbf{RAG 的效果受检索器质量严重制约}：当前 keyword-based 检索器限制了 RAG + COT 的性能提升，升级检索器后潜力较大。
+  \item \textbf{Evidence-Calibrated Adaptive CoT Harness 体现了“Human Steer, Agent Execute”的设计哲学}：通过将 Harness 从实验管理框架推进为推理过程控制框架，利用代回校验、选项消除、算术审计等异质证据探针校准置信度，并在低置信时触发策略升级闭环。100 样本测试中取得 92.0\% 准确率（较 base\_cot 净增益 +2），62\% 的题在廉价的 Prefix Consistency 阶段即被接受且零错误，8 个证据校准接受的案例全部正确。但其保守升级策略使其未能超越最强单策略（multi\_agent\_debate 95.0\%），且 debate 兜底在"全策略低置信"的最难题上失效（3/3 全错），揭示了级联末端能力上限与低置信误报两类失效模式。
 \end{enumerate}
 
 \subsection{未来工作}
 
 \begin{enumerate}
-  \item \textbf{Multi-Agent Debate 优化}：探索自适应角色配置（根据题目难度动态调整 Agent 数量和角色）、引入"仲裁者"Agent 解决持续分歧、以及基于置信度的加权投票替代简单多数投票。
+  \item \textbf{Multi-Agent Debate 优化}：探索自适应角色配置（根据题目难度动态调整 Agent 数量和角色）、引入“仲裁者”Agent 解决持续分歧、以及基于置信度的加权投票替代简单多数投票。
+  \item \textbf{Evidence-Calibrated Harness 量化评估}：在更大规模样本上系统量化证据探针（代回校验、选项消除、算术审计）对“高置信错误”的召回率与误升级率，并与各基础策略进行端到端对比，验证其作为推理过程控制框架的有效性。
   \item \textbf{检索器升级}：将 keyword-based 检索器替换为基于 Embedding 的语义检索（如 BGE、E5），或引入向量数据库，提升检索质量。
   \item \textbf{自适应 Prefix Consistency}：探索动态截断比例（如基于句子边界、逻辑段落边界），替代固定的 0.5 字符比例。
   \item \textbf{本地 DeBERTa 100 样本测试}：完成本地 verifier 在 100 样本上的基准测试，验证其零 API 费用优势在大规模场景下的可扩展性。
