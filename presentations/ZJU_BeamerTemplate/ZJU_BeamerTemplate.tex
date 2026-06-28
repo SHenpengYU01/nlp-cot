@@ -107,6 +107,12 @@
 
 \section{Self-Consistency}
 
+\begin{frame}{Self-Consistency 算法示意图}
+  \framesubtitle{Self-Consistency Improves Chain of Thought Reasoning in Language Models}
+  \centering
+  \includegraphics[height=0.78\textheight,keepaspectratio]{self-consistency.png}
+\end{frame}
+
 \begin{frame}{Self-Consistency：从单条推理变成多路径投票}
   \framesubtitle{Self-Consistency Improves Chain of Thought Reasoning in Language Models}
   \begin{columns}[T,onlytextwidth]
@@ -210,7 +216,59 @@ final = _aggregate_votes(predictions, weights)
   \end{columns}
 \end{frame}
 
+\section{Prefix Consistency}
+
+\begin{frame}{Prefix Consistency 算法示意图}
+  \framesubtitle{Reliable Chain-of-Thought via Prefix Consistency}
+  \centering
+  \includegraphics[height=0.78\textheight,width=\textwidth,keepaspectratio]{prefix-consistency.png}
+\end{frame}
+
+\begin{frame}{Prefix Consistency：截断-再生评估推理链可靠性}
+  \framesubtitle{Reliable Chain-of-Thought via Prefix Consistency (Iwase et al., 2026)}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.52\textwidth}
+      \begin{block}{核心机制}
+        \begin{enumerate}
+          \tightitems
+          \item 生成 $N=3$ 条初始 CoT 路径。
+          \item 在每条路径中间位置 $t_i = \lfloor |y_i| \cdot r \rfloor$ 截断（$r=0.5$），得到前缀 $p_i$。
+          \item 从 $p_i$ 再生 $K=3$ 次，得到补全路径。
+          \item 计算前缀一致性得分：
+          \[
+            C_i = \frac{1}{K} \sum_{j=1}^{K} \mathbb{1}[\text{extract\_answer}(y_{i,j}^{\prime}) = a_i]
+          \]
+        \end{enumerate}
+      \end{block}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{加权投票}
+        \[
+          \hat{a} = \arg\max_{a} \sum_{i=1}^{N} W(C_i) \cdot \mathbb{1}[a_i = a]
+        \]
+        \vspace{-0.3em}
+        权重函数可选：linear / quadratic / cubic / unanimous
+      \end{block}
+      \begin{alertblock}{实验亮点}
+        \begin{itemize}
+          \tightitems
+          \item 100 样本准确率 \textbf{93.0\%}。
+          \item 平均输出 token 仅 \textbf{159.9}（0.85× base CoT），token 效率最优。
+          \item 无需额外模型，纯 prompt 工程方法。
+        \end{itemize}
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \section{Step-Aware Verifier}
+
+\begin{frame}{Step-Aware Verifier 算法示意图}
+  \framesubtitle{Making Large Language Models Better Reasoners with Step-Aware Verifier}
+  \centering
+  \includegraphics[height=0.78\textheight,keepaspectratio]{verifier.png}
+\end{frame}
 
 \begin{frame}{Step-Aware Verifier：从“看最终答案”到“看每一步”}
   \framesubtitle{Making Large Language Models Better Reasoners with Step-Aware Verifier}
@@ -337,6 +395,12 @@ final = _aggregate_votes(predictions, weights)
 \end{frame}
 
 \section{Multi-Agent Debate}
+
+\begin{frame}{Multi-Agent Debate 算法示意图}
+  \framesubtitle{Improving Factuality and Reasoning in Language Models through Multiagent Debate}
+  \centering
+  \includegraphics[height=0.78\textheight,keepaspectratio]{multi-agent-debate.png}
+\end{frame}
 
 \begin{frame}{Multi-Agent Debate：让多个角色协作、反驳与裁决}
   \framesubtitle{Improving Factuality and Reasoning in Language Models through Multiagent Debate}
